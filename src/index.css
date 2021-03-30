@@ -1,13 +1,15 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import "./components/topNav/topNav.css";
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #FAFAFA;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  font-family: 'Segoe UI', 'Times New Roman', Times, serif;
 }
