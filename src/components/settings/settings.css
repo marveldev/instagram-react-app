@@ -1,0 +1,40 @@
+.settings {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  /* align-items: center; */
+  width: 60%;
+  height: auto;
+  margin: 6em auto 2em;
+  background-color: #fff;
+  border: 1px solid #DBDBDB;
+}
+
+.settings-nav {
+  border-right: 1px solid #DBDBDB;
+}
+
+.settings-nav > button {
+  display: block;
+  text-align: left;
+  padding-left: 2.5em;
+  width: 100%;
+  height: 3.5em;
+  font-size: 1.1em;
+}
+
+#current {
+  font-weight: 600;
+  border-left: 0.15em solid #262626;
+}
+
+.settings-pane {
+  text-align: center;
+}
+
+.settings-pane > label {
+  display: block;
+}
+
+.user-info > div {
+  display: inline;
+}

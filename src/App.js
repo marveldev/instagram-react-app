@@ -1,12 +1,13 @@
-import { Bio, Gallery, TopNav } from './components'
+import { Bio, Gallery, Settings, TopNav } from './components'
 import './index.css'
 
 const App = () => {
   return (
     <div className="App">
       <TopNav />
-      <Bio />
-      <Gallery />
+      <Settings />
+      {/* <Bio /> */}
+      {/* <Gallery /> */}
     </div>
   )
 }
