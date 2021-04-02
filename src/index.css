@@ -1,5 +1,6 @@
 @import "./components/topNav/topNav.css";
 @import "./components/bio/bio.css";
+@import "./components/gallery/gallery.css";
 
 #root {
   margin: 0;
