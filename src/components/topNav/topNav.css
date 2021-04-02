@@ -48,22 +48,23 @@ button {
   object-fit: cover;
   background-color: #000;
   border-radius: 1.5em;
+  cursor: pointer;
 }
 
 .dropdown {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 2.3em;
-  height: 2.3em;
-  background-color: #da1818;
+  width: 2.4em;
+  height: 2.4em;
+  border: 0.2em solid #DC3173;
   border-radius: 1.5em;
 }
 
 .dropdown-content {
   /* display: none; */
   position: absolute;
-  top: 3em;
+  top: 2.5em;
   background-color: #fff;
   width: 15em;
   border-radius: 0.5em;
