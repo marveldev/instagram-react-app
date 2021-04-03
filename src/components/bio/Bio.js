@@ -1,6 +1,9 @@
+import { useHistory } from "react-router-dom"
 import { CONSTANTS } from '../common/constants'
 
 const Bio = () => {
+  const history = useHistory()
+
   return (
     <div className="bio">
       <div>
@@ -11,7 +14,7 @@ const Bio = () => {
       <div className="bio-info">
         <div>
           <span className="bio-name">Add Name</span>
-          <button type="button">Edit Profile</button>
+          <button type="button" onClick={() => history.push("/settings")}>Edit Profile</button>
           <i className="fa fa-sun-o"></i>
         </div>
         <div>

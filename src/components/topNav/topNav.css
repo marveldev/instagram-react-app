@@ -11,6 +11,12 @@
   z-index: 1;
 }
 
+#logo {
+  cursor: pointer;
+  width: fit-content;
+  height: fit-content;
+}
+
 .top-nav > div {
   display: inline;
 }

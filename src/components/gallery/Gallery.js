@@ -19,7 +19,7 @@ const Gallery = () => {
         <div className="gallery-output">
           <div className="gallery-item">
             <div className="photo-container">
-              <img src={CONSTANTS.PHOTOURL} alt="photo" />
+              <img src={CONSTANTS.PHOTOURL} alt="profile" />
             </div>
             {/* <div className="about-photo">
               <button className="edit-text button">EDIT</button>
@@ -29,12 +29,12 @@ const Gallery = () => {
           </div>
           <div className="gallery-item">
             <div className="photo-container">
-              <img src={CONSTANTS.PHOTOURL} alt="photo" />
+              <img src={CONSTANTS.PHOTOURL} alt="profile" />
             </div>
           </div>
           <div className="gallery-item">
             <div className="photo-container">
-              <img src={CONSTANTS.PHOTOURL} alt="photo" />
+              <img src={CONSTANTS.PHOTOURL} alt="profile" />
             </div>
           </div>
         </div>
