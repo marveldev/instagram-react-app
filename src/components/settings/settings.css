@@ -1,12 +1,12 @@
 .settings {
   display: grid;
   grid-template-columns: 0.5fr 1fr;
-  /* align-items: center; */
   width: 60%;
   height: auto;
   margin: 6em auto 2em;
   background-color: #fff;
   border: 1px solid #DBDBDB;
+  padding-bottom: 1em;
 }
 
 .settings-nav {
@@ -31,10 +31,64 @@
   text-align: center;
 }
 
-.settings-pane > label {
-  display: block;
+.settings-pane label {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  align-items: center;
+  font-size: 1.1em;
+  height: auto;
+  margin: 1.5em 0;
 }
 
-.user-info > div {
-  display: inline;
+.user-profile {
+  display: grid;
+  grid-template-columns: 0.3fr 0.8fr;
+  align-items: center;
+  margin: 1.5em 5em;
+  text-align: left;
+}
+
+.user-profile .nav-photo {
+  font-size: 1.4em;
+}
+
+.user-profile p {
+  font-size: 1.2em;
+  font-weight: 550;
+  margin: 0;
+}
+
+#photoButton {
+  padding: 0;
+  color: #0095F6;
+  font-weight: 600;
+}
+
+.settings-pane input {
+  width: 80%;
+  height: 2.5em;
+  font-weight: 500;
+  border: 0.1em solid #DBDBDB;
+}
+
+.bio-box {
+  resize: vertical;
+  width: 80%;
+  height: 4em;
+  max-height: 15em;
+  font-weight: 500;
+  border: 0.1em solid #DBDBDB;
+}
+
+.settings-nav > button:hover {
+  background-color: #FAFAFA;
+}
+
+#submitButton {
+  background-color: #0095F6;
+  color: #fff;
+  font-weight: 550;
+  border-radius: 0.2em;
+  width: 5em;
+  height: 2em;
 }
