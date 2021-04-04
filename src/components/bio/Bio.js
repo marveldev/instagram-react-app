@@ -1,14 +1,19 @@
+import { useState } from 'react'
 import { useHistory } from "react-router-dom"
 import { CONSTANTS } from '../common/constants'
+import PhotoModal from '../common/PhotoModal'
 
 const Bio = ({ bio }) => {
   const history = useHistory()
+  const [profilePhotoModal, setProfilePhotoModal] = useState(false)
 
   return (
     <div className="bio">
       <div>
         <div className="profile-photo">
-          <img src={CONSTANTS.PHOTOURL} alt="profile" />
+          <img src={CONSTANTS.PHOTOURL}
+            onClick={() => setProfilePhotoModal(true)} alt="profile"
+          />
         </div>
       </div>
       <div className="bio-info">
@@ -25,6 +30,11 @@ const Bio = ({ bio }) => {
         <span className="bio-name">{bio?.name}</span>
         <p>{bio?.aboutUser || 'Add about'}</p>
       </div>
+      {profilePhotoModal &&
+        <PhotoModal
+          setProfilePhotoModal={setProfilePhotoModal}
+        />
+      }
     </div>
   )
 }

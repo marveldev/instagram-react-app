@@ -49,10 +49,17 @@ const Settings = ({ setBio, bio }) => {
         </div>
         <div className="settings-pane">
           <div className="user-profile">
-            <img src={CONSTANTS.PHOTOURL} className="nav-photo" alt="profile" />
+            <input type="file" id="addProfilePhoto"/>
+            <label htmlFor="addProfilePhoto">
+              <img src={CONSTANTS.PHOTOURL} className="nav-photo"
+                title="Change Profile Photo" alt="profile"
+              />
+            </label>
             <div>
-              <p>Add profile</p>
-              <button id="photoButton">Change Profile Photo</button>
+              <p>{bio?.username || 'Add profile'}</p>
+              <label htmlFor="addProfilePhoto">
+                <span id="photoButton">Change Profile Photo</span>
+              </label>
             </div>
           </div>
           <form onSubmit={updateBio}>

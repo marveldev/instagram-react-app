@@ -13,3 +13,25 @@
   overflow-y: auto;
   font-family: 'Segoe UI', 'Times New Roman', Times, serif;
 }
+
+.overlay {
+  position: fixed;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: #575757ab;
+}
+
+.photo-modal {
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  background-color: #fff;
+  z-index: 1;
+  text-align: center;
+  width: 30%;
+  height: 35%;
+  border-radius: 0.8em;
+}
