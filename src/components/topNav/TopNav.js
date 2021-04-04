@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom"
 import { CONSTANTS } from '../common/constants'
 
-const TopNav = () => {
+const TopNav = ({ bio }) => {
   const history = useHistory()
 
   return (
@@ -22,7 +22,9 @@ const TopNav = () => {
         <button type="button"><i className="fa fa-heart-o"></i></button>
         <div className="dropdown">
           <div>
-            <img src={CONSTANTS.PHOTOURL} className="nav-photo" alt="profile" />
+            <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
+              className="nav-photo" alt="profile"
+            />
           </div>
           <div className="dropdown-content">
             <button type="button" onClick={() => history.push("/")}>
@@ -34,7 +36,9 @@ const TopNav = () => {
               <i className="fa fa-sun-o"></i>
               Settings
             </button>
-            <button type="button"><i className="material-icons">&#xe86a;</i>Switch Accounts</button>
+            <button type="button"><i className="material-icons">&#xe86a;</i>
+              Switch Accounts
+            </button>
             <button type="button">Log Out</button>
           </div>
         </div>

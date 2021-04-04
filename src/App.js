@@ -9,12 +9,13 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
-        <TopNav />
+        <TopNav bio={bio} />
         <Switch>
           <Route path="/"
             component={() => (
               <Home
                 bio={bio}
+                setBio={setBio}
               />
             )}
             exact

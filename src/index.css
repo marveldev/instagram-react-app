@@ -25,6 +25,8 @@
 }
 
 .photo-modal {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 25%;
   left: 35%;
@@ -34,4 +36,34 @@
   width: 30%;
   height: 35%;
   border-radius: 0.8em;
+  font-size: 1.1em;
+}
+
+.photo-modal > label {
+  height: 2.5em;
+  color: #0095F6;
+  cursor: pointer;
+  border-bottom: 1px solid #DBDBDB;
+}
+
+.remove-photo-button {
+  height: 2.5em;
+  color: #ff0000;
+  font-weight: 600;
+  border-bottom: 1px solid #DBDBDB;
+}
+
+.photo-modal > p {
+  font-size: 1.2em;
+  font-weight: 600;
+  padding: 1.2em 0;
+  border-bottom: 1px solid #DBDBDB;
+}
+
+.cancel-button {
+  height: 2.5em;
+}
+
+#profilePhotoPicker {
+  display: none;
 }

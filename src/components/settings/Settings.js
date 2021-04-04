@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { CONSTANTS } from '../common/constants'
+import PhotoModal from '../common/PhotoModal'
 
 const Settings = ({ setBio, bio }) => {
   const [isError, setIsError] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const [profilePhotoModal, setProfilePhotoModal] = useState(false)
 
   const updateBio = event => {
     event.preventDefault()
@@ -49,17 +51,15 @@ const Settings = ({ setBio, bio }) => {
         </div>
         <div className="settings-pane">
           <div className="user-profile">
-            <input type="file" id="addProfilePhoto"/>
-            <label htmlFor="addProfilePhoto">
-              <img src={CONSTANTS.PHOTOURL} className="nav-photo"
-                title="Change Profile Photo" alt="profile"
-              />
-            </label>
+            <img onClick={() => setProfilePhotoModal(true)}
+              src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
+              className="nav-photo" title="Change Profile Photo" alt="profile"
+            />
             <div>
               <p>{bio?.username || 'Add profile'}</p>
-              <label htmlFor="addProfilePhoto">
-                <span id="photoButton">Change Profile Photo</span>
-              </label>
+              <button id="photoButton" onClick={() => setProfilePhotoModal(true)}>
+                Change Profile Photo
+              </button>
             </div>
           </div>
           <form onSubmit={updateBio}>
@@ -118,6 +118,13 @@ const Settings = ({ setBio, bio }) => {
           <p>Your Profile Was Successfully Updated</p>
         </div>
       )}
+      {profilePhotoModal &&
+        <PhotoModal
+          setProfilePhotoModal={setProfilePhotoModal}
+          setBio={setBio}
+          bio={bio}
+        />
+      }
     </>
   )
 }
