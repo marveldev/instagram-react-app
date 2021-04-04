@@ -1,8 +1,11 @@
+import { useState } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Home, Settings, TopNav } from './components'
 import './index.css'
 
 const App = () => {
+  const [bio, setBio] = useState()
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -10,15 +13,18 @@ const App = () => {
         <Switch>
           <Route path="/"
             component={() => (
-              <Home />
+              <Home
+                bio={bio}
+              />
             )}
             exact
           />
-        </Switch>
-        <Switch>
           <Route path="/settings"
             component={() => (
-              <Settings />
+              <Settings
+                setBio={setBio}
+                bio={bio}
+              />
             )}
           />
         </Switch>

@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom"
 import { CONSTANTS } from '../common/constants'
 
-const Bio = () => {
+const Bio = ({ bio }) => {
   const history = useHistory()
 
   return (
@@ -13,7 +13,7 @@ const Bio = () => {
       </div>
       <div className="bio-info">
         <div>
-          <span className="bio-name">Add Name</span>
+          <span className="bio-username">{bio?.username || CONSTANTS.NAME}</span>
           <button type="button" onClick={() => history.push("/settings")}>Edit Profile</button>
           <i className="fa fa-sun-o"></i>
         </div>
@@ -22,7 +22,8 @@ const Bio = () => {
           <span><strong>0</strong> followers</span>
           <span><strong>0</strong> following</span>
         </div>
-        <p>Add about</p>
+        <span className="bio-name">{bio?.name}</span>
+        <p>{bio?.aboutUser || 'Add about'}</p>
       </div>
     </div>
   )

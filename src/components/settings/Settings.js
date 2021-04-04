@@ -1,6 +1,26 @@
 import { CONSTANTS } from '../common/constants'
 
-const Settings = () => {
+const Settings = ({ setBio, bio }) => {
+  const updateBio = (event) => {
+    event.preventDefault()
+    const username = document.querySelector('.username').value
+    if (username.trim().length >= 1) {
+      const name = document.querySelector('.name').value
+      const website = document.querySelector('.website').value
+      const aboutUser = document.querySelector('.bio-box').value
+      const email = document.querySelector('.email').value
+      const phoneNumber = document.querySelector('.phone-number').value
+      const gender = document.querySelector('.gender').value
+      const nextState = {
+        name, username, website, aboutUser, email, phoneNumber, gender
+      }
+
+      setBio(nextState)
+    } else {
+      alert('Blank fields cannot be submitted')
+    }
+  }
+
   return (
     <div className="settings">
       <div className="settings-nav">
@@ -19,40 +39,53 @@ const Settings = () => {
         <div className="user-profile">
           <img src={CONSTANTS.PHOTOURL} className="nav-photo" alt="profile" />
           <div>
-            <p>Add Name</p>
+            <p>Add profile</p>
             <button id="photoButton">Change Profile Photo</button>
           </div>
         </div>
-        <form>
+        <form onSubmit={updateBio}>
           <label>
             Name
-            <input type="text" placeholder="Name" />
+            <input type="text" className="name"
+              placeholder="Name" defaultValue={bio?.name} required
+            />
           </label>
           <label>
             Username
-            <input type="text" placeholder="Username" />
+            <input type="text" className="username"
+              placeholder="Username" defaultValue={bio?.username} required
+            />
           </label>
           <label>
             Website
-            <input type="text" placeholder="Website" />
+            <input type="text" className="website"
+              defaultValue={bio?.website} placeholder="Website"
+            />
           </label>
           <label>
             Bio
-            <textarea className="bio-box" placeholder="Bio"></textarea>
+            <textarea className="bio-box" defaultValue={bio?.aboutUser} placeholder="Bio" required>
+            </textarea>
           </label>
           <label>
             Email
-            <input type="email" placeholder="Email" />
+            <input type="email" className="email"
+              defaultValue={bio?.email} placeholder="Email"
+            />
           </label>
           <label>
             Phone Number
-            <input type="text" placeholder="Phone Number" />
+            <input type="tel" className="phone-number" defaultValue={bio?.phoneNumber}
+              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="123-45-678"
+            />
           </label>
           <label>
             Gender
-            <input type="text" placeholder="Gender" />
+            <input type="text" className="gender"
+              defaultValue={bio?.gender} placeholder="Gender"
+            />
           </label>
-          <button id="submitButton">Submit</button>
+          <button onSubmit={updateBio} id="submitButton">Submit</button>
         </form>
       </div>
     </div>

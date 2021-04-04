@@ -30,8 +30,12 @@
   opacity: 0.7;
 }
 
-.bio-name {
+.bio-username {
   font-size: 1.4em;
+}
+
+.bio-name {
+  font-weight: 500;
 }
 
 .bio-info button {

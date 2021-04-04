@@ -1,10 +1,12 @@
 import Bio from '../bio/Bio'
 import Gallery from '../gallery/Gallery'
 
-const Home = () => {
+const Home = ({ bio }) => {
   return (
     <>
-      <Bio />
+      <Bio
+        bio={bio}
+      />
       <Gallery />
     </>
   )
