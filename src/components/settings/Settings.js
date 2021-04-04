@@ -35,7 +35,7 @@ const Settings = ({ setBio, bio }) => {
   }
 
   return (
-    <>
+    <div>
       <div className="settings">
         <div className="settings-nav">
           <button id="current">Edit Profile</button>
@@ -108,6 +108,13 @@ const Settings = ({ setBio, bio }) => {
           </form>
         </div>
       </div>
+      {profilePhotoModal &&
+        <PhotoModal
+          setProfilePhotoModal={setProfilePhotoModal}
+          setBio={setBio}
+          bio={bio}
+        />
+      }
       {isError && (
         <div className="error message">
           <p>Blank fields cannot be submitted</p>
@@ -118,14 +125,7 @@ const Settings = ({ setBio, bio }) => {
           <p>Your Profile Was Successfully Updated</p>
         </div>
       )}
-      {profilePhotoModal &&
-        <PhotoModal
-          setProfilePhotoModal={setProfilePhotoModal}
-          setBio={setBio}
-          bio={bio}
-        />
-      }
-    </>
+    </div>
   )
 }
 

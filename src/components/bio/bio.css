@@ -26,7 +26,7 @@
   border: 0.25em solid #DC3173;
 }
 
-.profile-photo:hover {
+.profile-photo > img:hover {
   opacity: 0.7;
 }
 

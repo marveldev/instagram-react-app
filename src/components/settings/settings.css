@@ -6,7 +6,6 @@
   margin: 6em auto 2em;
   background-color: #fff;
   border: 1px solid #DBDBDB;
-  padding-bottom: 1em;
 }
 
 .settings-nav {
@@ -91,6 +90,7 @@
   border-radius: 0.2em;
   width: 5em;
   height: 2em;
+  margin-bottom: 2em;
 }
 
 .message {
