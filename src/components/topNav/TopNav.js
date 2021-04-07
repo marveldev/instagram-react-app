@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { useHistory } from "react-router-dom"
+import { useSelector } from 'react-redux'
 import { CONSTANTS } from '../common/constants'
 
-const TopNav = ({ bio }) => {
+const TopNav = () => {
   const history = useHistory()
+  const { bio } = useSelector(state => state.bio)
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
 
   return (

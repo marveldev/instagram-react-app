@@ -1,9 +1,17 @@
-const PhotoModal = ({ setProfilePhotoModal, setBio, bio }) => {
+import { useDispatch, useSelector } from 'react-redux'
+import { bioActions } from '../redux/slice'
+
+const PhotoModal = ({ setProfilePhotoModal }) => {
+  const dispatch = useDispatch()
+  const { bio } = useSelector(state => state.bio)
+
   const updateProfilePhoto = id => {
     const photoReader = new FileReader()
     photoReader.readAsDataURL(document.querySelector(id).files[0])
     photoReader.addEventListener('load', () => {
-      setBio({...bio, profilePhotoUrl: photoReader.result})
+      const nextState = ({...bio, profilePhotoUrl: photoReader.result})
+      dispatch(bioActions.setBio(nextState))
+      setProfilePhotoModal(false)
     })
   }
 

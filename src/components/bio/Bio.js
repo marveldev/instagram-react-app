@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { useHistory } from "react-router-dom"
+import { useSelector } from 'react-redux'
 import { CONSTANTS } from '../common/constants'
 import PhotoModal from '../common/PhotoModal'
 
-const Bio = ({ bio, setBio }) => {
+const Bio = () => {
   const history = useHistory()
+  const { bio } = useSelector(state => state.bio)
   const [profilePhotoModal, setProfilePhotoModal] = useState(false)
 
   return (
@@ -33,8 +35,6 @@ const Bio = ({ bio, setBio }) => {
       {profilePhotoModal &&
         <PhotoModal
           setProfilePhotoModal={setProfilePhotoModal}
-          setBio={setBio}
-          bio={bio}
         />
       }
     </div>

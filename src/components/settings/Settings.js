@@ -1,8 +1,12 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { CONSTANTS } from '../common/constants'
 import PhotoModal from '../common/PhotoModal'
+import { bioActions } from '../redux/slice'
 
-const Settings = ({ setBio, bio }) => {
+const Settings = () => {
+  const dispatch = useDispatch()
+  const { bio } = useSelector(state => state.bio)
   const [isError, setIsError] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [profilePhotoModal, setProfilePhotoModal] = useState(false)
@@ -17,17 +21,19 @@ const Settings = ({ setBio, bio }) => {
       const email = document.querySelector('.email').value
       const phoneNumber = document.querySelector('.phone-number').value
       const gender = document.querySelector('.gender').value
-      const nextState = {
-        name, username, website, aboutUser, email, phoneNumber, gender
-      }
+      const nextState = ({
+        ...bio, name, username, website, aboutUser, email, phoneNumber, gender
+      })
 
-      setBio(nextState)
+      dispatch(bioActions.setBio(nextState))
       setIsSuccess(true)
+
       setTimeout(() => {
         setIsSuccess(false)
       }, 3000);
     } else {
       setIsError(true)
+
       setTimeout(() => {
         setIsError(false)
       }, 3000)
@@ -111,8 +117,6 @@ const Settings = ({ setBio, bio }) => {
       {profilePhotoModal &&
         <PhotoModal
           setProfilePhotoModal={setProfilePhotoModal}
-          setBio={setBio}
-          bio={bio}
         />
       }
       {isError && (

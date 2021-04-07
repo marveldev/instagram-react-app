@@ -1,10 +1,7 @@
-import { useState } from 'react'
 import { CONSTANTS } from "../common/constants"
 import CreatePostModal from './CreatePostModal'
 
 const Gallery = () => {
-  const [entryModalIsOpen, setEntryModalIsOpen] = useState(false)
-
   return (
     <div className="gallery">
       <div className="gallery-nav">
@@ -43,7 +40,7 @@ const Gallery = () => {
           </div>
         </div>
       </div>
-      {<CreatePostModal/>}
+      {/* {<CreatePostModal/>} */}
     </div>
   )
 }
