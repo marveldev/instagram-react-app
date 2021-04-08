@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { CONSTANTS } from "../common/constants"
 import CreatePostModal from './CreatePostModal'
 
 const Gallery = () => {
+  const galleryState = useSelector(state => state.gallery)
   const [postModal, setPostModal] = useState({isOpen: false, photoUrl: null})
 
   const openPostModal = id => {
@@ -12,6 +14,21 @@ const Gallery = () => {
       setPostModal({isOpen: true, photoUrl: photoReader.result})
     })
   }
+
+  console.log(galleryState.gallery.length);
+
+  const galleryItems = galleryState.gallery?.map(galleryItem => (
+    <div key={galleryItem.id} className="gallery-item">
+      <div className="photo-container">
+        <img src={galleryItem.photoUrl} alt="profile" />
+      </div>
+          {/* <div className="about-photo">
+              <button className="edit-text button">EDIT</button>
+              <button className="delete-photoBtn button">X</button>
+              <div id="aboutPhoto">Hey</div>
+            </div> */}
+    </div>
+  ))
 
   return (
     <div className="gallery">
@@ -29,26 +46,9 @@ const Gallery = () => {
           </label>
         </div>
         <div className="gallery-output">
-          <div className="gallery-item">
-            <div className="photo-container">
-              <img src={CONSTANTS.PHOTOURL} alt="profile" />
-            </div>
-            {/* <div className="about-photo">
-              <button className="edit-text button">EDIT</button>
-              <button className="delete-photoBtn button">X</button>
-              <div id="aboutPhoto">Hey</div>
-            </div> */}
-          </div>
-          <div className="gallery-item">
-            <div className="photo-container">
-              <img src={CONSTANTS.PHOTOURL} alt="profile" />
-            </div>
-          </div>
-          <div className="gallery-item">
-            <div className="photo-container">
-              <img src={CONSTANTS.PHOTOURL} alt="profile" />
-            </div>
-          </div>
+          {galleryItems.length >= 1 ? galleryItems :
+            <h3 id="galleryMessage">No Gallery Yet, Click the plus button to add gallery.</h3>
+          }
         </div>
       </div>
       {postModal.isOpen &&

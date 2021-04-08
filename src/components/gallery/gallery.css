@@ -53,6 +53,12 @@
   gap: 1.7em;
 }
 
+#galleryMessage {
+  position: absolute;
+  left: 30%;
+  width: fit-content;
+}
+
 .create-post-modal {
   position: fixed;
   top: 15%;

@@ -9,17 +9,24 @@ const todoSlice = createSlice(
         state.bio = action.payload
       }
     }
-  },
+  }
+)
+
+const gallerySlice = createSlice(
   {
     name: 'gallery',
-    initialState: {},
+    initialState: {
+      gallery: []
+    },
     reducers: {
-      addGallery : (state, action) => {
-
+      addGallery: (state, action) => {
+        state.gallery = [action.payload, ...state.gallery]
       }
     }
   }
 )
 
 const { actions: bioActions, reducer: bioReducers } = todoSlice
-export { bioActions, bioReducers}
+const { actions: galleryActions, reducer: galleryReducers } = gallerySlice
+
+export { bioActions, bioReducers, galleryActions, galleryReducers}
