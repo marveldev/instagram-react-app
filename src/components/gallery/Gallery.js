@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { CONSTANTS } from "../common/constants"
 import CreatePostModal from './CreatePostModal'
 
 const Gallery = () => {
@@ -14,8 +13,6 @@ const Gallery = () => {
       setPostModal({isOpen: true, photoUrl: photoReader.result})
     })
   }
-
-  console.log(galleryState.gallery.length);
 
   const galleryItems = galleryState.gallery?.map(galleryItem => (
     <div key={galleryItem.id} className="gallery-item">
