@@ -1,7 +1,18 @@
+import { useState } from 'react'
 import { CONSTANTS } from "../common/constants"
 import CreatePostModal from './CreatePostModal'
 
 const Gallery = () => {
+  const [postModal, setPostModal] = useState({isOpen: false, photoUrl: null})
+
+  const openPostModal = id => {
+    const photoReader = new FileReader()
+    photoReader.readAsDataURL(document.querySelector(id).files[0])
+    photoReader.addEventListener('load', () => {
+      setPostModal({isOpen: true, photoUrl: photoReader.result})
+    })
+  }
+
   return (
     <div className="gallery">
       <div className="gallery-nav">
@@ -12,7 +23,7 @@ const Gallery = () => {
       </div>
       <div>
         <div>
-          <input type="file" id="addPhoto"/>
+          <input type="file" id="addPhoto" onChange={() => openPostModal('#addPhoto')}/>
           <label htmlFor="addPhoto">
             <i className="add-photo fa fa-plus-square"></i>
           </label>
@@ -40,7 +51,12 @@ const Gallery = () => {
           </div>
         </div>
       </div>
-      {/* {<CreatePostModal/>} */}
+      {postModal.isOpen &&
+        <CreatePostModal
+          postModal={postModal}
+          setPostModal={setPostModal}
+        />
+      }
     </div>
   )
 }

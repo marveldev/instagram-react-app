@@ -9,6 +9,15 @@ const todoSlice = createSlice(
         state.bio = action.payload
       }
     }
+  },
+  {
+    name: 'gallery',
+    initialState: {},
+    reducers: {
+      addGallery : (state, action) => {
+
+      }
+    }
   }
 )
 

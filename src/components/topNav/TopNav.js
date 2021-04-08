@@ -18,12 +18,12 @@ const TopNav = () => {
         <input type="text" className="search-input" placeholder="Search" />
       </div>
       <div className="top-nav-buttons">
-        <button type="button" onClick={() => history.push("/")}>
+        <button type="button" aria-label="home" onClick={() => history.push("/")}>
           <i className="glyphicon glyphicon-home"></i>
         </button>
-        <button type="button"><i className="fa fa-send"></i></button>
-        <button type="button"><i className="fa fa-compass"></i></button>
-        <button type="button"><i className="fa fa-heart-o"></i></button>
+        <button type="button" aria-label="inbox"><i className="fa fa-send"></i></button>
+        <button type="button" aria-label="explore"><i className="fa fa-compass"></i></button>
+        <button type="button" aria-label="liked"><i className="fa fa-heart-o"></i></button>
         <div className="dropdown">
           <div>
             <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
