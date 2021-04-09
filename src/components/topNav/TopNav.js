@@ -1,12 +1,8 @@
-import { useState } from 'react'
-import { useHistory } from "react-router-dom"
-import { useSelector } from 'react-redux'
-import { CONSTANTS } from '../common/constants'
+import { useHistory } from 'react-router-dom'
+import DropDown from './DropDown'
 
 const TopNav = () => {
   const history = useHistory()
-  const { bio } = useSelector(state => state.bio)
-  const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
 
   return (
     <nav className="top-nav">
@@ -24,31 +20,7 @@ const TopNav = () => {
         <button type="button" aria-label="inbox"><i className="fa fa-send"></i></button>
         <button type="button" aria-label="explore"><i className="fa fa-compass"></i></button>
         <button type="button" aria-label="liked"><i className="fa fa-heart-o"></i></button>
-        <div className="dropdown">
-          <div>
-            <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
-              onClick={() => setDropdownIsOpen(!dropdownIsOpen)}
-              className="nav-photo" alt="profile"
-            />
-          </div>
-          {dropdownIsOpen && (
-            <div className="dropdown-content">
-              <button type="button" onClick={() => history.push("/")}>
-                <i className="fa fa-user-circle"></i>
-                Profile
-              </button>
-              <button type="button"><i className="material-icons">&#xe8e7;</i>Saved</button>
-              <button type="button" onClick={() => history.push("/settings")}>
-                <i className="fa fa-sun-o"></i>
-                Settings
-              </button>
-              <button type="button"><i className="material-icons">&#xe86a;</i>
-                Switch Accounts
-              </button>
-              <button type="button">Log Out</button>
-            </div>
-          )}
-        </div>
+        <DropDown />
       </div>
     </nav>
   )
