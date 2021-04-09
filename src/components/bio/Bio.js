@@ -2,21 +2,19 @@ import { useState } from 'react'
 import { useHistory } from "react-router-dom"
 import { useSelector } from 'react-redux'
 import { CONSTANTS } from '../common/constants'
-import PhotoModal from '../common/PhotoModal'
+import ProfilePhotoModal from '../common/ProfilePhotoModal'
 
 const Bio = () => {
   const history = useHistory()
   const { bio } = useSelector(state => state.bio)
-  const [profilePhotoModal, setProfilePhotoModal] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <div className="bio">
-      <div>
-        <div className="profile-photo">
-          <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
-            onClick={() => setProfilePhotoModal(true)} alt="profile"
-          />
-        </div>
+      <div className="profile-photo">
+        <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
+          onClick={() => setIsOpen(true)} alt="profile"
+        />
       </div>
       <div className="bio-info">
         <div>
@@ -32,9 +30,9 @@ const Bio = () => {
         <span className="bio-name">{bio?.name}</span>
         <p>{bio?.aboutUser || 'Add about'}</p>
       </div>
-      {profilePhotoModal &&
-        <PhotoModal
-          setProfilePhotoModal={setProfilePhotoModal}
+      {isOpen &&
+        <ProfilePhotoModal
+          setIsOpen={setIsOpen}
         />
       }
     </div>

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CONSTANTS } from '../common/constants'
-import PhotoModal from '../common/PhotoModal'
+import ProfilePhotoModal from '../common/ProfilePhotoModal'
 import { bioActions } from '../redux/slice'
 
 const Settings = () => {
@@ -9,7 +9,7 @@ const Settings = () => {
   const { bio } = useSelector(state => state.bio)
   const [isError, setIsError] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
-  const [profilePhotoModal, setProfilePhotoModal] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   const updateBio = event => {
     event.preventDefault()
@@ -57,13 +57,13 @@ const Settings = () => {
         </div>
         <div className="settings-pane">
           <div className="user-profile">
-            <img onClick={() => setProfilePhotoModal(true)}
+            <img onClick={() => setIsOpen(true)}
               src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
               className="nav-photo" title="Change Profile Photo" alt="profile"
             />
             <div>
               <p>{bio?.username || 'Add profile'}</p>
-              <button id="photoButton" onClick={() => setProfilePhotoModal(true)}>
+              <button id="photoButton" onClick={() => setIsOpen(true)}>
                 Change Profile Photo
               </button>
             </div>
@@ -89,7 +89,9 @@ const Settings = () => {
             </label>
             <label>
               Bio
-              <textarea className="bio-box" defaultValue={bio?.aboutUser} placeholder="Bio" required>
+              <textarea className="bio-box"
+                defaultValue={bio?.aboutUser} placeholder="Bio" required
+              >
               </textarea>
             </label>
             <label>
@@ -114,9 +116,9 @@ const Settings = () => {
           </form>
         </div>
       </div>
-      {profilePhotoModal &&
-        <PhotoModal
-          setProfilePhotoModal={setProfilePhotoModal}
+      {isOpen &&
+        <ProfilePhotoModal
+          setIsOpen={setIsOpen}
         />
       }
       {isError && (
