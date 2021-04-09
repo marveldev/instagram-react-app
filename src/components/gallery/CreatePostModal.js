@@ -34,7 +34,6 @@ const CreatePostModal = ({ setPostModal, postModal }) => {
         </div>
         <div className="post-options">
           <span>Add To Your Post</span>
-          <span><i className="material-icons">&#xe413;</i></span>
           <span><i className="material-icons">&#xe420;</i></span>
           <span><i className="material-icons">&#xe0c8;</i></span>
         </div>

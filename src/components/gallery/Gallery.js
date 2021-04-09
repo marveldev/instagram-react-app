@@ -5,6 +5,7 @@ import CreatePostModal from './CreatePostModal'
 const Gallery = () => {
   const galleryState = useSelector(state => state.gallery)
   const [postModal, setPostModal] = useState({isOpen: false, photoUrl: null})
+  const [photoCaptionId, setPhotoCaptionId] = useState()
 
   const openPostModal = id => {
     const photoReader = new FileReader()
@@ -16,14 +17,17 @@ const Gallery = () => {
 
   const galleryItems = galleryState.gallery?.map(galleryItem => (
     <div key={galleryItem.id} className="gallery-item">
-      <div className="photo-container">
+      <div className="photo-container"
+        onMouseOver={() => setPhotoCaptionId(galleryItem.id)}
+        onMouseLeave={() => setPhotoCaptionId()}
+      >
         <img src={galleryItem.photoUrl} alt="profile" />
       </div>
-          {/* <div className="about-photo">
-              <button className="edit-text button">EDIT</button>
-              <button className="delete-photoBtn button">X</button>
-              <div id="aboutPhoto">Hey</div>
-            </div> */}
+      {photoCaptionId === galleryItem.id && (
+        <div className="photo-caption">
+          <p>{galleryItem.photoCaption}</p>
+        </div>
+      )}
     </div>
   ))
 

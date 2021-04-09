@@ -120,12 +120,12 @@ const Settings = () => {
         />
       }
       {isError && (
-        <div className="error message">
+        <div className="message">
           <p>Blank fields cannot be submitted</p>
         </div>
       )}
       {isSuccess && (
-        <div className="success message">
+        <div className="message">
           <p>Your Profile Was Successfully Updated</p>
         </div>
       )}

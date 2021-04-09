@@ -102,12 +102,5 @@
   font-weight: 550;
   align-items: center;
   color: #fff;
-}
-
-.error {
   background-color: #262626;
-}
-
-.success {
-  background-color: #28b11c;
 }
