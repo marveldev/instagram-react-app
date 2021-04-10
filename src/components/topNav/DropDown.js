@@ -1,18 +1,32 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect  } from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import onClickOutside from 'react-onclickoutside'
 import { CONSTANTS } from '../common/constants'
 
-function DropDown() {
+function useOutsideAlerter(ref) {
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        console.log('ok')
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [ref])
+}
+
+const DropDown = () => {
   const history = useHistory()
   const { bio } = useSelector(state => state.bio)
   const [isOpen, setIsOpen] = useState(false)
-
-  DropDown.handleClickOutside = () => setIsOpen(false)
+  const wrapperRef = useRef(null)
+  useOutsideAlerter(wrapperRef)
 
   return (
-    <div className="dropdown">
+    <div ref={wrapperRef} className="dropdown">
       <div>
         <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
           onClick={() => setIsOpen(!isOpen)}
@@ -40,8 +54,4 @@ function DropDown() {
   )
 }
 
-const clickOutsideConfig = {
-  handleClickOutside: () => DropDown.handleClickOutside
-}
-
-export default onClickOutside(DropDown, clickOutsideConfig)
+export default DropDown
