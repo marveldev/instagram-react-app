@@ -60,3 +60,19 @@
 .bio-info > div {
   margin: 0 0 1.5em;
 }
+
+@media screen and (max-width: 768px) {
+  .bio {
+    width: 90%;
+  }
+
+  .profile-photo > img {
+    height: 10em;
+    width: 10em;
+  }
+
+  .profile-photo {
+    height: 11em;
+    width: 11em;
+  }
+}

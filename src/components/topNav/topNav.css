@@ -68,7 +68,6 @@ button {
 }
 
 .dropdown-content {
-  /* display: none; */
   position: absolute;
   top: 2.5em;
   background-color: #fff;
@@ -95,4 +94,48 @@ button {
 
 .dropdown-content > button:hover {
   background-color: #FAFAFA;
+}
+
+@media screen and (max-width: 768px) {
+  #smallScreenTopNav {
+    justify-content: space-between;
+    height: 3.5em;
+    padding: 0 1em;
+  }
+
+  #smallScreenTopNav i {
+    font-size: 2em;
+  }
+
+  #smallScreenTopNav .bio-name {
+    font-size: 1.2em;
+  }
+
+  .bottom-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 3.5em;
+    background-color: #ffffff;
+    border: 1px solid #DBDBDB;
+    z-index: 1;
+  }
+
+  .bottom-nav button {
+    font-size: 1.2em;
+    width: 5em;
+    height: 2.8em;
+  }
+
+  .bottom-nav i {
+    font-size: 2em;
+    vertical-align: middle;
+  }
+
+  .bottom-nav .fa-heart-o {
+    font-size: 1.5em;
+  }
 }

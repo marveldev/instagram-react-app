@@ -109,3 +109,17 @@
 .confirm-profile-photo button:last-child {
   background-color: #ff0000b7;
 }
+
+@media screen and (max-width: 768px) {
+  .photo-modal {
+    left: 25%;
+    width: 50%;
+    height: 40%;
+  }
+
+  .confirm-profile-photo {
+    left: 30%;
+    width: 50%;
+    height: 65%;
+  }
+}

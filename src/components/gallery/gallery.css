@@ -55,9 +55,7 @@
 }
 
 #galleryMessage {
-  position: absolute;
-  left: 30%;
-  width: fit-content;
+  text-align: center;
 }
 
 .create-post-modal {
@@ -171,4 +169,24 @@
 
 .gallery-item {
   height: 18em;
+}
+
+@media screen and (max-width: 768px) {
+  .gallery {
+    width: 95%;
+    margin: 0 auto 5em;
+  }
+
+  .add-photo {
+    display: none;
+  }
+
+  .create-post-modal {
+    top: 10%;
+    left: 25%;
+  }
+
+  .gallery-output {
+    font-size: 0.8em;
+  }
 }

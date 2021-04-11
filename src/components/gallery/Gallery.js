@@ -46,8 +46,11 @@ const Gallery = () => {
             <i className="add-photo fa fa-plus-square"></i>
           </label>
         </div>
-        <div className="gallery-output">
-          {galleryItems.length >= 1 ? galleryItems :
+        <div className="gallery-content">
+          {galleryItems.length >= 1 ?
+            <div className="gallery-output">
+              {galleryItems}
+            </div> :
             <h3 id="galleryMessage">No Gallery Yet, Click the plus button to add gallery.</h3>
           }
         </div>
