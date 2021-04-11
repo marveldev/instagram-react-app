@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { CONSTANTS } from '../common/constants'
-import { galleryActions } from '../redux/slice'
+import { galleryActions, galleryCounterAction } from '../redux/slice'
 
 const CreatePostModal = ({ setPostModal, postModal }) => {
   const dispatch = useDispatch()
@@ -15,6 +15,7 @@ const CreatePostModal = ({ setPostModal, postModal }) => {
     }
 
     dispatch(galleryActions.addGallery(nextState))
+    dispatch(galleryCounterAction.incremented())
     setPostModal(false)
   }
 

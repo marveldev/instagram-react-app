@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { bioReducers, galleryReducers } from './slice'
+import { bioReducers, galleryCountReducer, galleryReducers } from './slice'
 
 export default configureStore({
   reducer: {
     bio: bioReducers,
-    gallery: galleryReducers
+    gallery: galleryReducers,
+    // count: 
+    galleryCount: galleryCountReducer
   }
 })

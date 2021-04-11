@@ -7,6 +7,7 @@ import ProfilePhotoModal from '../common/ProfilePhotoModal'
 const Bio = () => {
   const history = useHistory()
   const { bio } = useSelector(state => state.bio)
+  const galleryCount = useSelector(state => state.galleryCount.value)
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -23,7 +24,7 @@ const Bio = () => {
           <i className="fa fa-sun-o"></i>
         </div>
         <div>
-          <span><strong>0</strong> posts</span>
+          <span><strong>{galleryCount}</strong> posts</span>
           <span><strong>0</strong> followers</span>
           <span><strong>0</strong> following</span>
         </div>
