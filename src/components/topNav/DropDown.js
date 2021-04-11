@@ -1,27 +1,24 @@
-import { useState, useRef, useEffect  } from 'react'
+import { useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { CONSTANTS } from '../common/constants'
-
 
 const DropDown = () => {
   const history = useHistory()
   const { bio } = useSelector(state => state.bio)
   const [isOpen, setIsOpen] = useState(false)
-  const ref = useRef('')
+  const dropDownRef = useRef()
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        setIsOpen(false)
-      }
+  const clickOutside = event => {
+    if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
+      setIsOpen(false)
     }
+  }
 
-    document.addEventListener("mousedown", handleClickOutside)
-  }, [ref])
+  document.addEventListener('mousedown', clickOutside)
 
   return (
-    <div ref={ref} className="dropdown">
+    <div ref={dropDownRef} className="dropdown">
       <div>
         <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
           onClick={() => setIsOpen(!isOpen)}
