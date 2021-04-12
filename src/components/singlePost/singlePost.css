@@ -1,0 +1,17 @@
+.single-post {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  position: fixed;
+  top: 7%;
+  left: 15%;
+  width: 70%;
+  height: 90%;
+  background-color: #FFF;
+  z-index: 1;
+}
+
+.post-photo {
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+}

@@ -2,6 +2,7 @@
 @import "./components/bio/bio.css";
 @import "./components/gallery/gallery.css";
 @import "./components/settings/settings.css";
+@import "./components/singlePost/singlePost.css";
 
 #root {
   margin: 0;
