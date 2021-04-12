@@ -35,19 +35,19 @@ const Gallery = () => {
     <div className="gallery">
       <div className="gallery-nav">
         <button type="button" className="current">
-          <i class="material-icons">&#xe3ec;</i>
+          <i className="material-icons">&#xe3ec;</i>
           <span>POSTS</span>
         </button>
         <button type="button">
-          <i class="material-icons">&#xe639;</i>
+          <i className="material-icons">&#xe639;</i>
           <span>IGTV</span>
         </button>
         <button type="button">
-          <i class="material-icons">&#xe867;</i>
+          <i className="material-icons">&#xe867;</i>
           <span>SAVED</span>
         </button>
         <button type="button">
-          <i class="material-icons">&#xe853;</i>
+          <i className="material-icons">&#xe853;</i>
           <span>TAGGED</span>
         </button>
       </div>

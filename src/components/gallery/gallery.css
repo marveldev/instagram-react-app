@@ -212,24 +212,39 @@
 
   .gallery-nav {
     display: flex;
-    height: 2em;
+    height: 1em;
   }
 
   .gallery-nav i {
-    font-size: 2em;
+    font-size: 1.8em;
   }
 
   .gallery-nav .current {
     border-top: none;
-    color: blue;
+    color: #4593c7;
   }
 
   .gallery-nav > button {
-    height: 2em;
+    height: 1em;
+    outline: none;
   }
 
   .gallery-output {
     margin-bottom: 5em;
-    /* font-size: 0.48em; */
+    gap: 0.2em;
+    font-size: 0.5em;
+  }
+
+  .create-post-modal {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  #previewPost {
+    height: 25em;
+    width: auto;
   }
 }

@@ -127,3 +127,31 @@
     margin: 1.5em auto;
   }
 }
+
+@media screen and (max-width: 425px) {
+  .settings-pane label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em 0;
+    width: 100%;
+    padding: 0 1.5em;
+  }
+
+  .settings-pane input {
+    width: 100%;
+  }
+
+  .bio-box {
+    width: 100%;
+  }
+
+  .user-profile {
+    width: 100%;
+    grid-template-columns: 0.3fr 1fr;
+  }
+
+  .user-profile .nav-photo {
+    margin: 0 auto;
+  }
+}
