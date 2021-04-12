@@ -15,6 +15,13 @@
   font-weight: 500;
 }
 
+.gallery-nav i {
+  font-size: 1.2em;
+  width: 2em;
+  height: 1em;
+  vertical-align: middle;
+}
+
 .gallery-nav .current {
   border-top: 0.14em solid #000;
 }
@@ -56,6 +63,7 @@
 
 #galleryMessage {
   text-align: center;
+  padding: 0 0.5em;
 }
 
 .create-post-modal {
@@ -174,7 +182,6 @@
 @media screen and (max-width: 768px) {
   .gallery {
     width: 95%;
-    margin: 0 auto 5em;
   }
 
   .add-photo {
@@ -188,6 +195,7 @@
 
   .gallery-output {
     font-size: 0.8em;
+    margin-bottom: 5em;
   }
 }
 
@@ -196,5 +204,32 @@
     border-top: none;
     width: 100%;
     margin: 0;
+  }
+
+  .gallery-nav span {
+    display: none;
+  }
+
+  .gallery-nav {
+    display: flex;
+    height: 2em;
+  }
+
+  .gallery-nav i {
+    font-size: 2em;
+  }
+
+  .gallery-nav .current {
+    border-top: none;
+    color: blue;
+  }
+
+  .gallery-nav > button {
+    height: 2em;
+  }
+
+  .gallery-output {
+    margin-bottom: 5em;
+    /* font-size: 0.48em; */
   }
 }
