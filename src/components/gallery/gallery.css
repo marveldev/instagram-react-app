@@ -190,3 +190,11 @@
     font-size: 0.8em;
   }
 }
+
+@media screen and (max-width: 425px) {
+  .gallery {
+    border-top: none;
+    width: 100%;
+    margin: 0;
+  }
+}

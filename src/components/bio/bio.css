@@ -66,13 +66,70 @@
     width: 90%;
   }
 
-  .profile-photo > img {
-    height: 10em;
-    width: 10em;
+  .profile-photo {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .profile-photo {
+    height: 7.5em;
+    width: 7.5em;
+    border: 0.13em solid #DC3173;
   }
 
-  .profile-photo {
-    height: 11em;
-    width: 11em;
+  .profile-photo > img {
+    height: 7em;
+    width: 7em;
+  }
+
+  .bio-info .fa-sun-o {
+    display: none;
+  }
+
+  .bio-info button {
+    display: block;
+    width: 100%;
+    height: 1.8em;
+    margin: 0.5em 0 0;
+  }
+
+  .bio {
+    margin: 5em auto 0;
+    width: 95%;
+    align-items: stretch;
+    height: auto;
+  }
+
+  #userAccountInfo {
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    left: 30%;
+    right: 35%;
+    top: 1em;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    max-width: 100vw;
+    word-wrap: break-word;
+    height: auto;
+  }
+
+  #userAccountInfo div {
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+    border-top: 1px solid #DBDBDB;
+    border-bottom: 1px solid #DBDBDB;
+    padding: 0.4em 0 0.4em 1em;
+  }
+
+  #userAccountInfo div > span {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #userAccountInfo section {
+    padding-left: 1.5em;
   }
 }

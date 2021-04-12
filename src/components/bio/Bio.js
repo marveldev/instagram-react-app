@@ -23,13 +23,17 @@ const Bio = () => {
           <button type="button" onClick={() => history.push("/settings")}>Edit Profile</button>
           <i className="fa fa-sun-o"></i>
         </div>
-        <div>
-          <span><strong>{galleryCount}</strong> posts</span>
-          <span><strong>0</strong> followers</span>
-          <span><strong>0</strong> following</span>
+        <div id="userAccountInfo">
+          <div>
+            <span><strong>{galleryCount}</strong> posts</span>
+            <span><strong>0</strong> followers</span>
+            <span><strong>0</strong> following</span>
+          </div>
+          <section>
+            <span className="bio-name">{bio?.name}</span>
+            <p>{bio?.aboutUser || 'Add about'}</p>
+          </section>
         </div>
-        <span className="bio-name">{bio?.name}</span>
-        <p>{bio?.aboutUser || 'Add about'}</p>
       </div>
       {isOpen &&
         <ProfilePhotoModal
