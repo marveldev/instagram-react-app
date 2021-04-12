@@ -26,9 +26,11 @@ const SmallScreenNav = () => {
           </label>
         </button>
         <button type="button" aria-label="liked"><i className="fa fa-heart-o"></i></button>
-        <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
-          className="nav-photo" alt="profile"
-        />
+        <button>
+          <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
+            className="nav-photo" alt="profile"
+          />
+        </button>
       </nav>
     </>
   )
