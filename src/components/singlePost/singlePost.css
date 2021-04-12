@@ -15,3 +15,66 @@
   display: flex;
   justify-content: center;
 }
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  height: 5em;
+  width: 25.3em;
+  border-bottom: 1px solid #000;
+}
+
+.single-post .nav-photo {
+  font-size: 1.2em;
+  margin-left: 1em;
+}
+
+.single-post .bio-name {
+  flex: 0.8;
+}
+
+.caption-info {
+  position: relative;
+  top: 6em;
+  display: flex;
+  gap: 0 2em;
+}
+
+#caption {
+  margin-left: 0.5em;
+}
+
+
+
+.post-reaction-options {
+  position: absolute;
+  bottom: 0;
+  width: 25.3em;
+  /* height: auto; */
+  /* max-width: 11em; */
+  background-color: #FFF;
+  border-top: 1px solid #000;
+}
+
+.single-post-options > div:first-child {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  /* height: 4em; */
+  font-size: 1.8em;
+}
+
+.single-post-options > div:last-child {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-top: 1px solid #000;
+}
+
+.single-post-options textarea {
+  width: 90%;
+  resize: none;
+  border: none;
+}

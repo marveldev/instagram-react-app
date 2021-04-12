@@ -13,17 +13,19 @@ const SinglePost = () => {
           <img src={CONSTANTS.PHOTOURL} alt="gallery"/>
         </div>
         <div>
-          <div>
+          <div className="user-info">
             <img src={CONSTANTS.PHOTOURL} className="nav-photo" alt="profile"/>
-            <span>Jane Doe</span>
-            <button></button>
+            <span className="bio-name">Jane Doe</span>
+            <button><i className="material-icons">&#xe5d3;</i></button>
           </div>
-          <div>
+          <div className="caption-info">
             <img src={CONSTANTS.PHOTOURL} className="nav-photo" alt="profile"/>
-            <span>Jane Doe</span>
-            <span>Hello World.</span>
+            <div>
+              <span className="bio-name">Jane Doe</span>
+              <span id="caption">Hello World.</span>
+            </div>
           </div>
-          <div>
+          <div className="post-reaction-options">
             <div>
               <span className="fa fa-heart"></span>
               <span className="fa fa-comment-o"></span>
@@ -31,8 +33,8 @@ const SinglePost = () => {
               <span></span>
             </div>
             <div>
-              <i className="fa fa-smile-o"></i>
-              <textarea></textarea>
+              <span className="fa fa-smile-o"></span>
+              <textarea placeholder="Add a comment..."></textarea>
               <button>Post</button>
             </div>
           </div>
