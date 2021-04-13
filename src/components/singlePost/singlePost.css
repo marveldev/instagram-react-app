@@ -23,46 +23,54 @@
   position: fixed;
   height: 5em;
   width: 25.3em;
-  border-bottom: 1px solid #000;
+  padding: 0 1em;
+  border-bottom: 1px solid #EFEFEF;
 }
 
 .single-post .nav-photo {
   font-size: 1.2em;
-  margin-left: 1em;
 }
 
 .single-post .bio-name {
   flex: 0.8;
 }
 
-.caption-info {
+.about-caption {
   position: relative;
-  top: 6em;
+  top: 5em;
+  overflow-y: auto;
+  max-height: 25em;
+  height: 100%;
+  padding: 1em;
+}
+
+.caption-info {
   display: flex;
   gap: 0 2em;
+  height: 4em;
 }
 
 #caption {
   margin-left: 0.5em;
 }
 
-
-
 .post-reaction-options {
   position: absolute;
   bottom: 0;
   width: 25.3em;
   background-color: #FFF;
-  border-top: 1px solid #000;
+  border-top: 1px solid #EFEFEF;
+  height: 10.1em;
+  padding: 0 1em;
 }
 
 .post-reaction-options > div:first-child {
   display: grid;
-  grid-template-columns: 0.2fr 0.2fr 1fr 0.2fr;
+  grid-template-columns: 0.2fr 0.2fr 1fr 0.1fr;
   width: 100%;
   align-items: center;
-  padding-left: 0.8em;
   font-size: 1.8em;
+  height: 2em;
 }
 
 .post-reaction-options .material-icons {
@@ -70,14 +78,12 @@
 }
 
 #commentBox {
-  height: 5em;
+  height: 6.3em;
   align-items: center;
   display: flex;
   justify-content: space-around;
   width: 100%;
-  font-size: 1.1em;
-  /* background-color: brown; */
-
+  gap: 0 1em;
 }
 
 #commentBox i {
@@ -85,26 +91,40 @@
 }
 
 #commentBox textarea {
-  /* width: 70%; */
   resize: none;
   border: none;
-  flex: 1;
-  font-size: 1.1em;
-  height: 3em;
-  /* padding-top: 1em; */
-  background-color: brown;
-}
-
-
-.single-post-options > div:last-child {
-  display: flex;
+  outline: none;
   width: 100%;
-  justify-content: space-between;
-  border-top: 1px solid #000;
 }
 
-.single-post-options textarea {
-  width: 90%;
-  resize: none;
-  border: none;
+#commentBox button {
+  color: #1EA1F7;
+  font-weight: 550;
+}
+
+.button {
+  width: 5em;
+  height: 5em;
+}
+
+.button i {
+  font-size: 2.5em;
+  color: #fff;
+}
+
+.remove {
+  float: right;
+}
+
+.previous {
+  position: relative;
+  top: 45%;
+  left: 10%;
+}
+
+.next {
+  position: relative;
+  float: right;
+  top: 45%;
+  right: 5%;
 }

@@ -6,21 +6,21 @@ import { CONSTANTS } from '../common/constants'
 const DropDown = () => {
   const history = useHistory()
   const { bio } = useSelector(state => state.bio)
-  const [isOpen, setIsOpen] = useState(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   return (
     <div className="dropdown">
       <div>
         <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
-          onClick={() => setIsOpen(true)}
+          onClick={() => setIsDropdownOpen(true)}
           className="nav-photo" alt="profile"
         />
       </div>
-      {isOpen && (
+      {isDropdownOpen && (
         <div>
           <div className="overlay"
             style={{backgroundColor: "rgba(0,0,0,0.0)"}}
-            onClick={() => setIsOpen(false)}
+            onClick={() => setIsDropdownOpen(false)}
           >
           </div>
           <div className="dropdown-content">
