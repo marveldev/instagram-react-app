@@ -1,25 +1,22 @@
-import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import DropDown from './DropDown'
 import SmallScreenNav from './SmallScreenNav'
 
 const TopNav = () => {
   const history = useHistory()
-  const [isSmallScreen, setIsSmallScreen] = useState(false)
-
-  useEffect(() => {
-    if (window.innerWidth <= 768) {
-      setIsSmallScreen(true)
-    }
-  }, [])
+  const isSmallScreen = window.innerWidth <= 768
 
   return (
     <>
+      {isSmallScreen && <SmallScreenNav/>}
       {!isSmallScreen && (
         <nav className="top-nav">
           <div>
-            <img id="logo" src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
-              alt="logo" />
+            <img
+              id="logo"
+              src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+              alt="logo"
+            />
           </div>
           <div>
             <input type="text" className="search-input" placeholder="Search" />
@@ -35,7 +32,6 @@ const TopNav = () => {
           </div>
         </nav>
       )}
-      {isSmallScreen && <SmallScreenNav/>}
     </>
   )
 }

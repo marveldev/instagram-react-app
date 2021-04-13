@@ -27,13 +27,13 @@ const SinglePost = () => {
           </div>
           <div className="post-reaction-options">
             <div>
-              <span className="fa fa-heart"></span>
+              <span className="fa fa-heart-o"></span>
               <span className="fa fa-comment-o"></span>
-              <span className="fa fa-send-o"></span>
-              <span></span>
+              <span className="material-icons">&#xe80d;</span>
+              <span className="material-icons">&#xe867;</span>
             </div>
-            <div>
-              <span className="fa fa-smile-o"></span>
+            <div id="commentBox">
+              <i className="fa fa-smile-o"></i>
               <textarea placeholder="Add a comment..."></textarea>
               <button>Post</button>
             </div>

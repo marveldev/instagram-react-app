@@ -52,19 +52,49 @@
   position: absolute;
   bottom: 0;
   width: 25.3em;
-  /* height: auto; */
-  /* max-width: 11em; */
   background-color: #FFF;
   border-top: 1px solid #000;
 }
 
-.single-post-options > div:first-child {
-  display: flex;
+.post-reaction-options > div:first-child {
+  display: grid;
+  grid-template-columns: 0.2fr 0.2fr 1fr 0.2fr;
   width: 100%;
-  justify-content: space-between;
-  /* height: 4em; */
+  align-items: center;
+  padding-left: 0.8em;
   font-size: 1.8em;
 }
+
+.post-reaction-options .material-icons {
+  font-size: 1.1em;
+}
+
+#commentBox {
+  height: 5em;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  font-size: 1.1em;
+  /* background-color: brown; */
+
+}
+
+#commentBox i {
+  font-size: 1.8em;
+}
+
+#commentBox textarea {
+  /* width: 70%; */
+  resize: none;
+  border: none;
+  flex: 1;
+  font-size: 1.1em;
+  height: 3em;
+  /* padding-top: 1em; */
+  background-color: brown;
+}
+
 
 .single-post-options > div:last-child {
   display: flex;
