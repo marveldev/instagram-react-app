@@ -5,8 +5,8 @@ const todoSlice = createSlice(
     name: 'bio',
     initialState: {bio: null},
     reducers: {
-      setBio: (state, action) => {
-        state.bio = action.payload
+      setBio: (state, { payload }) => {
+        state.bio = payload
       }
     }
   }
@@ -19,8 +19,8 @@ const gallerySlice = createSlice(
       gallery: []
     },
     reducers: {
-      addGallery: (state, action) => {
-        state.gallery = [action.payload, ...state.gallery]
+      addGallery: (state, { payload }) => {
+        state.gallery = [payload, ...state.gallery]
       }
     }
   }
