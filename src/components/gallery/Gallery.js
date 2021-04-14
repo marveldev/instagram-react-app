@@ -24,11 +24,11 @@ const Gallery = () => {
   }
 
   const galleryItems = galleryState.gallery?.map(galleryItem => (
-    <div key={galleryItem.id} onClick={() => getIndex(galleryItem)}>
+    <button key={galleryItem.id} onClick={() => getIndex(galleryItem)}>
       <div className="photo-container">
         <img src={galleryItem.photoUrl} alt="profile" />
       </div>
-    </div>
+    </button>
   ))
 
   return (

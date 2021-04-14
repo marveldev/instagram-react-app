@@ -10,12 +10,11 @@ const DropDown = () => {
 
   return (
     <div className="dropdown">
-      <div>
+      <button onClick={() => setIsDropdownOpen(true)}>
         <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
-          onClick={() => setIsDropdownOpen(true)}
           className="nav-photo" alt="profile"
         />
-      </div>
+      </button>
       {isDropdownOpen && (
         <div>
           <div className="overlay"
