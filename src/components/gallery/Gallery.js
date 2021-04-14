@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import CreatePostModal from './CreatePostModal'
+import SinglePost from '../singlePost/SinglePost'
 
 const Gallery = () => {
   const galleryState = useSelector(state => state.gallery)
   const [postModal, setPostModal] = useState({isOpen: false, photoUrl: null})
-  const [photoCaptionId, setPhotoCaptionId] = useState()
+  const [isSinglePostOpen, setIsSinglePostOpen] = useState(false)
+  const [selectedPost, setSelectedPost] = useState({})
 
   const openPostModal = id => {
     const photoReader = new FileReader()
@@ -15,19 +17,16 @@ const Gallery = () => {
     })
   }
 
+  const openSelectedPost = (galleryItem) => {
+    setSelectedPost(galleryItem)
+    setIsSinglePostOpen(true)
+  }
+
   const galleryItems = galleryState.gallery?.map(galleryItem => (
-    <div key={galleryItem.id} className="gallery-item">
-      <div className="photo-container"
-        onMouseOver={() => setPhotoCaptionId(galleryItem.id)}
-        onMouseLeave={() => setPhotoCaptionId()}
-      >
+    <div key={galleryItem.id} onClick={() => openSelectedPost(galleryItem)}>
+      <div className="photo-container">
         <img src={galleryItem.photoUrl} alt="profile" />
       </div>
-      {photoCaptionId === galleryItem.id && (
-        <div className="photo-caption">
-          <p>{galleryItem.photoCaption}</p>
-        </div>
-      )}
     </div>
   ))
 
@@ -71,6 +70,12 @@ const Gallery = () => {
         <CreatePostModal
           postModal={postModal}
           setPostModal={setPostModal}
+        />
+      }
+      {isSinglePostOpen &&
+        <SinglePost
+          selectedPost={selectedPost}
+          setIsSinglePostOpen={setIsSinglePostOpen}
         />
       }
     </div>
