@@ -26,13 +26,13 @@ const gallerySlice = createSlice(
   }
 )
 
-const galleryCounter = createSlice({
+const galleryCountSlice = createSlice({
   name: 'galleryCount',
   initialState: {
     value: 0
   },
   reducers: {
-    incremented: state => {
+    incrementCount: state => {
       state.value++
     }
   }
@@ -40,9 +40,9 @@ const galleryCounter = createSlice({
 
 const { actions: bioActions, reducer: bioReducers } = todoSlice
 const { actions: galleryActions, reducer: galleryReducers } = gallerySlice
-const { actions: galleryCounterAction, reducer: galleryCountReducer } = galleryCounter
+const { actions: galleryCountAction, reducer: galleryCountReducer } = galleryCountSlice
 
 export {
   bioActions, bioReducers, galleryActions,
-  galleryReducers, galleryCounterAction, galleryCountReducer
+  galleryReducers, galleryCountAction, galleryCountReducer
 }
