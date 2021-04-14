@@ -1,16 +1,18 @@
 import { CONSTANTS } from '../common/constants'
 
-const SinglePost = () => {
+const SinglePost = ({ setIsSinglePostOpen, selectedPost }) => {
+  const { id, photoCaption, photoUrl} = selectedPost
+  
   return (
     <>
-      <div className="overlay">
+      <div className="overlay" onClick={() => setIsSinglePostOpen(false)}>
         <button className="remove button"><i className="material-icons">&#xe5cd;</i></button>
         <button className="previous button"><i className="fa fa-angle-left"></i></button>
         <button className="next button"><i className="fa fa-angle-right"></i></button>
       </div>
       <div className="single-post">
         <div className="post-photo">
-          <img src={CONSTANTS.PHOTOURL} alt="gallery"/>
+          <img src={photoUrl} alt="gallery"/>
         </div>
         <div>
           <div className="user-info">
