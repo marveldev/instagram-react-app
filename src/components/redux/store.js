@@ -5,7 +5,6 @@ export default configureStore({
   reducer: {
     bio: bioReducers,
     gallery: galleryReducers,
-    // count: 
     galleryCount: galleryCountReducer
   }
 })
