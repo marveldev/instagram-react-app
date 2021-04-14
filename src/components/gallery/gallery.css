@@ -162,23 +162,6 @@
   border-radius: 0.5em;
 }
 
-.photo-caption {
-  position: relative;
-  bottom: 16.3em;
-  height: 16.2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 600;
-  font-size: 1.1em;
-  cursor: pointer;
-}
-
-.gallery-item {
-  height: 18em;
-}
-
 @media screen and (max-width: 768px) {
   .gallery {
     width: 95%;

@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux'
-import { CONSTANTS } from '../common/constants'
 import { galleryActions, galleryCountAction } from '../redux/slice'
 
 const CreatePostModal = ({ setPostModal, postModal }) => {
@@ -31,7 +30,7 @@ const CreatePostModal = ({ setPostModal, postModal }) => {
         </div>
         <div id="previewPost">
           <textarea id="postCaption" placeholder="Add Caption..."></textarea>
-          <img src={postModal?.photoUrl || CONSTANTS.PHOTOURL} id="photoEntry" alt="gallery"/>
+          <img src={postModal?.photoUrl} id="photoEntry" alt="gallery"/>
         </div>
         <div className="post-options">
           <span>Add To Your Post</span>

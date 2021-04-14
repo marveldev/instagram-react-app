@@ -7,7 +7,7 @@ const Gallery = () => {
   const galleryState = useSelector(state => state.gallery)
   const [postModal, setPostModal] = useState({isOpen: false, photoUrl: null})
   const [isSinglePostOpen, setIsSinglePostOpen] = useState(false)
-  const [selectedPost, setSelectedPost] = useState({})
+  const [selectedPostIndex, setSelectedPostIndex] = useState()
 
   const openPostModal = id => {
     const photoReader = new FileReader()
@@ -17,13 +17,14 @@ const Gallery = () => {
     })
   }
 
-  const openSelectedPost = (galleryItem) => {
-    setSelectedPost(galleryItem)
+  const getIndex = galleryItem => {
+    const index = galleryState.gallery.indexOf(galleryItem)
+    setSelectedPostIndex(index)
     setIsSinglePostOpen(true)
   }
 
   const galleryItems = galleryState.gallery?.map(galleryItem => (
-    <div key={galleryItem.id} onClick={() => openSelectedPost(galleryItem)}>
+    <div key={galleryItem.id} onClick={() => getIndex(galleryItem)}>
       <div className="photo-container">
         <img src={galleryItem.photoUrl} alt="profile" />
       </div>
@@ -74,7 +75,7 @@ const Gallery = () => {
       }
       {isSinglePostOpen &&
         <SinglePost
-          selectedPost={selectedPost}
+          selectedPostIndex={selectedPostIndex}
           setIsSinglePostOpen={setIsSinglePostOpen}
         />
       }
