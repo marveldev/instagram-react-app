@@ -17,14 +17,13 @@ const Gallery = () => {
     })
   }
 
-  const getIndex = galleryItem => {
-    const index = galleryState.gallery.indexOf(galleryItem)
+  const handlePostClick = index => {
     setSelectedPostIndex(index)
     setIsSinglePostOpen(true)
   }
 
-  const galleryItems = galleryState.gallery?.map(galleryItem => (
-    <button key={galleryItem.id} onClick={() => getIndex(galleryItem)}>
+  const galleryItems = galleryState.gallery?.map((galleryItem, index) => (
+    <button key={galleryItem.id} onClick={() => handlePostClick(index)}>
       <div className="photo-container">
         <img src={galleryItem.photoUrl} alt="profile" />
       </div>
@@ -76,6 +75,7 @@ const Gallery = () => {
       {isSinglePostOpen &&
         <SinglePost
           selectedPostIndex={selectedPostIndex}
+          setSelectedPostIndex={setSelectedPostIndex}
           setIsSinglePostOpen={setIsSinglePostOpen}
         />
       }

@@ -1,15 +1,24 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { CONSTANTS } from '../common/constants'
 import ProfilePhotoModal from '../common/ProfilePhotoModal'
 import { bioActions } from '../redux/slice'
+import './settings.scss'
 
 const Settings = () => {
+  const { goBack } = useHistory()
   const dispatch = useDispatch()
   const { bio } = useSelector(state => state.bio)
-  const [isError, setIsError] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
+  const [photoModalIsActive, setPhotoModalIsActive] = useState(false)
+
+  const displayToast = selector => {
+    document.querySelector(selector).style.display = 'block'
+
+    setTimeout(() => {
+      document.querySelector(selector).style.display = 'none'
+    }, 3000)
+  }
 
   const updateBio = event => {
     event.preventDefault()
@@ -26,17 +35,10 @@ const Settings = () => {
       })
 
       dispatch(bioActions.setBio(nextState))
-      setIsSuccess(true)
-
-      setTimeout(() => {
-        setIsSuccess(false)
-      }, 3000);
-    } else {
-      setIsError(true)
-
-      setTimeout(() => {
-        setIsError(false)
-      }, 3000)
+      displayToast('.success')
+    }
+    else {
+      displayToast('.error')
     }
   }
 
@@ -57,13 +59,13 @@ const Settings = () => {
         </div>
         <div className="settings-pane">
           <div className="user-profile">
-            <img onClick={() => setIsOpen(true)}
+            <img onClick={() => setPhotoModalIsActive(true)}
               src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
               className="nav-photo" title="Change Profile Photo" alt="profile"
             />
             <div>
               <p>{bio?.username || 'Add profile'}</p>
-              <button id="photoButton" onClick={() => setIsOpen(true)}>
+              <button id="photoButton" onClick={() => setPhotoModalIsActive(true)}>
                 Change Profile Photo
               </button>
             </div>
@@ -112,25 +114,26 @@ const Settings = () => {
                 defaultValue={bio?.gender} placeholder="Gender"
               />
             </label>
-            <button onSubmit={updateBio} id="submitButton">Submit</button>
+            <div>
+              <button type="submit" className="submit-button">Submit</button>
+              <button type="button" onClick={() => goBack()} className="back-button">
+                Go Back
+              </button>
+            </div>
           </form>
         </div>
       </div>
-      {isOpen &&
+      {photoModalIsActive &&
         <ProfilePhotoModal
-          setIsOpen={setIsOpen}
+          setPhotoModalIsActive={setPhotoModalIsActive}
         />
       }
-      {isError && (
-        <div className="message">
-          <p>Blank fields cannot be submitted</p>
-        </div>
-      )}
-      {isSuccess && (
-        <div className="message">
-          <p>Your Profile Was Successfully Updated</p>
-        </div>
-      )}
+      <div className="error message">
+        <p>Blank fields cannot be submitted</p>
+      </div>
+      <div className="success message">
+        <p>Your Profile Was Successfully Updated</p>
+      </div>
     </div>
   )
 }

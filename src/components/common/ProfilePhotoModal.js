@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { bioActions } from '../redux/slice'
 
-const ProfilePhotoModal = ({ setIsOpen }) => {
+const ProfilePhotoModal = ({ setPhotoModalIsActive }) => {
   const dispatch = useDispatch()
   const { bio } = useSelector(state => state.bio)
   const [photoUrl, setPhotoUrl] = useState()
@@ -18,12 +18,12 @@ const ProfilePhotoModal = ({ setIsOpen }) => {
   const addProfilePhoto = () => {
     const nextState = ({...bio, profilePhotoUrl: photoUrl})
     dispatch(bioActions.setBio(nextState))
-    setIsOpen(false)
+    setPhotoModalIsActive(false)
   }
 
   return (
     <>
-      <div onClick={() => setIsOpen(false)} className="overlay"></div>
+      <div onClick={() => setPhotoModalIsActive(false)} className="overlay"></div>
       {!photoUrl && (
         <div className="photo-modal">
           <p>Change Profile Photo</p>
@@ -34,7 +34,7 @@ const ProfilePhotoModal = ({ setIsOpen }) => {
             <span>Upload Photo</span>
           </label>
           <button className="remove-photo-button">Remove Current Photo</button>
-          <button className="cancel-button" onClick={() => setIsOpen(false)}>
+          <button className="cancel-button" onClick={() => setPhotoModalIsActive(false)}>
             Cancel
           </button>
         </div>
@@ -45,7 +45,7 @@ const ProfilePhotoModal = ({ setIsOpen }) => {
           <img src={photoUrl} alt="profile"/>
           <div>
             <button onClick={addProfilePhoto}>Confirm</button>
-            <button onClick={() => setIsOpen(false)}>Cancel</button>
+            <button onClick={() => setPhotoModalIsActive(false)}>Cancel</button>
           </div>
         </div>
       )}

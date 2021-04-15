@@ -1,26 +1,26 @@
-import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import FocusTrap from 'focus-trap-react'
 import { CONSTANTS } from '../common/constants'
 
-const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex }) => {
+const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostIndex }) => {
   const { bio } = useSelector(state => state.bio)
   const { gallery } = useSelector(state => state.gallery)
-  const [index, setIndex] = useState(selectedPostIndex)
 
   const displayNextGallery = event => {
     event.stopPropagation()
-    setIndex(index + 1)
-    if (index === gallery.length - 1) {
-      setIndex(0)
+    if (selectedPostIndex === gallery.length - 1) {
+      setSelectedPostIndex(0)
+    } else {
+      setSelectedPostIndex(selectedPostIndex + 1)
     }
   }
 
   const displayPreviousGallery = event => {
     event.stopPropagation()
-    setIndex(index - 1)
-    if (index === 0) {
-      setIndex(gallery.length -1)
+    if (selectedPostIndex === 0) {
+      setSelectedPostIndex(gallery.length - 1)
+    } else {
+      setSelectedPostIndex(selectedPostIndex - 1)
     }
   }
 
@@ -40,7 +40,7 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex }) => {
         </div>
         <div className="single-post">
           <div className="post-photo">
-            <img src={gallery[index].photoUrl} alt="gallery"/>
+            <img src={gallery[selectedPostIndex].photoUrl} alt="gallery"/>
           </div>
           <div>
             <div className="user-info">
@@ -57,7 +57,7 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex }) => {
                 />
                 <div>
                   <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
-                  <span id="caption">{gallery[index].photoCaption}</span>
+                  <span id="caption">{gallery[selectedPostIndex].photoCaption}</span>
                 </div>
               </div>
             </div>

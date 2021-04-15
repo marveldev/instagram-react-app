@@ -8,17 +8,19 @@ const Bio = () => {
   const history = useHistory()
   const { bio } = useSelector(state => state.bio)
   const galleryCount = useSelector(state => state.galleryCount.value)
-  const [isOpen, setIsOpen] = useState(false)
+  const [photoModalIsActive, setPhotoModalIsActive] = useState(false)
 
   return (
     <div className="bio">
-      <button onClick={() => setIsOpen(true)} className="profile-photo">
+      <button onClick={() => photoModalIsActive(true)} className="profile-photo">
         <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL} alt="profile"/>
       </button>
       <div className="bio-info">
         <div>
           <span className="bio-username">{bio?.username || CONSTANTS.NAME}</span>
-          <button type="button" onClick={() => history.push("/settings")}>Edit Profile</button>
+          <button type="button" onClick={() => history.push("/settings")}>
+            Edit Profile
+          </button>
           <i className="fa fa-sun-o"></i>
         </div>
         <div id="userAccountInfo">
@@ -33,9 +35,9 @@ const Bio = () => {
           </section>
         </div>
       </div>
-      {isOpen &&
+      {photoModalIsActive &&
         <ProfilePhotoModal
-          setIsOpen={setIsOpen}
+        setPhotoModalIsActive={setPhotoModalIsActive}
         />
       }
     </div>
