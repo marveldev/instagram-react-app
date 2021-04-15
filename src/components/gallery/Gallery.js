@@ -76,7 +76,6 @@ const Gallery = () => {
       {isSinglePostOpen &&
         <SinglePost
           selectedPostIndex={selectedPostIndex}
-          isSinglePostOpen={isSinglePostOpen}
           setIsSinglePostOpen={setIsSinglePostOpen}
         />
       }

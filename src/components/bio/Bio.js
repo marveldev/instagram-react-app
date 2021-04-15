@@ -12,11 +12,9 @@ const Bio = () => {
 
   return (
     <div className="bio">
-      <div className="profile-photo">
-        <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
-          onClick={() => setIsOpen(true)} alt="profile"
-        />
-      </div>
+      <button onClick={() => setIsOpen(true)} className="profile-photo">
+        <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL} alt="profile"/>
+      </button>
       <div className="bio-info">
         <div>
           <span className="bio-username">{bio?.username || CONSTANTS.NAME}</span>

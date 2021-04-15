@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import FocusTrap from 'focus-trap-react'
 import { CONSTANTS } from '../common/constants'
 
-const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, isSinglePostOpen }) => {
+const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex }) => {
   const { bio } = useSelector(state => state.bio)
   const { gallery } = useSelector(state => state.gallery)
   const [index, setIndex] = useState(selectedPostIndex)
