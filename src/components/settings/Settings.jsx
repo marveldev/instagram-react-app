@@ -11,6 +11,11 @@ const Settings = () => {
   const dispatch = useDispatch()
   const { bio } = useSelector(state => state.bio)
   const [photoModalIsActive, setPhotoModalIsActive] = useState(false)
+  const [buttonClass, setButtonClass] = useState('enable')
+
+  const inputEventHandler = () => {
+    setButtonClass('enable')
+  }
 
   const displayToast = selector => {
     document.querySelector(selector).style.display = 'block'
@@ -22,23 +27,26 @@ const Settings = () => {
 
   const updateBio = event => {
     event.preventDefault()
-    const username = document.querySelector('.username').value
-    if (username.trim().length >= 1) {
-      const name = document.querySelector('.name').value
-      const website = document.querySelector('.website').value
-      const aboutUser = document.querySelector('.bio-box').value
-      const email = document.querySelector('.email').value
-      const phoneNumber = document.querySelector('.phone-number').value
-      const gender = document.querySelector('.gender').value
-      const nextState = ({
-        ...bio, name, username, website, aboutUser, email, phoneNumber, gender
-      })
+    if (buttonClass === 'enable') {
+      const username = document.querySelector('.username').value
+      if (username.trim().length >= 1) {
+        const name = document.querySelector('.name').value
+        const website = document.querySelector('.website').value
+        const aboutUser = document.querySelector('.bio-box').value
+        const email = document.querySelector('.email').value
+        const phoneNumber = document.querySelector('.phone-number').value
+        const gender = document.querySelector('.gender').value
+        const nextState = ({
+          ...bio, name, username, website, aboutUser, email, phoneNumber, gender
+        })
 
-      dispatch(bioActions.setBio(nextState))
-      displayToast('.success')
-    }
-    else {
-      displayToast('.error')
+        dispatch(bioActions.setBio(nextState))
+        displayToast('.success')
+        setButtonClass('disable')
+      }
+      else {
+        displayToast('.error')
+      }
     }
   }
 
@@ -73,49 +81,54 @@ const Settings = () => {
           <form onSubmit={updateBio}>
             <label>
               Name
-              <input type="text" className="name"
+              <input type="text" className="name" onChange={inputEventHandler}
                 placeholder="Name" defaultValue={bio?.name} required
               />
             </label>
             <label>
               Username
-              <input type="text" className="username"
+              <input type="text" className="username" onChange={inputEventHandler}
                 placeholder="Username" defaultValue={bio?.username} required
               />
             </label>
             <label>
               Website
-              <input type="text" className="website"
+              <input type="text" className="website" onChange={inputEventHandler}
                 defaultValue={bio?.website} placeholder="Website"
               />
             </label>
             <label>
               Bio
-              <textarea className="bio-box"
+              <textarea className="bio-box" onChange={inputEventHandler}
                 defaultValue={bio?.aboutUser} placeholder="Bio" required
               >
               </textarea>
             </label>
             <label>
               Email
-              <input type="email" className="email"
+              <input type="email" className="email" onChange={inputEventHandler}
                 defaultValue={bio?.email} placeholder="Email"
               />
             </label>
             <label>
               Phone Number
-              <input type="tel" className="phone-number" defaultValue={bio?.phoneNumber}
+              <input type="tel" className="phone-number" onChange={inputEventHandler}
+                defaultValue={bio?.phoneNumber}
                 pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="123-45-678"
               />
             </label>
             <label>
               Gender
-              <input type="text" className="gender"
+              <input type="text" className="gender" onChange={inputEventHandler}
                 defaultValue={bio?.gender} placeholder="Gender"
               />
             </label>
             <div className="form-buttons">
-              <button type="submit" className="submit-button">Submit</button>
+              <button type="submit"
+                className={`${buttonClass} submit-button`}
+              >
+                Submit
+              </button>
               <button type="button" onClick={() => goBack()} className="back-button">
                 Go Back
               </button>

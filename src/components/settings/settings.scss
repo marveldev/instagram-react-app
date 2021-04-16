@@ -58,7 +58,6 @@
       color: #fff;
       font-weight: 550;
       border-radius: 0.2em;
-      background-color: #0095F6;
       width: 5em;
       height: 2em;
     }
@@ -68,15 +67,15 @@
       color: #0095F6;
     }
 
-    // .enable {
-    //   pointer-events: auto;
-    //   background-color: #1DA1F2;
-    // }
+    .enable {
+      pointer-events: auto;
+      background-color: #1DA1F2;
+    }
 
-    // .disable {
-    //   background-color: #8ED0F9;
-    //   pointer-events: none;
-    // }
+    .disable {
+      background-color: #8ED0F9;
+      pointer-events: none;
+    }
   }
 
   .user-profile {

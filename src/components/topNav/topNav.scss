@@ -42,15 +42,6 @@
     vertical-align: middle;
   }
 
-  .nav-photo {
-    width: 2em;
-    height: 2em;
-    object-fit: cover;
-    background-color: #000;
-    border-radius: 1.5em;
-    cursor: pointer;
-  }
-
   .dropdown {
     display: inline-flex;
     justify-content: center;
@@ -92,6 +83,15 @@
       background-color: #FAFAFA;
     }
   }
+}
+
+.nav-photo {
+  width: 2em;
+  height: 2em;
+  object-fit: cover;
+  background-color: #000;
+  border-radius: 1.5em;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
