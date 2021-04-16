@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Home, Settings, TopNav } from './components'
-import './index.css'
+import './index.scss'
 
 const App = () => {
   return (

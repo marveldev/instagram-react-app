@@ -13,7 +13,7 @@ const Bio = () => {
 
   return (
     <div className="bio">
-      <button onClick={() => photoModalIsActive(true)} className="profile-photo">
+      <button onClick={() => setPhotoModalIsActive(true)} className="profile-photo">
         <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL} alt="profile"/>
       </button>
       <div className="bio-info">
