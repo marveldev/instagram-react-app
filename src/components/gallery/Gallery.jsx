@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import CreatePostModal from './CreatePostModal'
 import SinglePost from '../singlePost/SinglePost'
+import './gallery.scss'
 
 const Gallery = () => {
   const galleryState = useSelector(state => state.gallery)
@@ -33,7 +34,7 @@ const Gallery = () => {
   return (
     <div className="gallery">
       <div className="gallery-nav">
-        <button type="button" className="current">
+        <button type="button" className="active-nav">
           <i className="material-icons">&#xe3ec;</i>
           <span>POSTS</span>
         </button>

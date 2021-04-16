@@ -114,7 +114,7 @@ const Settings = () => {
                 defaultValue={bio?.gender} placeholder="Gender"
               />
             </label>
-            <div>
+            <div className="form-buttons">
               <button type="submit" className="submit-button">Submit</button>
               <button type="button" onClick={() => goBack()} className="back-button">
                 Go Back

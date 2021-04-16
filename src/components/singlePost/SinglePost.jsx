@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import FocusTrap from 'focus-trap-react'
 import { CONSTANTS } from '../common/constants'
+import './singlePost.scss'
 
 const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostIndex }) => {
   const { bio } = useSelector(state => state.bio)
@@ -28,7 +29,7 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
     <FocusTrap>
       <div>
         <div className="overlay" onClick={() => setIsSinglePostOpen(false)}>
-          <button className="remove button">
+          <button className="close button">
             <i className="material-icons">&#xe5cd;</i>
           </button>
           <button onClick={displayPreviousGallery} className="previous button">

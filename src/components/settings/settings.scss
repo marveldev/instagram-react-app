@@ -18,6 +18,10 @@
       height: 3.5em;
       font-size: 1.1em;
     }
+
+    button:hover {
+      background-color: #FAFAFA;
+    }
   }
 
   #current {
@@ -43,6 +47,36 @@
       font-weight: 500;
       border: 0.1em solid #DBDBDB;
     }
+
+    .form-buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 1em;
+    }
+
+    .submit-button {
+      color: #fff;
+      font-weight: 550;
+      border-radius: 0.2em;
+      background-color: #0095F6;
+      width: 5em;
+      height: 2em;
+    }
+
+    .back-button {
+      font-weight: 550;
+      color: #0095F6;
+    }
+
+    // .enable {
+    //   pointer-events: auto;
+    //   background-color: #1DA1F2;
+    // }
+
+    // .disable {
+    //   background-color: #8ED0F9;
+    //   pointer-events: none;
+    // }
   }
 
   .user-profile {
@@ -77,37 +111,6 @@
     font-weight: 500;
     border: 0.1em solid #DBDBDB;
   }
-
-  .settings-nav > button:hover {
-    background-color: #FAFAFA;
-  }
-
-  .settings-pane .submit-button {
-    color: #fff;
-    font-weight: 550;
-    border-radius: 0.2em;
-    background-color: #0095F6;
-    width: 5em;
-    height: 2em;
-    margin-bottom: 2em;
-    margin-right: 6em;
-  }
-
-  .back-button {
-    float: right;
-    margin-right: 5em;
-    color: #0095F6;
-  }
-
-  .enable {
-    pointer-events: auto;
-    background-color: #1DA1F2;
-  }
-
-  .disable {
-    background-color: #8ED0F9;
-    pointer-events: none;
-  }
 }
 
 .message {
@@ -125,24 +128,24 @@
 }
 
 @media screen and (max-width: 768px) {
-  .settings-nav {
-    display: none;
-  }
-
   .settings {
     display: block;
     width: 100%;
     margin: 6em auto 3em;
-  }
 
-  .settings-pane label {
-    width: 80%;
-    margin: 1.5em auto;
-  }
+    .settings-nav {
+      display: none;
+    }
 
-  .user-profile {
-    width: 55%;
-    margin: 1.5em auto;
+    .settings-pane label {
+      width: 80%;
+      margin: 1.5em auto;
+    }
+
+    .user-profile {
+      width: 55%;
+      margin: 1.5em auto;
+    }
   }
 }
 
@@ -154,10 +157,10 @@
     gap: 0.5em 0;
     width: 100%;
     padding: 0 1.5em;
-  }
 
-  .settings-pane input {
-    width: 100%;
+    input {
+      width: 100%;
+    }
   }
 
   .bio-box {
@@ -167,9 +170,9 @@
   .user-profile {
     width: 100%;
     grid-template-columns: 0.3fr 1fr;
-  }
 
-  .user-profile .nav-photo {
-    margin: 0 auto;
+    .nav-photo {
+      margin: 0 auto;
+    }
   }
 }

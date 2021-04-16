@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router-dom'
 import DropDown from './DropDown'
 import SmallScreenNav from './SmallScreenNav'
+import './topNav.scss'
 
 const TopNav = () => {
   const history = useHistory()

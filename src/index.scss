@@ -1,8 +1,3 @@
-@import "./components/topNav/topNav.css";
-@import "./components/bio/bio.css";
-@import "./components/gallery/gallery.css";
-@import "./components/singlePost/singlePost.css";
-
 #root {
   margin: 0;
   box-sizing: border-box;
@@ -12,6 +7,11 @@
   height: 100%;
   overflow-y: auto;
   font-family: 'Segoe UI', 'Times New Roman', Times, serif;
+}
+
+button {
+  border: unset;
+  background-color: transparent;
 }
 
 .overlay {
@@ -38,13 +38,24 @@
   height: 35%;
   border-radius: 0.8em;
   font-size: 1.1em;
-}
 
-.photo-modal > label {
-  height: 2.5em;
-  color: #0095F6;
-  cursor: pointer;
-  border-bottom: 1px solid #DBDBDB;
+  label {
+    height: 2.5em;
+    color: #0095F6;
+    cursor: pointer;
+    border-bottom: 1px solid #DBDBDB;
+  }
+
+  p {
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 1.2em 0;
+    border-bottom: 1px solid #DBDBDB;
+  }
+
+  .cancel-button {
+    height: 2.5em;
+  }
 }
 
 .remove-photo-button {
@@ -52,17 +63,6 @@
   color: #ff0000;
   font-weight: 600;
   border-bottom: 1px solid #DBDBDB;
-}
-
-.photo-modal > p {
-  font-size: 1.2em;
-  font-weight: 600;
-  padding: 1.2em 0;
-  border-bottom: 1px solid #DBDBDB;
-}
-
-.cancel-button {
-  height: 2.5em;
 }
 
 #profilePhotoPicker {
@@ -80,34 +80,34 @@
   height: 57%;
   border-radius: 0.8em;
   padding-bottom: 1.2em;
-}
 
-.confirm-profile-photo > img {
-  margin: auto;
-  background-color: #000;
-  font-size: 1.1em;
-  width: 70%;
-  height: 70%;
-  object-fit: cover;
-}
+  img {
+    margin: auto;
+    background-color: #000;
+    font-size: 1.1em;
+    width: 70%;
+    height: 70%;
+    object-fit: cover;
+  }
 
-.confirm-profile-photo > div {
-  display: flex;
-  justify-content: space-around;
-  margin: 1em 0;
-}
+  div {
+    display: flex;
+    justify-content: space-around;
+    margin: 1em 0;
+  }
 
-.confirm-profile-photo button {
-  background-color: #1694e7;
-  width: 5em;
-  height: 2em;
-  font-weight: 600;
-  font-size: 1.1em;
-  color: #fff;
-}
+  button {
+    background-color: #1694e7;
+    width: 5em;
+    height: 2em;
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #fff;
+  }
 
-.confirm-profile-photo button:last-child {
-  background-color: #ff0000b7;
+  button:last-child {
+    background-color: #ff0000b7;
+  }
 }
 
 @media screen and (max-width: 768px) {

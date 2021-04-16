@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom"
 import { useSelector } from 'react-redux'
 import { CONSTANTS } from '../common/constants'
 import ProfilePhotoModal from '../common/ProfilePhotoModal'
+import './bio.scss'
 
 const Bio = () => {
   const history = useHistory()
@@ -37,7 +38,7 @@ const Bio = () => {
       </div>
       {photoModalIsActive &&
         <ProfilePhotoModal
-        setPhotoModalIsActive={setPhotoModalIsActive}
+          setPhotoModalIsActive={setPhotoModalIsActive}
         />
       }
     </div>

@@ -24,6 +24,16 @@ const ProfilePhotoModal = ({ setPhotoModalIsActive }) => {
   return (
     <>
       <div onClick={() => setPhotoModalIsActive(false)} className="overlay"></div>
+      {photoUrl && (
+        <div className="confirm-profile-photo">
+          <h3>Confirm Profile Photo</h3>
+          <img src={photoUrl} alt="profile"/>
+          <div>
+            <button onClick={addProfilePhoto}>Confirm</button>
+            <button onClick={() => setPhotoModalIsActive(false)}>Cancel</button>
+          </div>
+        </div>
+      )}
       {!photoUrl && (
         <div className="photo-modal">
           <p>Change Profile Photo</p>
@@ -37,16 +47,6 @@ const ProfilePhotoModal = ({ setPhotoModalIsActive }) => {
           <button className="cancel-button" onClick={() => setPhotoModalIsActive(false)}>
             Cancel
           </button>
-        </div>
-      )}
-      {photoUrl && (
-        <div className="confirm-profile-photo">
-          <h3>Confirm Profile Photo</h3>
-          <img src={photoUrl} alt="profile"/>
-          <div>
-            <button onClick={addProfilePhoto}>Confirm</button>
-            <button onClick={() => setPhotoModalIsActive(false)}>Cancel</button>
-          </div>
         </div>
       )}
     </>
