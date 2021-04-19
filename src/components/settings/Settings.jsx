@@ -1,4 +1,3 @@
-import { useLiveQuery } from 'dexie-react-hooks'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -14,9 +13,6 @@ const Settings = () => {
   const { bio } = useSelector(state => state.bio)
   const [photoModalIsActive, setPhotoModalIsActive] = useState(false)
   const [buttonClass, setButtonClass] = useState('enable')
-
-  const bioData = useLiveQuery(() => database.bio.toArray(), [])
-  if (!bioData) return null
 
   const inputEventHandler = () => {
     setButtonClass('enable')
@@ -47,8 +43,8 @@ const Settings = () => {
 
         await database.bio.clear()
         await database.bio.add(bioData)
-        const newItemList = await database.bio.toArray()
-        dispatch(bioActions.setBio(newItemList[0]))
+        const newBioData = await database.bio.toArray()
+        dispatch(bioActions.setBio(newBioData[0]))
 
         displayToast('.success')
         setButtonClass('disable')

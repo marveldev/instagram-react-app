@@ -1,9 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import database from '../../dataBase'
-
-const request = database.bio.toArray()
-const bioData = (async () => await request)()
-console.log(bioData);
 
 const bioSlice = createSlice({
   name: 'bio',

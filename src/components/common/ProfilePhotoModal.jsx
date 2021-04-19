@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import database from '../../dataBase'
 import { bioActions } from '../redux/slice'
+import { CONSTANTS } from './constants'
 
 const ProfilePhotoModal = ({ setPhotoModalIsActive }) => {
   const dispatch = useDispatch()
@@ -15,9 +17,21 @@ const ProfilePhotoModal = ({ setPhotoModalIsActive }) => {
     })
   }
 
-  const addProfilePhoto = () => {
-    const nextState = ({...bio, profilePhotoUrl: photoUrl})
-    dispatch(bioActions.setBio(nextState))
+  const addProfilePhoto = async () => {
+    const bioData = ({...bio, profilePhotoUrl: photoUrl})
+    await database.bio.clear()
+    await database.bio.add(bioData)
+    const newBioData = await database.bio.toArray()
+    dispatch(bioActions.setBio(newBioData[0]))
+    setPhotoModalIsActive(false)
+  }
+
+  const removeProfilePhoto = async () => {
+    const bioData = ({...bio, profilePhotoUrl: CONSTANTS.PHOTOURL})
+    await database.bio.clear()
+    await database.bio.add(bioData)
+    const newBioData = await database.bio.toArray()
+    dispatch(bioActions.setBio(newBioData[0]))
     setPhotoModalIsActive(false)
   }
 
@@ -43,8 +57,10 @@ const ProfilePhotoModal = ({ setPhotoModalIsActive }) => {
           <label htmlFor="profilePhotoPicker">
             <span>Upload Photo</span>
           </label>
-          <button className="remove-photo-button">Remove Current Photo</button>
-          <button className="cancel-button" onClick={() => setPhotoModalIsActive(false)}>
+          <button onClick={removeProfilePhoto} className="remove-photo-button">
+            Remove Current Photo
+          </button>
+          <button onClick={() => setPhotoModalIsActive(false)} className="cancel-button">
             Cancel
           </button>
         </div>
