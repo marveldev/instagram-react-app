@@ -30,12 +30,13 @@
     border-bottom: 1px solid #EFEFEF;
   }
 
-  .single-post .nav-photo {
+  .nav-photo {
     font-size: 1.2em;
   }
 
-  .single-post .bio-name {
+  .bio-name {
     flex: 0.8;
+    font-weight: 600;
   }
 
   .about-caption {
@@ -102,33 +103,6 @@
     button {
       color: #1EA1F7;
       font-weight: 550;
-    }
-  }
-
-  .button {
-    width: 5em;
-    height: 5em;
-
-    i {
-      font-size: 2.5em;
-      color: #fff;
-    }
-
-    .close {
-      float: right;
-    }
-
-    .previous {
-      position: relative;
-      top: 45%;
-      left: 10%;
-    }
-
-    .next {
-      position: relative;
-      float: right;
-      top: 45%;
-      right: 5%;
     }
   }
 }

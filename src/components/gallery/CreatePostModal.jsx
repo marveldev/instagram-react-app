@@ -15,7 +15,7 @@ const CreatePostModal = ({ setPostModal, postModal }) => {
 
     await database.gallery.add(galleryData)
     const newBioData = await database.gallery.toArray()
-    dispatch(galleryActions.addGallery(newBioData))
+    dispatch(galleryActions.addGallery(newBioData.reverse()))
     setPostModal(false)
   }
 

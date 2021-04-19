@@ -9,7 +9,7 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
 
   const displayNextGallery = event => {
     event.stopPropagation()
-    if (selectedPostIndex === gallery.length - 1) {
+    if (selectedPostIndex === gallery[0].length - 1) {
       setSelectedPostIndex(0)
     } else {
       setSelectedPostIndex(selectedPostIndex + 1)
@@ -19,7 +19,7 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
   const displayPreviousGallery = event => {
     event.stopPropagation()
     if (selectedPostIndex === 0) {
-      setSelectedPostIndex(gallery.length - 1)
+      setSelectedPostIndex(gallery[0].length - 1)
     } else {
       setSelectedPostIndex(selectedPostIndex - 1)
     }
@@ -29,19 +29,19 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
     <FocusTrap>
       <div>
         <div className="overlay" onClick={() => setIsSinglePostOpen(false)}>
-          <button className="close button">
+          <button className="close-overlay-button">
             <i className="material-icons">&#xe5cd;</i>
           </button>
-          <button onClick={displayPreviousGallery} className="previous button">
+          <button onClick={displayPreviousGallery} className="previous-button">
             <i className="fa fa-angle-left"></i>
           </button>
-          <button onClick={displayNextGallery} className="next button">
+          <button onClick={displayNextGallery} className="next-button">
             <i className="fa fa-angle-right"></i>
           </button>
         </div>
         <div className="single-post">
           <div className="post-photo">
-            <img src={gallery[selectedPostIndex].photoUrl} alt="gallery"/>
+            <img src={gallery[0][selectedPostIndex].photoUrl} alt="gallery"/>
           </div>
           <div>
             <div className="user-info">
@@ -58,7 +58,7 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
                 />
                 <div>
                   <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
-                  <span id="caption">{gallery[selectedPostIndex].photoCaption}</span>
+                  <span id="caption">{gallery[0][selectedPostIndex].photoCaption}</span>
                 </div>
               </div>
             </div>

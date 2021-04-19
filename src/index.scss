@@ -23,6 +23,33 @@ button {
   height: 100%;
   overflow-y: auto;
   background-color: #575757ab;
+
+  button {
+    color: #fff;
+    width: 5em;
+    height: 5em;
+  }
+
+  .previous-button {
+    position: relative;
+    top: 45%;
+    left: 10%;
+  }
+
+  .next-button {
+    position: relative;
+    float: right;
+    top: 45%;
+    right: 5%;
+  }
+
+  .close-overlay-button {
+    float: right;
+  }
+
+  i {
+    font-size: 2.5em;
+  }
 }
 
 .photo-modal {
