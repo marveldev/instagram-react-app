@@ -8,7 +8,8 @@ import './bio.scss'
 const Bio = () => {
   const history = useHistory()
   const { bio } = useSelector(state => state.bio)
-  const galleryCount = useSelector(state => state.galleryCount.value)
+  const galleryState = useSelector(state => state.gallery)
+  const galleryCount = galleryState.gallery[0]?.length
   const [photoModalIsActive, setPhotoModalIsActive] = useState(false)
 
   return (

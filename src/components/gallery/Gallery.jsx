@@ -23,7 +23,7 @@ const Gallery = () => {
     setIsSinglePostOpen(true)
   }
 
-  const galleryItems = galleryState.gallery?.map((galleryItem, index) => (
+  const galleryItems = galleryState.gallery[0]?.map((galleryItem, index) => (
     <button key={galleryItem.id} onClick={() => handlePostClick(index)}>
       <div className="photo-container">
         <img src={galleryItem.photoUrl} alt="profile" />
@@ -59,7 +59,7 @@ const Gallery = () => {
           </label>
         </div>
         <div className="gallery-content">
-          {galleryItems.length >= 1 ?
+          {galleryItems?.length >= 1 ?
             <div className="gallery-output">
               {galleryItems}
             </div> :

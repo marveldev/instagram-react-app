@@ -1,20 +1,21 @@
 import { useDispatch } from 'react-redux'
-import { galleryActions, galleryCountAction } from '../../redux/slice'
+import database from '../../dataBase'
+import { galleryActions } from '../../redux/slice'
 
 const CreatePostModal = ({ setPostModal, postModal }) => {
   const dispatch = useDispatch()
 
-  const addGalleryItem = () => {
+  const addGalleryItem = async() => {
     const photoUrl = document.querySelector('#photoEntry').src
     const photoCaption = document.querySelector('#postCaption').value
-    const nextState = {
-      id: 'id' + Date.parse(new Date()).toString(),
+    const galleryData = {
       photoCaption,
       photoUrl
     }
 
-    dispatch(galleryActions.addGallery(nextState))
-    dispatch(galleryCountAction.incrementCount())
+    await database.gallery.add(galleryData)
+    const newBioData = await database.gallery.toArray()
+    dispatch(galleryActions.addGallery(newBioData))
     setPostModal(false)
   }
 
