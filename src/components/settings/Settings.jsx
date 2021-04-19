@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { CONSTANTS } from '../common/constants'
-import ProfilePhotoModal from '../common/ProfilePhotoModal'
+import { CONSTANTS } from '../../common/constants'
+import { ProfilePhotoModal } from '../../common/components'
 import database from '../../dataBase'
-import { bioActions } from '../redux/slice'
+import { bioActions } from '../../redux/slice'
 import './settings.scss'
 
 const Settings = () => {

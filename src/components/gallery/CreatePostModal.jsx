@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { galleryActions, galleryCountAction } from '../redux/slice'
+import { galleryActions, galleryCountAction } from '../../redux/slice'
 
 const CreatePostModal = ({ setPostModal, postModal }) => {
   const dispatch = useDispatch()

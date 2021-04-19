@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Home, Settings, TopNav } from './components'
-import { bioActions } from './components/redux/slice'
+import { bioActions } from './redux/slice'
 import database from './dataBase'
 import './index.scss'
 

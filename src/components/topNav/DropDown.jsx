@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { CONSTANTS } from '../common/constants'
+import { CONSTANTS } from '../../common/constants'
 
 const DropDown = () => {
   const history = useHistory()

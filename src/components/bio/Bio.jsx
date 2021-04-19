@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useHistory } from "react-router-dom"
 import { useSelector } from 'react-redux'
-import { CONSTANTS } from '../common/constants'
-import ProfilePhotoModal from '../common/ProfilePhotoModal'
+import { CONSTANTS } from '../../common/constants'
+import { ProfilePhotoModal } from '../../common/components'
 import './bio.scss'
 
 const Bio = () => {
