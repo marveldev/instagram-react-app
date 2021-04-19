@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import FocusTrap from 'focus-trap-react'
-import { CONSTANTS } from '../common/constants'
+import { CONSTANTS } from '../../common/constants'
 import './singlePost.scss'
 
 const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostIndex }) => {

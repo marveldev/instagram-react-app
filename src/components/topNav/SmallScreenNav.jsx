@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { CONSTANTS } from '../common/constants'
+import { CONSTANTS } from '../../common/constants'
 
 const SmallScreenNav = () => {
   const history = useHistory()
