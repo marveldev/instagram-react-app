@@ -1,30 +1,33 @@
 import { createSlice } from '@reduxjs/toolkit'
+import database from '../../dataBase'
 
-const todoSlice = createSlice(
-  {
-    name: 'bio',
-    initialState: {bio: null},
-    reducers: {
-      setBio: (state, { payload }) => {
-        state.bio = payload
-      }
+const request = database.bio.toArray()
+const bioData = (async () => await request)()
+console.log(bioData);
+
+const bioSlice = createSlice({
+  name: 'bio',
+  initialState: {
+    bio: null
+  },
+  reducers: {
+    setBio: (state, { payload }) => {
+      state.bio = payload
     }
   }
-)
+})
 
-const gallerySlice = createSlice(
-  {
-    name: 'gallery',
-    initialState: {
-      gallery: []
-    },
-    reducers: {
-      addGallery: (state, { payload }) => {
-        state.gallery = [payload, ...state.gallery]
-      }
+const gallerySlice = createSlice({
+  name: 'gallery',
+  initialState: {
+    gallery: []
+  },
+  reducers: {
+    addGallery: (state, { payload }) => {
+      state.gallery = [payload, ...state.gallery]
     }
   }
-)
+})
 
 const galleryCountSlice = createSlice({
   name: 'galleryCount',
@@ -38,7 +41,7 @@ const galleryCountSlice = createSlice({
   }
 })
 
-const { actions: bioActions, reducer: bioReducers } = todoSlice
+const { actions: bioActions, reducer: bioReducers } = bioSlice
 const { actions: galleryActions, reducer: galleryReducers } = gallerySlice
 const { actions: galleryCountAction, reducer: galleryCountReducer } = galleryCountSlice
 
