@@ -1,8 +1,10 @@
+import { useLiveQuery } from 'dexie-react-hooks'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { CONSTANTS } from '../common/constants'
 import ProfilePhotoModal from '../common/ProfilePhotoModal'
+import database from '../../dataBase'
 import { bioActions } from '../redux/slice'
 import './settings.scss'
 
@@ -12,6 +14,9 @@ const Settings = () => {
   const { bio } = useSelector(state => state.bio)
   const [photoModalIsActive, setPhotoModalIsActive] = useState(false)
   const [buttonClass, setButtonClass] = useState('enable')
+
+  const bioData = useLiveQuery(() => database.bio.toArray(), [])
+  if (!bioData) return null
 
   const inputEventHandler = () => {
     setButtonClass('enable')
@@ -25,7 +30,7 @@ const Settings = () => {
     }, 3000)
   }
 
-  const updateBio = event => {
+  const updateBio = async event => {
     event.preventDefault()
     if (buttonClass === 'enable') {
       const username = document.querySelector('.username').value
@@ -36,11 +41,15 @@ const Settings = () => {
         const email = document.querySelector('.email').value
         const phoneNumber = document.querySelector('.phone-number').value
         const gender = document.querySelector('.gender').value
-        const nextState = ({
+        const bioData = ({
           ...bio, name, username, website, aboutUser, email, phoneNumber, gender
         })
 
-        dispatch(bioActions.setBio(nextState))
+        await database.bio.clear()
+        await database.bio.add(bioData)
+        const newItemList = await database.bio.toArray()
+        dispatch(bioActions.setBio(newItemList[0]))
+
         displayToast('.success')
         setButtonClass('disable')
       }
