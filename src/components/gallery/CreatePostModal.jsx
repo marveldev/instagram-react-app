@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
-import database from '../../dataBase'
-import { galleryActions } from '../../redux/slice'
+import database from '../../database'
+import { galleryActions } from './slice'
 
 const CreatePostModal = ({ setPostModal, postModal }) => {
   const dispatch = useDispatch()

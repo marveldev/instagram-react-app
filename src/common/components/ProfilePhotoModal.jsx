@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CONSTANTS } from '../constants'
-import database from '../../dataBase'
-import { bioActions } from '../../redux/slice'
+import database from '../../database'
+import { bioActions } from '../../components/bio/slice'
 
 const ProfilePhotoModal = ({ setPhotoModalIsActive }) => {
   const dispatch = useDispatch()

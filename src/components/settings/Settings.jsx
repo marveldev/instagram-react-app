@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { CONSTANTS } from '../../common/constants'
 import { ProfilePhotoModal } from '../../common/components'
-import database from '../../dataBase'
-import { bioActions } from '../../redux/slice'
+import database from '../../database'
+import { bioActions } from '../bio/slice'
 import './settings.scss'
 
 const Settings = () => {
