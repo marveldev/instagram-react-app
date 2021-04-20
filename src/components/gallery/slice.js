@@ -3,11 +3,11 @@ import { createSlice } from '@reduxjs/toolkit'
 const gallerySlice = createSlice({
   name: 'gallery',
   initialState: {
-    gallery: []
+    posts: []
   },
   reducers: {
     addGallery: (state, { payload }) => {
-      state.gallery = [payload, ...state.gallery]
+      state.posts = [payload, ...state.posts]
     }
   }
 })

@@ -8,9 +8,10 @@ import './bio.scss'
 const Bio = () => {
   const history = useHistory()
   const { bio } = useSelector(state => state.bio)
-  const galleryState = useSelector(state => state.gallery)
-  const galleryCount = galleryState.gallery[0]?.length
   const [photoModalIsActive, setPhotoModalIsActive] = useState(false)
+  const galleryState = useSelector(state => state.gallery.posts[0])
+  if (!galleryState) return null
+  const galleryCount = galleryState?.length
 
   return (
     <div className="bio">

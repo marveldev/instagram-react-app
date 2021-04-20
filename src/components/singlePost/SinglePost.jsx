@@ -5,11 +5,11 @@ import './singlePost.scss'
 
 const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostIndex }) => {
   const { bio } = useSelector(state => state.bio)
-  const { gallery } = useSelector(state => state.gallery)
+  const galleryState = useSelector(state => state.gallery.posts[0])
 
   const displayNextGallery = event => {
     event.stopPropagation()
-    if (selectedPostIndex === gallery[0].length - 1) {
+    if (selectedPostIndex === galleryState.length - 1) {
       setSelectedPostIndex(0)
     } else {
       setSelectedPostIndex(selectedPostIndex + 1)
@@ -19,7 +19,7 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
   const displayPreviousGallery = event => {
     event.stopPropagation()
     if (selectedPostIndex === 0) {
-      setSelectedPostIndex(gallery[0].length - 1)
+      setSelectedPostIndex(galleryState.length - 1)
     } else {
       setSelectedPostIndex(selectedPostIndex - 1)
     }
@@ -41,7 +41,7 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
         </div>
         <div className="single-post">
           <div className="post-photo">
-            <img src={gallery[0][selectedPostIndex].photoUrl} alt="gallery"/>
+            <img src={galleryState[selectedPostIndex].photoUrl} alt="gallery"/>
           </div>
           <div>
             <div className="user-info">
@@ -58,7 +58,7 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
                 />
                 <div>
                   <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
-                  <span id="caption">{gallery[0][selectedPostIndex].photoCaption}</span>
+                  <span id="caption">{galleryState[selectedPostIndex].photoCaption}</span>
                 </div>
               </div>
             </div>

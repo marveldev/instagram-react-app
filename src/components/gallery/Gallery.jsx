@@ -5,10 +5,11 @@ import SinglePost from '../singlePost/SinglePost'
 import './gallery.scss'
 
 const Gallery = () => {
-  const galleryState = useSelector(state => state.gallery)
   const [postModal, setPostModal] = useState({isOpen: false, photoUrl: null})
   const [isSinglePostOpen, setIsSinglePostOpen] = useState(false)
   const [selectedPostIndex, setSelectedPostIndex] = useState()
+  const galleryState = useSelector(state => state.gallery.posts[0])
+  if (!galleryState) return null
 
   const openPostModal = id => {
     const photoReader = new FileReader()
@@ -23,7 +24,7 @@ const Gallery = () => {
     setIsSinglePostOpen(true)
   }
 
-  const galleryItems = galleryState.gallery[0]?.map((galleryItem, index) => (
+  const galleryItems = galleryState?.map((galleryItem, index) => (
     <button key={galleryItem.id} onClick={() => handlePostClick(index)}>
       <div className="photo-container">
         <img src={galleryItem.photoUrl} alt="profile" />
