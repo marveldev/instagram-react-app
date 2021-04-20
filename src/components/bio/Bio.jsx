@@ -34,7 +34,7 @@ const Bio = () => {
           </div>
           <section>
             <span className="bio-name">{bio?.name}</span>
-            <p>{bio?.aboutUser || 'Add about'}</p>
+            <p className="bio-about">{bio?.aboutUser || 'Add about'}</p>
           </section>
         </div>
       </div>

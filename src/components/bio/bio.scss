@@ -1,9 +1,8 @@
 .bio {
   display: grid;
   grid-template-columns: 0.4fr 1fr;
-  align-items: center;
-  height: 25em;
-  margin: 0 auto;
+  height: auto;
+  margin: 6em auto 2em;
   width: 60%;
 
   .profile-photo {
@@ -42,6 +41,10 @@
     font-weight: 500;
   }
 
+  .bio-about {
+    white-space: pre-wrap;
+  }
+
   .bio-info {
     font-size: 1.15em;
 
@@ -61,7 +64,7 @@
     }
 
     div {
-      margin: 0 0 1.5em;
+      margin-bottom: 1em;
     }
   }
 }
