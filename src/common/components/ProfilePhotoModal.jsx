@@ -1,21 +1,10 @@
-import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { CONSTANTS } from '../constants'
 import database from '../../database'
 import { bioActions } from '../../components/bio/slice'
 
-const ProfilePhotoModal = ({ setPhotoModalIsActive }) => {
+const ProfilePhotoModal = ({ setPhotoModalIsActive, setPhotoUrl, photoUrl }) => {
   const dispatch = useDispatch()
   const { bio } = useSelector(state => state.bio)
-  const [photoUrl, setPhotoUrl] = useState()
-
-  const changePhotoUrl = id => {
-    const photoReader = new FileReader()
-    photoReader.readAsDataURL(document.querySelector(id).files[0])
-    photoReader.addEventListener('load', () => {
-      setPhotoUrl(photoReader.result)
-    })
-  }
 
   const addProfilePhoto = async () => {
     const bioData = ({...bio, profilePhotoUrl: photoUrl})
@@ -24,10 +13,11 @@ const ProfilePhotoModal = ({ setPhotoModalIsActive }) => {
     const newBioData = await database.bio.toArray()
     dispatch(bioActions.setBio(newBioData[0]))
     setPhotoModalIsActive(false)
+    setPhotoUrl()
   }
 
   const removeProfilePhoto = async () => {
-    const bioData = ({...bio, profilePhotoUrl: CONSTANTS.PHOTOURL})
+    const bioData = ({...bio, profilePhotoUrl: ''})
     await database.bio.clear()
     await database.bio.add(bioData)
     const newBioData = await database.bio.toArray()
@@ -51,9 +41,9 @@ const ProfilePhotoModal = ({ setPhotoModalIsActive }) => {
       {!photoUrl && (
         <div className="photo-modal">
           <p>Change Profile Photo</p>
-          <input type="file" onChange={() => changePhotoUrl('#profilePhotoPicker')}
+          {/* <input type="file" onChange={() => changePhotoUrl('#profilePhotoPicker')}
             id="profilePhotoPicker"
-          />
+          /> */}
           <label htmlFor="profilePhotoPicker">
             <span>Upload Photo</span>
           </label>

@@ -13,6 +13,26 @@ const Settings = () => {
   const { bio } = useSelector(state => state.bio)
   const [photoModalIsActive, setPhotoModalIsActive] = useState(false)
   const [buttonClass, setButtonClass] = useState('enable')
+  const [photoUrl, setPhotoUrl] = useState()
+
+  const changeProfilePhoto = () => {
+    if (bio?.profilePhotoUrl) {
+      setPhotoModalIsActive(true)
+    } else {
+      document.querySelector('#profilePhotoPicker').click()
+    }
+  }
+
+  const profilePhotoPicker = (event) => {
+    const photoReader = new FileReader()
+    if(event.target.files[0]) {
+      photoReader.readAsDataURL(event.target.files[0])
+      photoReader.addEventListener('load', () => {
+        setPhotoUrl(photoReader.result)
+        setPhotoModalIsActive(true)
+      })
+    }
+  }
 
   const inputEventHandler = () => {
     setButtonClass('enable')
@@ -72,13 +92,15 @@ const Settings = () => {
         </div>
         <div className="settings-pane">
           <div className="user-profile">
-            <img onClick={() => setPhotoModalIsActive(true)}
-              src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
-              className="nav-photo" title="Change Profile Photo" alt="profile"
-            />
+            <input type="file" id="profilePhotoPicker" onChange={profilePhotoPicker} />
+            <button onClick={changeProfilePhoto} className="profile-photo">
+              <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
+                title="Change Profile Photo" alt="profile"
+              />
+            </button>
             <div>
-              <p>{bio?.username || 'Add profile'}</p>
-              <button id="photoButton" onClick={() => setPhotoModalIsActive(true)}>
+              <p>{bio?.username || CONSTANTS.NAME}</p>
+              <button id="photoButton" onClick={changeProfilePhoto}>
                 Change Profile Photo
               </button>
             </div>
@@ -144,6 +166,8 @@ const Settings = () => {
       {photoModalIsActive &&
         <ProfilePhotoModal
           setPhotoModalIsActive={setPhotoModalIsActive}
+          setPhotoUrl={setPhotoUrl}
+          photoUrl={photoUrl}
         />
       }
       <div className="error message">
