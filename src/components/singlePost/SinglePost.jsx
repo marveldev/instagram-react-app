@@ -63,11 +63,13 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
               </div>
             </div>
             <div className="post-reaction-options">
-              <div>
-                <span className="fa fa-heart-o"></span>
-                <span className="fa fa-comment-o"></span>
-                <span className="material-icons">&#xe80d;</span>
-                <span className="material-icons">&#xe867;</span>
+              <div className="single-post-options">
+                <div>
+                  <button className="fa fa-heart-o"></button>
+                  <button className="fa fa-comment-o"></button>
+                  <button className="fa fa-share-square-o"></button>
+                </div>
+                <button className="material-icons">&#xe867;</button>
               </div>
               <div id="commentBox">
                 <i className="fa fa-smile-o"></i>

@@ -58,6 +58,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1em;
+
+    button {
+      padding: 0;
+    }
   }
 
   #galleryMessage {
