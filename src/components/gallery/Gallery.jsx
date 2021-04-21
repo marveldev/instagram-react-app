@@ -9,7 +9,6 @@ const Gallery = () => {
   const [isSinglePostOpen, setIsSinglePostOpen] = useState(false)
   const [selectedPostIndex, setSelectedPostIndex] = useState()
   const galleryState = useSelector(state => state.gallery.posts[0])
-  if (!galleryState) return null
 
   const openPostModal = id => {
     const photoReader = new FileReader()
@@ -59,7 +58,7 @@ const Gallery = () => {
             <i className="add-photo fa fa-plus-square"></i>
           </label>
         </div>
-        <div className="gallery-content">
+        <div>
           {galleryItems?.length >= 1 ?
             <div className="gallery-output">
               {galleryItems}

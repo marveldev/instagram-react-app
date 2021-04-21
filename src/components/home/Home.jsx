@@ -1,15 +1,24 @@
 import { useSelector } from 'react-redux'
 import Bio from '../bio/Bio'
 import Gallery from '../gallery/Gallery'
+import loader from '../../common/Spin-loader.svg'
 
 const Home = () => {
-  const { bio } = useSelector(state => state.bio)
-  document.title = bio?.name ? `${bio?.name} • Instagram` : 'Instagram'
+  const galleryState = useSelector(state => state.gallery.posts[0])
 
   return (
     <>
-      <Bio/>
-      <Gallery />
+      {galleryState &&
+        <>
+          <Bio/>
+          <Gallery />
+        </>
+      }
+      {!galleryState &&
+        <div className="loader">
+          <img src={loader}  alt="loader"/>
+        </div>
+      }
     </>
   )
 }

@@ -139,6 +139,11 @@ button {
   }
 }
 
+.loader {
+  text-align: center;
+  margin: 15em 0;
+}
+
 @media screen and (max-width: 768px) {
   .photo-modal {
     left: 25%;

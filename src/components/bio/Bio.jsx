@@ -11,8 +11,9 @@ const Bio = () => {
   const [photoUrl, setPhotoUrl] = useState()
   const { bio } = useSelector(state => state.bio)
   const galleryState = useSelector(state => state.gallery.posts[0])
-  if (!galleryState) return null
   const galleryCount = galleryState?.length
+
+  document.title = bio ? `${bio?.name} • Instagram` : 'Instagram'
 
   const changeProfilePhoto = () => {
     if (bio?.profilePhotoUrl) {
