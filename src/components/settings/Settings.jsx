@@ -75,6 +75,8 @@ const Settings = () => {
     }
   }
 
+  document.title = 'Edit Profile • Instagram'
+
   return (
     <div>
       <div className="settings">
