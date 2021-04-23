@@ -51,17 +51,19 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
               <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
               <button><i className="material-icons">&#xe5d3;</i></button>
             </div>
-            <div className="about-caption">
-              <div className="caption-info">
-                <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
-                  className="nav-photo" alt="profile"
-                />
-                <div>
-                  <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
-                  <span id="caption">{galleryState[selectedPostIndex].photoCaption}</span>
+            {galleryState[selectedPostIndex].photoCaption && (
+              <div className="post-caption">
+                <div className="caption-info">
+                  <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
+                    className="nav-photo" alt="profile"
+                  />
+                  <div>
+                    <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
+                    <span id="caption">{galleryState[selectedPostIndex].photoCaption}</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
             <div className="post-reaction-options">
               <div className="single-post-options">
                 <div>
