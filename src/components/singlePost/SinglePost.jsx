@@ -26,7 +26,7 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
   }
 
   return (
-    <FocusTrap focusTrapOptions={{ initialFocus : '.fa' }}>
+    <FocusTrap focusTrapOptions={{ initialFocus : '.fa', escapeDeactivates: false }}>
       <div>
         <div className="overlay" onClick={() => setIsSinglePostOpen(false)}>
           <button className="close-overlay-button">
