@@ -121,6 +121,8 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPost, setSelectedPost }) => {
                 </div>
                 <button className="material-icons">&#xe867;</button>
               </div>
+              <span><strong>0 </strong>Likes</span>
+              <span><strong>0 </strong>Comments</span>
               <div className="comment-container">
                 <i className="fa fa-smile-o"></i>
                 <textarea onKeyUp={addEventHandler} className="comment-box"
