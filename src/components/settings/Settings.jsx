@@ -39,10 +39,13 @@ const Settings = () => {
   }
 
   const displayToast = selector => {
-    document.querySelector(selector).style.display = 'block'
+    const element = document.querySelector(selector)
+    element.style.display = 'block'
 
     setTimeout(() => {
-      document.querySelector(selector).style.display = 'none'
+      if (element) {
+        element.style.display = 'none'
+      }
     }, 3000)
   }
 
