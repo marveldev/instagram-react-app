@@ -16,12 +16,17 @@ const App = () => {
         dispatch(bioActions.setBio(bioData[0]))
       })
 
-    database.gallery.toArray()
-      .then(galleryData => {
-        dispatch(galleryActions.addMultiplePosts(galleryData.reverse()))
+    database.posts.toArray()
+      .then(postData => {
+        dispatch(galleryActions.addMultiplePosts(postData.reverse()))
         dispatch(galleryActions.setFetchStatus('success'))
       })
       .catch(() => galleryActions.setFetchStatus('error'))
+
+    database.comments.toArray()
+      .then(commentData => {
+        dispatch(galleryActions.addMultipleComments(commentData))
+      })
   },[dispatch])
 
   return (

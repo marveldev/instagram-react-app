@@ -10,7 +10,7 @@ const Bio = () => {
   const [photoModalIsActive, setPhotoModalIsActive] = useState(false)
   const [photoUrl, setPhotoUrl] = useState()
   const { bio } = useSelector(state => state.bio)
-  const galleryState = useSelector(state => state.gallery.posts[0])
+  const galleryState = useSelector(state => state.gallery.posts)
   const galleryCount = galleryState?.length
 
   document.title = bio ? `${bio?.name} • Instagram` : 'Instagram'

@@ -16,7 +16,7 @@ const CreatePostModal = ({ setPostModal, postModal }) => {
     }
 
     try {
-      await database.gallery.add(postItem)
+      await database.posts.add(postItem)
       dispatch(galleryActions.addPost(postItem))
       setPostModal(false)
     } catch(error) {

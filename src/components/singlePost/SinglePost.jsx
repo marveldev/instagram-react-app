@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import FocusTrap from 'focus-trap-react'
 import { galleryActions } from '../gallery/slice'
 import { CONSTANTS } from '../../common/constants'
+import database from '../../database'
 import './singlePost.scss'
 
 const SinglePost = ({ setIsSinglePostOpen, selectedPost, setSelectedPost }) => {
@@ -28,16 +29,21 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPost, setSelectedPost }) => {
     }
   }
 
-  const addCommentToPost = () => {
+  const addCommentToPost = async () => {
     const commentValue = document.querySelector('.comment-box').value
     if (commentValue.trim().length >= 1) {
       const commentObject = {
-        id: 'jjj', //generate id here
+        id: 'id' + Date.parse(new Date()),
         text: commentValue,
         postId: selectedPost.id
       }
 
-      dispatch(galleryActions.addComment(commentObject))
+      try {
+        await database.comments.add(commentObject)
+        dispatch(galleryActions.addComment(commentObject))
+      } catch(error) {
+        console.log(error)
+      }
     }
   }
 
