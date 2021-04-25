@@ -18,7 +18,7 @@ const App = () => {
 
     database.gallery.toArray()
       .then(galleryData => {
-        dispatch(galleryActions.addGallery(galleryData.reverse()))
+        dispatch(galleryActions.addMultiplePosts(galleryData.reverse()))
       })
   },[dispatch])
 
