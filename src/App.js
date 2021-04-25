@@ -13,7 +13,7 @@ const App = () => {
   useEffect(() => {
     database.bio.toArray()
       .then(bioData => {
-        dispatch(bioActions.setBio(bioData[0]))
+        dispatch(bioActions.setBio(...bioData))
       })
 
     database.posts.toArray()
