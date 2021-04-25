@@ -8,7 +8,7 @@ const CreatePostModal = ({ setPostModal, postModal }) => {
   const addPostItem = async() => {
     const photoUrl = document.querySelector('#photoEntry').src
     const photoCaption = document.querySelector('#postCaption').value
-    const id = Math.random().toString(36).substring(7)
+    const id = 'id' + Date.parse(new Date())
     const postItem = {
       id,
       photoCaption,
