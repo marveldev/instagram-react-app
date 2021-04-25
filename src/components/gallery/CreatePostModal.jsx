@@ -5,18 +5,23 @@ import { galleryActions } from './slice'
 const CreatePostModal = ({ setPostModal, postModal }) => {
   const dispatch = useDispatch()
 
-  const addGalleryItem = async() => {
+  const addPostItem = async() => {
     const photoUrl = document.querySelector('#photoEntry').src
     const photoCaption = document.querySelector('#postCaption').value
-    const galleryData = {
+    const id = Math.random().toString(36).substring(7)
+    const postItem = {
+      id,
       photoCaption,
       photoUrl
     }
 
-    await database.gallery.add(galleryData)
-    const newBioData = await database.gallery.toArray()
-    dispatch(galleryActions.addGallery(newBioData.reverse()))
-    setPostModal(false)
+    try {
+      await database.gallery.add(postItem)
+      dispatch(galleryActions.addPost(postItem))
+      setPostModal(false)
+    } catch(error) {
+      console.log(error) // add story to project board
+    }
   }
 
   return (
@@ -38,7 +43,7 @@ const CreatePostModal = ({ setPostModal, postModal }) => {
           <span><i className="material-icons">&#xe420;</i></span>
           <span><i className="material-icons">&#xe0c8;</i></span>
         </div>
-        <button className="post-button" onClick={addGalleryItem}>POST</button>
+        <button className="post-button" onClick={addPostItem}>POST</button>
       </div>
     </>
   )

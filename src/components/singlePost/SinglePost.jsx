@@ -1,29 +1,57 @@
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import FocusTrap from 'focus-trap-react'
+import { galleryActions } from '../gallery/slice'
 import { CONSTANTS } from '../../common/constants'
 import './singlePost.scss'
 
-const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostIndex }) => {
+const SinglePost = ({ setIsSinglePostOpen, selectedPost, setSelectedPost }) => {
   const { bio } = useSelector(state => state.bio)
-  const galleryState = useSelector(state => state.gallery.posts[0])
+  const galleryState = useSelector(state => state.gallery)
+  const { posts, comments } = galleryState
+  const dispatch = useDispatch()
 
   const displayNextGallery = event => {
     event.stopPropagation()
-    if (selectedPostIndex === galleryState.length - 1) {
-      setSelectedPostIndex(0)
+    if (selectedPost.index === posts.length - 1) {
+      setSelectedPost(0)
     } else {
-      setSelectedPostIndex(selectedPostIndex + 1)
+      setSelectedPost(selectedPost.index + 1)
     }
   }
 
   const displayPreviousGallery = event => {
     event.stopPropagation()
-    if (selectedPostIndex === 0) {
-      setSelectedPostIndex(galleryState.length - 1)
+    if (selectedPost.index === 0) {
+      setSelectedPost(posts.length - 1)
     } else {
-      setSelectedPostIndex(selectedPostIndex - 1)
+      setSelectedPost(selectedPost.index - 1)
     }
   }
+
+  const addCommentToPost = () => {
+    const commentValue = document.querySelector('.comment-box').value
+    if (commentValue.trim().length >= 1) {
+      const commentObject = {
+        id: 'jjj', //generate id here
+        text: commentValue,
+        postId: selectedPost.id
+      }
+
+      dispatch(galleryActions.addComment(commentObject))
+    }
+  }
+
+  const selectedPostComments = comments.filter(comment => comment.postId === selectedPost.id)
+
+  const commentSection = selectedPostComments.map(comment => (
+    <div key={comment.id} className="caption-info">
+      <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
+        className="nav-photo" alt="profile"
+      />
+      <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
+      <span className="comment">{comment.text}</span>
+    </div>
+  ))
 
   return (
     <FocusTrap focusTrapOptions={{ initialFocus : '.fa', escapeDeactivates: false }}>
@@ -41,7 +69,7 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
         </div>
         <div className="single-post">
           <div className="post-photo">
-            <img src={galleryState[selectedPostIndex].photoUrl} alt="gallery"/>
+            <img src={posts[selectedPost.index].photoUrl} alt="gallery"/>
           </div>
           <div>
             <div className="user-info">
@@ -51,19 +79,20 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
               <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
               <button><i className="material-icons">&#xe5d3;</i></button>
             </div>
-            {galleryState[selectedPostIndex].photoCaption && (
-              <div className="post-caption">
+            <div className="post-activity">
+              {posts[selectedPost.index].photoCaption && (
                 <div className="caption-info">
                   <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
                     className="nav-photo" alt="profile"
                   />
-                  <div>
-                    <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
-                    <span id="caption">{galleryState[selectedPostIndex].photoCaption}</span>
-                  </div>
+                  <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
+                  <span>{posts[selectedPost.index].photoCaption}</span>
                 </div>
-              </div>
-            )}
+              )}
+              <section>
+                {commentSection}
+              </section>
+            </div>
             <div className="post-reaction-options">
               <div className="single-post-options">
                 <div>
@@ -73,10 +102,10 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
                 </div>
                 <button className="material-icons">&#xe867;</button>
               </div>
-              <div id="commentBox">
+              <div className="comment-container">
                 <i className="fa fa-smile-o"></i>
-                <textarea placeholder="Add a comment..."></textarea>
-                <button>Post</button>
+                <textarea className="comment-box" placeholder="Add a comment..."></textarea>
+                <button onClick={addCommentToPost}>Post</button>
               </div>
             </div>
           </div>

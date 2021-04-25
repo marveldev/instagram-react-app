@@ -39,23 +39,20 @@
     font-weight: 600;
   }
 
-  .post-caption {
+  .post-activity {
     position: relative;
-    top: 5em;
+    top: 4em;
     overflow-y: auto;
     max-height: 25em;
     height: 100%;
     padding: 1em;
-  }
 
-  .caption-info {
-    display: flex;
-    gap: 0 2em;
-    height: 4em;
-  }
-
-  #caption {
-    margin-left: 0.5em;
+    .caption-info {
+      display: grid;
+      grid-template-columns: 0.3fr 0.4fr 1fr;
+      height: auto;
+      padding: 1em 0;
+    }
   }
 
   .post-reaction-options {
@@ -85,7 +82,7 @@
     }
   }
 
-  #commentBox {
+  .comment-container {
     height: 6.3em;
     align-items: center;
     display: flex;
@@ -97,7 +94,7 @@
       font-size: 1.8em;
     }
 
-    textarea {
+    .comment-box {
       resize: none;
       border: none;
       outline: none;

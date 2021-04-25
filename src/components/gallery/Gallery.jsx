@@ -7,8 +7,8 @@ import './gallery.scss'
 const Gallery = () => {
   const [postModal, setPostModal] = useState({isOpen: false, photoUrl: null})
   const [isSinglePostOpen, setIsSinglePostOpen] = useState(false)
-  const [selectedPostIndex, setSelectedPostIndex] = useState()
-  const galleryState = useSelector(state => state.gallery.posts[0])
+  const [selectedPost, setSelectedPost] = useState()
+  const galleryState = useSelector(state => state.gallery.posts)
 
   const openPostModal = id => {
     const photoReader = new FileReader()
@@ -18,15 +18,15 @@ const Gallery = () => {
     })
   }
 
-  const handlePostClick = index => {
-    setSelectedPostIndex(index)
+  const handlePostClick = (index, id) => {
+    setSelectedPost({index, id})
     setIsSinglePostOpen(true)
   }
 
-  const galleryItems = galleryState?.map((galleryItem, index) => (
-    <button key={galleryItem.id} onClick={() => handlePostClick(index)}>
+  const galleryItems = galleryState?.map(({id, photoUrl}, index) => (
+    <button key={id} onClick={() => handlePostClick(index, id)}>
       <div className="photo-container">
-        <img src={galleryItem.photoUrl} alt="profile" />
+        <img src={photoUrl} alt="profile" />
       </div>
     </button>
   ))
@@ -59,7 +59,7 @@ const Gallery = () => {
           </label>
         </div>
         <div>
-          {galleryItems?.length >= 1 ?
+          {galleryItems?.length > 0 ?
             <div className="gallery-output">
               {galleryItems}
             </div> :
@@ -75,8 +75,8 @@ const Gallery = () => {
       }
       {isSinglePostOpen &&
         <SinglePost
-          selectedPostIndex={selectedPostIndex}
-          setSelectedPostIndex={setSelectedPostIndex}
+          selectedPost={selectedPost}
+          setSelectedPostIndex={setSelectedPost}
           setIsSinglePostOpen={setIsSinglePostOpen}
         />
       }
