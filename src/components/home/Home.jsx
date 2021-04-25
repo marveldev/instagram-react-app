@@ -4,17 +4,17 @@ import Gallery from '../gallery/Gallery'
 import loader from '../../common/loader.svg'
 
 const Home = () => {
-  const galleryState = useSelector(state => state.gallery.posts[0])
+  const galleryState = useSelector(state => state.gallery)
 
   return (
     <>
-      {galleryState &&
+      {galleryState.posts.length > 0 &&
         <>
           <Bio/>
           <Gallery />
         </>
       }
-      {!galleryState &&
+      { galleryState.posts.length < 1 &&
         <div className="loader">
           <img src={loader}  alt="loader"/>
         </div>
