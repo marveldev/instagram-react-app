@@ -45,6 +45,15 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPost, setSelectedPost }) => {
         console.log(error)
       }
     }
+
+    document.querySelector('.comment-box').value = ''
+  }
+
+  const addEventHandler = event => {
+    const keyCode = event.which || event.keyCode
+    if (keyCode === 13 && event.shiftKey) {
+      addCommentToPost()
+    }
   }
 
   const selectedPostComments = comments.filter(comment => comment.postId === selectedPost.id)
@@ -54,8 +63,10 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPost, setSelectedPost }) => {
       <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
         className="nav-photo" alt="profile"
       />
-      <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
-      <span className="comment">{comment.text}</span>
+      <div>
+        <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
+        <span className="text">{comment.text}</span>
+      </div>
     </div>
   ))
 
@@ -91,8 +102,10 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPost, setSelectedPost }) => {
                   <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
                     className="nav-photo" alt="profile"
                   />
-                  <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
-                  <span>{posts[selectedPost.index].photoCaption}</span>
+                  <div>
+                    <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
+                    <span className="text">{posts[selectedPost.index].photoCaption}</span>
+                  </div>
                 </div>
               )}
               <section>
@@ -110,7 +123,10 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPost, setSelectedPost }) => {
               </div>
               <div className="comment-container">
                 <i className="fa fa-smile-o"></i>
-                <textarea className="comment-box" placeholder="Add a comment..."></textarea>
+                <textarea onKeyUp={addEventHandler} className="comment-box"
+                  placeholder="Add a comment..."
+                >
+                </textarea>
                 <button onClick={addCommentToPost}>Post</button>
               </div>
             </div>

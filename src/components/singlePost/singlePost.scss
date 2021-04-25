@@ -41,17 +41,22 @@
 
   .post-activity {
     position: relative;
-    top: 4em;
+    top: 5em;
     overflow-y: auto;
     max-height: 25em;
     height: 100%;
+    width: 25.3em;
     padding: 1em;
 
     .caption-info {
       display: grid;
-      grid-template-columns: 0.3fr 0.4fr 1fr;
+      grid-template-columns: 0.23fr 1fr;
       height: auto;
-      padding: 1em 0;
+      padding-bottom: 1.5em;
+
+      .text {
+        word-break: break-all;
+      }
     }
   }
 
@@ -105,5 +110,9 @@
       color: #1EA1F7;
       font-weight: 550;
     }
+  }
+
+  button:active {
+    transform: translateY(4px);
   }
 }
