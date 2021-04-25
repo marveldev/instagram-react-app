@@ -8,13 +8,13 @@ const Home = () => {
 
   return (
     <>
-      {galleryState.posts.length > 0 &&
+      {galleryState.fetchStatus === 'success' &&
         <>
           <Bio/>
           <Gallery />
         </>
       }
-      { galleryState.posts.length < 1 &&
+      {galleryState.fetchStatus === 'loading' &&
         <div className="loader">
           <img src={loader}  alt="loader"/>
         </div>

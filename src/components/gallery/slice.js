@@ -4,9 +4,13 @@ const gallerySlice = createSlice({
   name: 'gallery',
   initialState: {
     posts: [],
-    comments: []
+    comments: [],
+    fetchStatus: 'loading',
   },
   reducers: {
+    setFetchStatus: (state, { payload }) => {
+      state.fetchStatus = payload
+    },
     addPost: (state, { payload }) => {
       state.posts = [payload, ...state.posts]
     },

@@ -19,7 +19,9 @@ const App = () => {
     database.gallery.toArray()
       .then(galleryData => {
         dispatch(galleryActions.addMultiplePosts(galleryData.reverse()))
+        dispatch(galleryActions.setFetchStatus('success'))
       })
+      .catch(() => galleryActions.setFetchStatus('error'))
   },[dispatch])
 
   return (
