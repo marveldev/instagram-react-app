@@ -5,7 +5,7 @@ import { CONSTANTS } from '../../common/constants'
 import database from '../../database'
 import './singlePost.scss'
 
-const SinglePost = ({ setIsSinglePostOpen, selectedPost, setSelectedPost }) => {
+const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostIndex }) => {
   const { bio } = useSelector(state => state.bio)
   const galleryState = useSelector(state => state.gallery)
   const { posts, comments } = galleryState
@@ -13,19 +13,19 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPost, setSelectedPost }) => {
 
   const displayNextGallery = event => {
     event.stopPropagation()
-    if (selectedPost.index === posts.length - 1) {
-      setSelectedPost(0)
+    if (selectedPostIndex === posts.length - 1) {
+      setSelectedPostIndex(0)
     } else {
-      setSelectedPost(selectedPost.index + 1)
+      setSelectedPostIndex(selectedPostIndex + 1)
     }
   }
 
   const displayPreviousGallery = event => {
     event.stopPropagation()
-    if (selectedPost.index === 0) {
-      setSelectedPost(posts.length - 1)
+    if (selectedPostIndex === 0) {
+      setSelectedPostIndex(posts.length - 1)
     } else {
-      setSelectedPost(selectedPost.index - 1)
+      setSelectedPostIndex(selectedPostIndex - 1)
     }
   }
 
@@ -35,7 +35,7 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPost, setSelectedPost }) => {
       const commentObject = {
         id: 'id' + Date.parse(new Date()),
         text: commentValue,
-        postId: selectedPost.id
+        postId: posts[selectedPostIndex].id
       }
 
       try {
@@ -56,7 +56,9 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPost, setSelectedPost }) => {
     }
   }
 
-  const selectedPostComments = comments.filter(comment => comment.postId === selectedPost.id)
+  const selectedPostComments = comments.filter(comment =>
+    comment.postId === posts[selectedPostIndex].id
+  )
 
   const commentSection = selectedPostComments.map(comment => (
     <div key={comment.id} className="caption-info">
@@ -86,9 +88,9 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPost, setSelectedPost }) => {
         </div>
         <div className="single-post">
           <div className="post-photo">
-            <img src={posts[selectedPost.index].photoUrl} alt="gallery"/>
+            <img src={posts[selectedPostIndex].photoUrl} alt="gallery"/>
           </div>
-          <div>
+          <div className="post-details">
             <div className="user-info">
               <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
                 className="nav-photo" alt="profile"
@@ -97,14 +99,14 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPost, setSelectedPost }) => {
               <button><i className="material-icons">&#xe5d3;</i></button>
             </div>
             <div className="post-activity">
-              {posts[selectedPost.index].photoCaption && (
+              {posts[selectedPostIndex].photoCaption && (
                 <div className="caption-info">
                   <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
                     className="nav-photo" alt="profile"
                   />
                   <div>
                     <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
-                    <span className="text">{posts[selectedPost.index].photoCaption}</span>
+                    <span className="text">{posts[selectedPostIndex].photoCaption}</span>
                   </div>
                 </div>
               )}
