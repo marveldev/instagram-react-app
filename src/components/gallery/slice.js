@@ -15,13 +15,13 @@ const gallerySlice = createSlice({
       state.posts = [payload, ...state.posts]
     },
     addMultiplePosts: (state, { payload }) => {
-      state.posts = [...payload, ...state.posts]
+      state.posts = payload
     },
     addComment: (state, { payload }) => {
       state.comments = [...state.comments, payload]
     },
     addMultipleComments: (state, { payload }) => {
-      state.comments = [...payload, ...state.comments]
+      state.comments = payload
     }
   }
 })

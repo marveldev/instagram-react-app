@@ -29,6 +29,19 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
     }
   }
 
+  const addPostLike = async () => {
+    const selectedPost = posts[selectedPostIndex]
+    const likesCount = selectedPost.likesCount || 0
+    const newData = {...selectedPost, likesCount: likesCount + 1}
+    const mutablePostData = [...posts]
+    mutablePostData.splice(selectedPostIndex, 1, newData)
+    dispatch(galleryActions.addMultiplePosts(mutablePostData))
+
+    await database.posts.update(
+      posts[selectedPostIndex].id, newData
+    )
+  }
+
   const addCommentToPost = async () => {
     const commentValue = document.querySelector('.comment-box').value
     if (commentValue.trim().length >= 1) {
@@ -56,8 +69,8 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
     }
   }
 
-  const selectedPostComments = comments.filter(comment =>
-    comment.postId === posts[selectedPostIndex].id
+  const selectedPostComments = comments.filter(
+    comment => comment.postId === posts[selectedPostIndex].id
   )
 
   const commentSection = selectedPostComments.map(comment => (
@@ -71,6 +84,8 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
       </div>
     </div>
   ))
+
+  console.log(commentSection.length);
 
   return (
     <FocusTrap focusTrapOptions={{ initialFocus : '.fa', escapeDeactivates: false }}>
@@ -117,14 +132,14 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
             <div className="post-reaction-options">
               <div className="single-post-options">
                 <div>
-                  <button className="fa fa-heart-o"></button>
+                  <button onClick={addPostLike} className="fa fa-heart-o"></button>
                   <button className="fa fa-comment-o"></button>
                   <button className="fa fa-share-square-o"></button>
                 </div>
                 <button className="material-icons">&#xe867;</button>
               </div>
-              <span><strong>0 </strong>Likes</span>
-              <span><strong>0 </strong>Comments</span>
+              <span><strong>{posts[selectedPostIndex].likesCount || 0}</strong> Likes</span>
+              <span><strong>{commentSection.length || 0}</strong> Comments</span>
               <div className="comment-container">
                 <i className="fa fa-smile-o"></i>
                 <textarea onKeyUp={addEventHandler} className="comment-box"
