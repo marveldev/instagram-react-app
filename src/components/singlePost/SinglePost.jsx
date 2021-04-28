@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
+import { useState } from 'react'
 import FocusTrap from 'focus-trap-react'
 import { galleryActions } from '../gallery/slice'
 import { CONSTANTS } from '../../common/constants'
@@ -6,6 +7,8 @@ import database from '../../database'
 import './singlePost.scss'
 
 const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostIndex }) => {
+  const [postOptionsModalIsOpen, setPostOptionsModalIsOpen] = useState(false)
+  const [deletePostModalIsOpen, setDeletePostModalIsOpen] = useState(false)
   const { bio } = useSelector(state => state.bio)
   const galleryState = useSelector(state => state.gallery)
   const { posts, comments } = galleryState
@@ -73,6 +76,39 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
     comment => comment.postId === posts[selectedPostIndex].id
   )
 
+  const clearPostComments = async () => {
+    const commentIds = selectedPostComments.map(comment => comment.id)
+    const newCommentsData = comments.filter(
+      comment => comment.postId !== posts[selectedPostIndex].id
+    )
+
+    for (let index = 0; index < commentIds.length; index++) {
+      const id = commentIds[index]
+      await database.comments.delete(id)
+    }
+
+    dispatch(galleryActions.addMultipleComments(newCommentsData))
+  }
+
+  const clearPostLikes = async () => {
+    const selectedPost =  posts[selectedPostIndex]
+    const newData = {...selectedPost, likesCount: 0}
+    const mutablePostData = [...posts]
+    mutablePostData.splice(selectedPostIndex, 1, newData)
+    dispatch(galleryActions.addMultiplePosts(mutablePostData))
+
+    await database.posts.update(
+      posts[selectedPostIndex].id, {likesCount: 0}
+    )
+  }
+
+  const deletePost = () => {
+    console.log(posts[selectedPostIndex]);
+    console.log('====================================');
+    console.log(posts);
+    console.log('====================================');
+  }
+
   const commentSection = selectedPostComments.map(comment => (
     <div key={comment.id} className="caption-info">
       <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
@@ -84,8 +120,6 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
       </div>
     </div>
   ))
-
-  console.log(commentSection.length);
 
   return (
     <FocusTrap focusTrapOptions={{ initialFocus : '.fa', escapeDeactivates: false }}>
@@ -111,7 +145,9 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
                 className="nav-photo" alt="profile"
               />
               <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
-              <button><i className="material-icons">&#xe5d3;</i></button>
+              <button onClick={() => setPostOptionsModalIsOpen(true)}>
+                <i className="material-icons">&#xe5d3;</i>
+              </button>
             </div>
             <div className="post-activity">
               {posts[selectedPostIndex].photoCaption && (
@@ -151,6 +187,31 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
             </div>
           </div>
         </div>
+        {postOptionsModalIsOpen && (
+          <FocusTrap focusTrapOptions={{ initialFocus : '.fa', escapeDeactivates: false }}>
+            <div onClick={() => setPostOptionsModalIsOpen(false)} className="overlay">
+              <div className="post-options-modal">
+                <button onClick={clearPostComments}>Clear Comments</button>
+                <button onClick={clearPostLikes}>Clear Likes</button>
+                <button onClick={() => setDeletePostModalIsOpen(true)}>
+                  Delete Post
+                </button>
+                <button className="close-modal-button">Cancel</button>
+              </div>
+            </div>
+          </FocusTrap>
+        )}
+        {deletePostModalIsOpen && (
+          <FocusTrap focusTrapOptions={{ initialFocus : '.fa', escapeDeactivates: false }}>
+            <div onClick={() => setDeletePostModalIsOpen(false)} className="overlay">
+              <div className="delete-post-modal">
+                <p>Are you sure you want to delete post? This cannot be undone.</p>
+                <button onClick={deletePost}>Delete</button>
+                <button className="close-modal-button">Cancel</button>
+              </div>
+            </div>
+          </FocusTrap>
+        )}
       </div>
     </FocusTrap>
   )
