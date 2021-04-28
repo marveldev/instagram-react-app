@@ -120,3 +120,48 @@
     transform: translateY(4px);
   }
 }
+
+%modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30%;
+  background-color: #fff;
+  border-radius: 0.5em;
+  transform: translate(-50%,-50%);
+}
+
+.post-options-modal {
+  @extend %modal;
+
+  button {
+    display: block;
+    width: 100%;
+    height: 3.5em;
+    font-weight: 600;
+    border-bottom: 1px solid #DBDBDB;
+  }
+
+  .close-modal-button {
+    border-bottom: none;
+    color: #d13f3f;
+  }
+}
+
+.delete-post-modal {
+  @extend %modal;
+  padding: 2em 0;
+  text-align: center;
+  font-size: 1.1em;
+
+  button {
+    width: 8em;
+    height: 2.5em;
+    font-weight: 600;
+    color: #1EA1F7;
+  }
+
+  .close-modal-button {
+    color: #d13f3f;
+  }
+}

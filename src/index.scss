@@ -24,16 +24,13 @@ button {
   overflow-y: auto;
   background-color: #575757ab;
 
-  button {
-    color: #fff;
-    min-width: 3em;
-    height: 3em;
-  }
-
   .previous-button {
     position: relative;
     top: 45%;
     left: 12%;
+    color: #fff;
+    min-width: 3em;
+    height: 3em;
   }
 
   .next-button {
@@ -41,11 +38,17 @@ button {
     float: right;
     top: 45%;
     right: 6.5%;
+    color: #fff;
+    min-width: 3em;
+    height: 3em;
   }
 
   .close-overlay-button {
     float: right;
     margin: 1em;
+    color: #fff;
+    min-width: 3em;
+    height: 3em;
   }
 
   i {
