@@ -6,7 +6,7 @@ import { CONSTANTS } from '../../common/constants'
 import database from '../../database'
 import './singlePost.scss'
 
-const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostIndex }) => {
+const SinglePost = ({ setCurrentPostPage, selectedPostIndex, setSelectedPostIndex }) => {
   const [postOptionsModalIsOpen, setPostOptionsModalIsOpen] = useState(false)
   const [deletePostModalIsOpen, setDeletePostModalIsOpen] = useState(false)
   const { bio } = useSelector(state => state.bio)
@@ -105,7 +105,7 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
     const mutablePostData = [...posts]
     mutablePostData.splice(selectedPostIndex, 1)
     dispatch(galleryActions.addMultiplePosts(mutablePostData))
-    setIsSinglePostOpen(false)
+    setCurrentPostPage()
     clearPostComments()
     await database.posts.delete(posts[selectedPostIndex].id)
   }
@@ -125,7 +125,7 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
   return (
     <FocusTrap focusTrapOptions={{ initialFocus : '.fa', escapeDeactivates: false }}>
       <div>
-        <div className="overlay" onClick={() => setIsSinglePostOpen(false)}>
+        <div className="overlay" onClick={() => setCurrentPostPage()}>
           <button className="close-overlay-button">
             <i className="material-icons">&#xe5cd;</i>
           </button>

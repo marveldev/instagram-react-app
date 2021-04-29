@@ -2,12 +2,13 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import CreatePostModal from './CreatePostModal'
 import SinglePost from '../singlePost/SinglePost'
+import MobilePostPage from '../singlePost/MobilePostPage'
 import './gallery.scss'
 
 const Gallery = () => {
   const [postModal, setPostModal] = useState({isOpen: false, photoUrl: null})
-  const [isSinglePostOpen, setIsSinglePostOpen] = useState(false)
   const [selectedPostIndex, setSelectedPostIndex] = useState()
+  const [currentPostPage, setCurrentPostPage] = useState('')
   const galleryState = useSelector(state => state.gallery.posts)
 
   const openPostModal = id => {
@@ -20,7 +21,11 @@ const Gallery = () => {
 
   const handlePostClick = (index) => {
     setSelectedPostIndex(index)
-    setIsSinglePostOpen(true)
+    if (window.innerWidth <= 768) {
+      setCurrentPostPage('mobile')
+    } else {
+      setCurrentPostPage('desktop')
+    }
   }
 
   const galleryItems = galleryState?.map((galleryItem, index) => (
@@ -73,11 +78,18 @@ const Gallery = () => {
           setPostModal={setPostModal}
         />
       }
-      {isSinglePostOpen &&
+      {currentPostPage === 'desktop' &&
         <SinglePost
           selectedPostIndex={selectedPostIndex}
           setSelectedPostIndex={setSelectedPostIndex}
-          setIsSinglePostOpen={setIsSinglePostOpen}
+          setCurrentPostPage={setCurrentPostPage}
+        />
+      }
+      {currentPostPage === 'mobile' &&
+        <MobilePostPage
+          selectedPostIndex={selectedPostIndex}
+          setSelectedPostIndex={setSelectedPostIndex}
+          setCurrentPostPage={setCurrentPostPage}
         />
       }
     </div>
