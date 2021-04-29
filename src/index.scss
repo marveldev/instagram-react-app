@@ -61,8 +61,8 @@ button {
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 25%;
-  left: 35%;
+  top: 50%;
+  left: 50%;
   background-color: #fff;
   z-index: 1;
   text-align: center;
@@ -70,6 +70,7 @@ button {
   height: 35%;
   border-radius: 0.8em;
   font-size: 1.1em;
+  transform: translate(-50%,-50%);
 
   label {
     height: 2.5em;
@@ -103,15 +104,16 @@ button {
 
 .confirm-profile-photo {
   position: fixed;
-  top: 20%;
-  left: 35%;
-  background-color: #fff;
-  z-index: 1;
-  text-align: center;
+  top: 50%;
+  left: 50%;
   width: 30%;
   height: 57%;
+  text-align: center;
   border-radius: 0.8em;
   padding-bottom: 1.2em;
+  transform: translate(-50%,-50%);
+  background-color: #fff;
+  z-index: 1;
 
   img {
     margin: auto;
@@ -149,13 +151,11 @@ button {
 
 @media screen and (max-width: 768px) {
   .photo-modal {
-    left: 25%;
     width: 50%;
     height: 40%;
   }
 
   .confirm-profile-photo {
-    left: 30%;
     width: 50%;
     height: 65%;
   }
@@ -163,12 +163,10 @@ button {
 
 @media screen and (max-width: 425px) {
   .photo-modal {
-    left: 5%;
     width: 90%;
   }
 
   .confirm-profile-photo {
-    left: 5%;
     width: 90%;
   }
 }
