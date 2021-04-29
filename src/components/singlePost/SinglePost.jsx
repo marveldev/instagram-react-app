@@ -82,12 +82,11 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
       comment => comment.postId !== posts[selectedPostIndex].id
     )
 
+    dispatch(galleryActions.addMultipleComments(newCommentsData))
     for (let index = 0; index < commentIds.length; index++) {
       const id = commentIds[index]
       await database.comments.delete(id)
     }
-
-    dispatch(galleryActions.addMultipleComments(newCommentsData))
   }
 
   const clearPostLikes = async () => {
@@ -102,11 +101,13 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
     )
   }
 
-  const deletePost = () => {
-    console.log(posts[selectedPostIndex]);
-    console.log('====================================');
-    console.log(posts);
-    console.log('====================================');
+  const deleteSinglePost = async () => {
+    const mutablePostData = [...posts]
+    mutablePostData.splice(selectedPostIndex, 1)
+    dispatch(galleryActions.addMultiplePosts(mutablePostData))
+    setIsSinglePostOpen(false)
+    clearPostComments()
+    await database.posts.delete(posts[selectedPostIndex].id)
   }
 
   const commentSection = selectedPostComments.map(comment => (
@@ -206,7 +207,7 @@ const SinglePost = ({ setIsSinglePostOpen, selectedPostIndex, setSelectedPostInd
             <div onClick={() => setDeletePostModalIsOpen(false)} className="overlay">
               <div className="delete-post-modal">
                 <p>Are you sure you want to delete post? This cannot be undone.</p>
-                <button onClick={deletePost}>Delete</button>
+                <button onClick={deleteSinglePost}>Delete</button>
                 <button className="close-modal-button">Cancel</button>
               </div>
             </div>
