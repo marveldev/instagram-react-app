@@ -34,16 +34,15 @@ const ProfilePhotoModal = ({ setPhotoModalIsActive, setPhotoUrl, photoUrl }) => 
           <img src={photoUrl} alt="profile"/>
           <div>
             <button onClick={addProfilePhoto}>Confirm</button>
-            <button onClick={() => setPhotoModalIsActive(false)}>Cancel</button>
+            <button onClick={() => { setPhotoModalIsActive(false); setPhotoUrl() }}>
+              Cancel
+            </button>
           </div>
         </div>
       )}
       {!photoUrl && (
         <div className="photo-modal">
           <p>Change Profile Photo</p>
-          {/* <input type="file" onChange={() => changePhotoUrl('#profilePhotoPicker')}
-            id="profilePhotoPicker"
-          /> */}
           <label htmlFor="profilePhotoPicker">
             <span>Upload Photo</span>
           </label>
