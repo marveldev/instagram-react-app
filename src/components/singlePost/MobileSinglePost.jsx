@@ -1,13 +1,22 @@
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import { CONSTANTS } from '../../common/constants'
+import { addPostLike } from './common'
 import './mobileSinglePost.scss'
 
-const MobileSinglePost = () => {
+const MobileSinglePost = ({ setPostCommentIsOpen }) => {
   const { goBack } = useHistory()
+  const dispatch = useDispatch()
   const { bio } = useSelector(state => state.bio)
   const galleryState = useSelector(state => state.gallery)
   const { posts, comments, selectedPostIndex } = galleryState
+
+  useEffect(() => {
+    const selectedPostId = posts[selectedPostIndex].id
+    const selectedPost = document.querySelector(`#${selectedPostId}`)
+    selectedPost.scrollIntoView()
+  }, [])
 
   return (
     <>
@@ -17,8 +26,8 @@ const MobileSinglePost = () => {
           <span>Posts</span>
         </div>
         <div className="content">
-          {posts?.map((post) => (
-            <div key={post.id}>
+          {posts?.map((post, index) => (
+            <div key={post.id} id={post.id}>
               <div className="user-info">
                 <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
                   className="nav-photo" alt="profile"
@@ -34,8 +43,14 @@ const MobileSinglePost = () => {
               <div className="post-details">
                 <div className="single-post-options">
                   <div>
-                    <button className="fa fa-heart-o"></button>
-                    <button className="fa fa-comment-o"></button>
+                    <button onClick={() => addPostLike(posts, index, dispatch)}
+                      className="fa fa-heart-o"
+                    >
+                    </button>
+                    <button onClick={() => setPostCommentIsOpen(true)}
+                      className="fa fa-comment-o"
+                    >
+                    </button>
                     <button className="fa fa-share-square-o"></button>
                   </div>
                   <button className="material-icons">&#xe867;</button>
@@ -58,7 +73,6 @@ const MobileSinglePost = () => {
         </div>
       </div>
     </>
-
   )
 }
 

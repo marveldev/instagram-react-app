@@ -1,24 +1,24 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: 550;
+  z-index: 1;
+  background-color: #fff;
+
+  button {
+    font-size: 1.5em;
+    width: 3em;
+    height: 2em;
+  }
+}
+
 .mobile-single-post {
   margin-bottom: 10em;
-
-  .header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 3em;
-    display: flex;
-    align-items: center;
-    font-size: 1.2em;
-    font-weight: 550;
-    z-index: 1;
-    background-color: #fff;
-
-    button {
-      font-size: 1.5em;
-      width: 3em;
-      height: 2em;
-    }
-  }
 
   button:active {
     transform: translateY(0.1em);
@@ -85,6 +85,60 @@
     }
 
     .bio-name {
+      font-weight: 550;
+    }
+  }
+}
+
+.mobile-post-comments {
+  .post-activity {
+    position: relative;
+    top: 4em;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    padding: 1em;
+    margin-bottom: 5em;
+
+    .caption-info {
+      display: grid;
+      grid-template-columns: 0.3fr 2fr;
+      height: auto;
+      padding-bottom: 1.5em;
+
+      .text {
+        word-break: break-all;
+      }
+
+      .bio-name {
+        font-weight: 550;
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+  .comment-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 6.3em;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    gap: 0 1em;
+    z-index: 1;
+    padding: 0 1em;
+    background-color: #fff;
+
+    .comment-box {
+      resize: none;
+      border: none;
+      outline: none;
+      width: 100%;
+    }
+
+    button {
+      color: #1EA1F7;
       font-weight: 550;
     }
   }
