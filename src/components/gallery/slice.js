@@ -5,6 +5,7 @@ const gallerySlice = createSlice({
   initialState: {
     posts: [],
     comments: [],
+    selectedPostIndex: null,
     fetchStatus: 'loading',
   },
   reducers: {
@@ -22,6 +23,9 @@ const gallerySlice = createSlice({
     },
     addMultipleComments: (state, { payload }) => {
       state.comments = payload
+    },
+    setSelectedPostIndex: (state, { payload }) => {
+      state.selectedPostIndex = payload
     }
   }
 })

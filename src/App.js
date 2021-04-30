@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Home, Settings, TopNav } from './components'
 import { bioActions } from './components/bio/slice'
 import { galleryActions } from './components/gallery/slice'
+import MobileSinglePost from './components/singlePost/MobileSinglePost'
 import database from './database'
 import './index.scss'
 
@@ -36,6 +37,7 @@ const App = () => {
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/settings" component={Settings} />
+          <Route path="/mobileSinglePost" component={MobileSinglePost} />
         </Switch>
       </div>
     </BrowserRouter>

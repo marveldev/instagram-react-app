@@ -1,15 +1,18 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
 import CreatePostModal from './CreatePostModal'
 import SinglePost from '../singlePost/SinglePost'
-import MobilePostPage from '../singlePost/MobilePostPage'
+import { galleryActions } from './slice'
 import './gallery.scss'
 
 const Gallery = () => {
+  const history = useHistory()
+  const dispatch = useDispatch()
   const [postModal, setPostModal] = useState({isOpen: false, photoUrl: null})
-  const [selectedPostIndex, setSelectedPostIndex] = useState()
-  const [currentPostPage, setCurrentPostPage] = useState('')
-  const galleryState = useSelector(state => state.gallery.posts)
+  const [singlePostIsActive, setSinglePostIsActive] = useState(false)
+  const galleryState = useSelector(state => state.gallery)
+  const { posts } = galleryState
 
   const openPostModal = id => {
     const photoReader = new FileReader()
@@ -20,18 +23,18 @@ const Gallery = () => {
   }
 
   const handlePostClick = (index) => {
-    setSelectedPostIndex(index)
+    dispatch(galleryActions.setSelectedPostIndex(index))
     if (window.innerWidth <= 768) {
-      setCurrentPostPage('mobile')
+      history.push('/mobileSinglePost')
     } else {
-      setCurrentPostPage('desktop')
+      setSinglePostIsActive(true)
     }
   }
 
-  const galleryItems = galleryState?.map((galleryItem, index) => (
-    <button key={galleryItem.id} onClick={() => handlePostClick(index)}>
+  const galleryItems = posts?.map((post, index) => (
+    <button key={post.id} onClick={() => handlePostClick(index)}>
       <div className="photo-container">
-        <img src={galleryItem.photoUrl} alt="profile" />
+        <img src={post.photoUrl} alt="profile" />
       </div>
     </button>
   ))
@@ -78,18 +81,9 @@ const Gallery = () => {
           setPostModal={setPostModal}
         />
       }
-      {currentPostPage === 'desktop' &&
+      {singlePostIsActive &&
         <SinglePost
-          selectedPostIndex={selectedPostIndex}
-          setSelectedPostIndex={setSelectedPostIndex}
-          setCurrentPostPage={setCurrentPostPage}
-        />
-      }
-      {currentPostPage === 'mobile' &&
-        <MobilePostPage
-          selectedPostIndex={selectedPostIndex}
-          setSelectedPostIndex={setSelectedPostIndex}
-          setCurrentPostPage={setCurrentPostPage}
+          setSinglePostIsActive={setSinglePostIsActive}
         />
       }
     </div>

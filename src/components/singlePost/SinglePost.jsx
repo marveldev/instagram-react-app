@@ -6,29 +6,29 @@ import { CONSTANTS } from '../../common/constants'
 import database from '../../database'
 import './singlePost.scss'
 
-const SinglePost = ({ setCurrentPostPage, selectedPostIndex, setSelectedPostIndex }) => {
+const SinglePost = ({ setSinglePostIsActive }) => {
   const [postOptionsModalIsOpen, setPostOptionsModalIsOpen] = useState(false)
   const [deletePostModalIsOpen, setDeletePostModalIsOpen] = useState(false)
   const { bio } = useSelector(state => state.bio)
   const galleryState = useSelector(state => state.gallery)
-  const { posts, comments } = galleryState
+  const { posts, comments, selectedPostIndex } = galleryState
   const dispatch = useDispatch()
 
   const displayNextGallery = event => {
     event.stopPropagation()
     if (selectedPostIndex === posts.length - 1) {
-      setSelectedPostIndex(0)
+      dispatch(galleryActions.setSelectedPostIndex(0))
     } else {
-      setSelectedPostIndex(selectedPostIndex + 1)
+      dispatch(galleryActions.setSelectedPostIndex(selectedPostIndex + 1))
     }
   }
 
   const displayPreviousGallery = event => {
     event.stopPropagation()
     if (selectedPostIndex === 0) {
-      setSelectedPostIndex(posts.length - 1)
+      dispatch(galleryActions.setSelectedPostIndex(posts.length - 1))
     } else {
-      setSelectedPostIndex(selectedPostIndex - 1)
+      dispatch(galleryActions.setSelectedPostIndex(selectedPostIndex - 1))
     }
   }
 
@@ -105,7 +105,7 @@ const SinglePost = ({ setCurrentPostPage, selectedPostIndex, setSelectedPostInde
     const mutablePostData = [...posts]
     mutablePostData.splice(selectedPostIndex, 1)
     dispatch(galleryActions.addMultiplePosts(mutablePostData))
-    setCurrentPostPage()
+    setSinglePostIsActive(false)
     clearPostComments()
     await database.posts.delete(posts[selectedPostIndex].id)
   }
@@ -125,7 +125,7 @@ const SinglePost = ({ setCurrentPostPage, selectedPostIndex, setSelectedPostInde
   return (
     <FocusTrap focusTrapOptions={{ initialFocus : '.fa', escapeDeactivates: false }}>
       <div>
-        <div className="overlay" onClick={() => setCurrentPostPage()}>
+        <div className="overlay" onClick={() => setSinglePostIsActive(false)}>
           <button className="close-overlay-button">
             <i className="material-icons">&#xe5cd;</i>
           </button>

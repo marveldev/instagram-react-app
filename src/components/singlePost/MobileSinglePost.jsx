@@ -1,19 +1,19 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { CONSTANTS } from '../../common/constants'
 
-const MobilePostPage = ({ setCurrentPostPage, selectedPostIndex, setSelectedPostIndex }) => {
+const MobileSinglePost = ({ setCurrentPostPage, selectedPostIndex, setSelectedPostIndex }) => {
   const { bio } = useSelector(state => state.bio)
   const galleryState = useSelector(state => state.gallery)
   const { posts, comments } = galleryState
 
   return (
     <>
-      <div>
-        <div className="mobile-post-header">
+      <div className="mobile-single-post">
+        <div className="header">
           <button>back</button>
           <span>Posts</span>
         </div>
-        <div  className="post-page-content">
+        <div  className="content">
           <div className="user-info">
             <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
               className="nav-photo" alt="profile"
@@ -35,7 +35,7 @@ const MobilePostPage = ({ setCurrentPostPage, selectedPostIndex, setSelectedPost
               </div>
               <button className="material-icons">&#xe867;</button>
             </div>
-            <span><strong>{posts[selectedPostIndex].likesCount || 0}</strong> Likes</span>
+            <span><strong>{0}</strong> Likes</span>
             <span><strong>{0}</strong> Comments</span>
             {/* {posts[selectedPostIndex].photoCaption && (
               <div className="caption-info">
@@ -56,4 +56,4 @@ const MobilePostPage = ({ setCurrentPostPage, selectedPostIndex, setSelectedPost
   )
 }
 
-export default MobilePostPage
+export default MobileSinglePost
