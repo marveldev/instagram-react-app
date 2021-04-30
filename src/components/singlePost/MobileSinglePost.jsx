@@ -1,22 +1,30 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import { CONSTANTS } from '../../common/constants'
+import { galleryActions } from '../gallery/slice'
 import { addPostLike } from './common'
 import './mobileSinglePost.scss'
 
 const MobileSinglePost = ({ setPostCommentIsOpen }) => {
-  const { goBack } = useHistory()
-  const dispatch = useDispatch()
   const { bio } = useSelector(state => state.bio)
   const galleryState = useSelector(state => state.gallery)
-  const { posts, comments, selectedPostIndex } = galleryState
+  const [postOptionsModalIsOpen, setPostOptionsModalIsOpen] = useState(false)
+  const [deletePostModalIsOpen, setDeletePostModalIsOpen] = useState(false)
+  const { posts, selectedPostIndex } = galleryState
+  const { goBack } = useHistory()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const selectedPostId = posts[selectedPostIndex].id
     const selectedPost = document.querySelector(`#${selectedPostId}`)
     selectedPost.scrollIntoView()
   }, [])
+
+  const handlePostCommentEvent = (index) => {
+    setPostCommentIsOpen(true)
+    dispatch(galleryActions.setSelectedPostIndex(index))
+  }
 
   return (
     <>
@@ -47,7 +55,7 @@ const MobileSinglePost = ({ setPostCommentIsOpen }) => {
                       className="fa fa-heart-o"
                     >
                     </button>
-                    <button onClick={() => setPostCommentIsOpen(true)}
+                    <button onClick={() => handlePostCommentEvent(index)}
                       className="fa fa-comment-o"
                     >
                     </button>
@@ -71,6 +79,27 @@ const MobileSinglePost = ({ setPostCommentIsOpen }) => {
             </div>
           ))}
         </div>
+        {postOptionsModalIsOpen && (
+          <div onClick={() => setPostOptionsModalIsOpen(false)} className="overlay">
+            <div className="post-options-modal">
+              <button onClick={{}}>Clear Comments</button>
+              <button onClick={{}}>Clear Likes</button>
+              <button onClick={() => setDeletePostModalIsOpen(true)}>
+                Delete Post
+              </button>
+              <button className="close-modal-button">Cancel</button>
+            </div>
+          </div>
+        )}
+        {deletePostModalIsOpen && (
+          <div onClick={() => setDeletePostModalIsOpen(false)} className="overlay">
+            <div className="delete-post-modal">
+              <p>Are you sure you want to delete post? This cannot be undone.</p>
+              <button onClick={{}}>Delete</button>
+              <button className="close-modal-button">Cancel</button>
+            </div>
+          </div>
+        )}
       </div>
     </>
   )

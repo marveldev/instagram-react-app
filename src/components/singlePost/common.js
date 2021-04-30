@@ -12,4 +12,24 @@ const addPostLike = async (posts, selectedPostIndex, dispatch) => {
   await database.posts.update(selectedPost.id, newData)
 }
 
-export { addPostLike }
+const addCommentToPost = async (posts, selectedPostIndex, dispatch) => {
+  const commentValue = document.querySelector('.comment-box').value
+  if (commentValue.trim().length >= 1) {
+    const commentObject = {
+      id: 'id' + Date.parse(new Date()),
+      text: commentValue,
+      postId: posts[selectedPostIndex].id
+    }
+
+    try {
+      await database.comments.add(commentObject)
+      dispatch(galleryActions.addComment(commentObject))
+    } catch(error) {
+      console.log(error)
+    }
+  }
+
+  document.querySelector('.comment-box').value = ''
+}
+
+export { addPostLike, addCommentToPost }

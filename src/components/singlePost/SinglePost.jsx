@@ -4,7 +4,7 @@ import FocusTrap from 'focus-trap-react'
 import { galleryActions } from '../gallery/slice'
 import { CONSTANTS } from '../../common/constants'
 import database from '../../database'
-import { addPostLike } from './common'
+import { addCommentToPost, addPostLike } from './common'
 import './singlePost.scss'
 
 const SinglePost = ({ setSinglePostIsActive }) => {
@@ -33,30 +33,10 @@ const SinglePost = ({ setSinglePostIsActive }) => {
     }
   }
 
-  const addCommentToPost = async () => {
-    const commentValue = document.querySelector('.comment-box').value
-    if (commentValue.trim().length >= 1) {
-      const commentObject = {
-        id: 'id' + Date.parse(new Date()),
-        text: commentValue,
-        postId: posts[selectedPostIndex].id
-      }
-
-      try {
-        await database.comments.add(commentObject)
-        dispatch(galleryActions.addComment(commentObject))
-      } catch(error) {
-        console.log(error)
-      }
-    }
-
-    document.querySelector('.comment-box').value = ''
-  }
-
-  const addEventHandler = event => {
+  const handlePostCommentEvent = event => {
     const keyCode = event.which || event.keyCode
     if (keyCode === 13 && event.shiftKey) {
-      addCommentToPost()
+      addCommentToPost(posts, selectedPostIndex, dispatch)
     }
   }
 
@@ -170,11 +150,13 @@ const SinglePost = ({ setSinglePostIsActive }) => {
               <span><strong>{commentSection.length || 0}</strong> Comments</span>
               <div className="comment-container">
                 <i className="fa fa-smile-o"></i>
-                <textarea onKeyUp={addEventHandler} className="comment-box"
+                <textarea onKeyUp={handlePostCommentEvent} className="comment-box"
                   placeholder="Add a comment..."
                 >
                 </textarea>
-                <button onClick={addCommentToPost}>Post</button>
+                <button onClick={() => addCommentToPost(posts, selectedPostIndex, dispatch)}>
+                  Post
+                </button>
               </div>
             </div>
           </div>
