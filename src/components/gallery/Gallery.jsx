@@ -25,7 +25,7 @@ const Gallery = () => {
   const handlePostClick = (index) => {
     dispatch(galleryActions.setSelectedPostIndex(index))
     if (window.innerWidth <= 768) {
-      history.push('/mobileSinglePost')
+      history.push('/mobilePostPage')
     } else {
       setSinglePostIsActive(true)
     }
