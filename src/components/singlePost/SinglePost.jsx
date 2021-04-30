@@ -4,6 +4,7 @@ import FocusTrap from 'focus-trap-react'
 import { galleryActions } from '../gallery/slice'
 import { CONSTANTS } from '../../common/constants'
 import database from '../../database'
+import { addPostLike } from './common'
 import './singlePost.scss'
 
 const SinglePost = ({ setSinglePostIsActive }) => {
@@ -30,19 +31,6 @@ const SinglePost = ({ setSinglePostIsActive }) => {
     } else {
       dispatch(galleryActions.setSelectedPostIndex(selectedPostIndex - 1))
     }
-  }
-
-  const addPostLike = async () => {
-    const selectedPost = posts[selectedPostIndex]
-    const likesCount = selectedPost.likesCount || 0
-    const newData = {...selectedPost, likesCount: likesCount + 1}
-    const mutablePostData = [...posts]
-    mutablePostData.splice(selectedPostIndex, 1, newData)
-    dispatch(galleryActions.addMultiplePosts(mutablePostData))
-
-    await database.posts.update(
-      posts[selectedPostIndex].id, newData
-    )
   }
 
   const addCommentToPost = async () => {
@@ -169,7 +157,10 @@ const SinglePost = ({ setSinglePostIsActive }) => {
             <div className="post-reaction-options">
               <div className="single-post-options">
                 <div>
-                  <button onClick={addPostLike} className="fa fa-heart-o"></button>
+                  <button onClick={() => addPostLike(posts, selectedPostIndex, dispatch)}
+                    className="fa fa-heart-o"
+                  >
+                  </button>
                   <button className="fa fa-comment-o"></button>
                   <button className="fa fa-share-square-o"></button>
                 </div>
