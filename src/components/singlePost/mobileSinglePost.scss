@@ -1,0 +1,91 @@
+.mobile-single-post {
+  margin-bottom: 10em;
+
+  .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: 550;
+    z-index: 1;
+    background-color: #fff;
+
+    button {
+      font-size: 1.5em;
+      width: 3em;
+      height: 2em;
+    }
+  }
+
+  button:active {
+    transform: translateY(0.1em);
+  }
+
+  .content {
+    position: relative;
+    top: 4em;
+    overflow-y: auto;
+    height: auto;
+
+    .user-info {
+      width: 100%;
+      padding: 1em;
+
+      button {
+        float: right;
+      }
+
+      .bio-name {
+        padding: 0 1em;
+      }
+    }
+
+    .post-photo {
+      background-color: #000;
+      width: 100%;
+      height: 20em;
+
+      img {
+        width: 100%;
+        height: 20em;
+        object-fit: cover;
+      }
+    }
+
+    .post-details {
+      padding: 0 1em;
+
+      .single-post-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button {
+          font-size: 1.5em;
+          height: 1.5em;
+          width: 1.5em;
+          padding: 0;
+        }
+
+        .material-icons {
+          font-size: 1.8em;
+        }
+      }
+
+      span {
+        padding-right: 1em;
+      }
+
+      .caption-info {
+        padding: 1em 0;
+      }
+    }
+
+    .bio-name {
+      font-weight: 550;
+    }
+  }
+}
