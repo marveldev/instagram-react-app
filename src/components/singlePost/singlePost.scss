@@ -129,9 +129,15 @@
   background-color: #fff;
   border-radius: 0.5em;
   transform: translate(-50%,-50%);
+
+  @media screen and (max-width: 600px) {
+    & {
+      width: 100%;
+    }
+  }
 }
 
-.post-options-modal {
+.post-option-modal {
   @extend %modal;
 
   button {
@@ -163,5 +169,11 @@
 
   .close-modal-button {
     color: #d13f3f;
+  }
+
+  @media screen and (max-width: 600px) {
+    & {
+      padding: 2em;
+    }
   }
 }

@@ -4,26 +4,34 @@ import { useHistory } from 'react-router'
 import { CONSTANTS } from '../../common/constants'
 import { galleryActions } from '../gallery/slice'
 import { addPostLike } from './common'
+import PostOptionModal from './PostOptionModal'
 import './mobileSinglePost.scss'
 
 const MobileSinglePost = ({ setPostCommentIsOpen }) => {
   const { bio } = useSelector(state => state.bio)
   const galleryState = useSelector(state => state.gallery)
-  const [postOptionsModalIsOpen, setPostOptionsModalIsOpen] = useState(false)
-  const [deletePostModalIsOpen, setDeletePostModalIsOpen] = useState(false)
-  const { posts, selectedPostIndex } = galleryState
+  const { posts, comments, selectedPostIndex } = galleryState
+  const [postDibsIsOpen, setPostDibsIsOpen] = useState(false)
+  const selectedPostId = posts[selectedPostIndex].id
   const { goBack } = useHistory()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const selectedPostId = posts[selectedPostIndex].id
     const selectedPost = document.querySelector(`#${selectedPostId}`)
     selectedPost.scrollIntoView()
-  }, [])
+  }, [selectedPostId])
 
-  const handlePostCommentEvent = (index) => {
-    setPostCommentIsOpen(true)
+  const handlePostButtonEvent = (index, button) => {
+    button === 'commentButton' ? setPostCommentIsOpen(true) : setPostDibsIsOpen(true)
     dispatch(galleryActions.setSelectedPostIndex(index))
+  }
+
+  const getPostComments = (id) => {
+    const selectedComments = comments.filter(
+      comment => comment.postId === id
+    )
+
+    return selectedComments
   }
 
   return (
@@ -41,7 +49,7 @@ const MobileSinglePost = ({ setPostCommentIsOpen }) => {
                   className="nav-photo" alt="profile"
                 />
                 <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
-                <button>
+                <button onClick={() => handlePostButtonEvent(index, 'moreButton')}>
                   <i className="material-icons">&#xe5d4;</i>
                 </button>
               </div>
@@ -55,7 +63,7 @@ const MobileSinglePost = ({ setPostCommentIsOpen }) => {
                       className="fa fa-heart-o"
                     >
                     </button>
-                    <button onClick={() => handlePostCommentEvent(index)}
+                    <button onClick={() => handlePostButtonEvent(index, 'commentButton')}
                       className="fa fa-comment-o"
                     >
                     </button>
@@ -64,42 +72,38 @@ const MobileSinglePost = ({ setPostCommentIsOpen }) => {
                   <button className="material-icons">&#xe867;</button>
                 </div>
                 <span><strong>{post.likesCount || 0}</strong> Likes</span>
-                <span><strong>{0}</strong> Comments</span>
+                <span>
+                  <strong>{getPostComments(post.id).length || 0} </strong>
+                  Comments
+                </span>
                 {post.photoCaption && (
                   <div className="caption-info">
                     <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
-                    <span>{posts[selectedPostIndex].photoCaption}</span>
+                    <span>{post.photoCaption}</span>
                   </div>
                 )}
-                <div>
-                  <button>View all comments</button>
-                  <div>Last two comments</div>
+                <div className="post-info">
+                  <button onClick={() => handlePostButtonEvent(index, 'commentButton')}>
+                    View all comments
+                  </button>
+                  <div>
+                    {getPostComments(post.id).slice(0, 2).map(comment => (
+                      <div key={comment.id} className="caption-info">
+                        <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
+                        <span className="text">{comment.text}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
-        {postOptionsModalIsOpen && (
-          <div onClick={() => setPostOptionsModalIsOpen(false)} className="overlay">
-            <div className="post-options-modal">
-              <button onClick={{}}>Clear Comments</button>
-              <button onClick={{}}>Clear Likes</button>
-              <button onClick={() => setDeletePostModalIsOpen(true)}>
-                Delete Post
-              </button>
-              <button className="close-modal-button">Cancel</button>
-            </div>
-          </div>
-        )}
-        {deletePostModalIsOpen && (
-          <div onClick={() => setDeletePostModalIsOpen(false)} className="overlay">
-            <div className="delete-post-modal">
-              <p>Are you sure you want to delete post? This cannot be undone.</p>
-              <button onClick={{}}>Delete</button>
-              <button className="close-modal-button">Cancel</button>
-            </div>
-          </div>
-        )}
+        {postDibsIsOpen &&
+          <PostOptionModal
+            setPostDibsIsOpen={setPostDibsIsOpen}
+          />
+        }
       </div>
     </>
   )
