@@ -9,7 +9,7 @@ const SmallScreenNav = () => {
   return (
     <>
       <nav className="top-nav" id="smallScreenTopNav">
-        <button><i className="fa fa-sun-o"></i></button>
+        <button aria-label="settings"><i className="fa fa-sun-o"></i></button>
         <span className="bio-name">{bio?.name || CONSTANTS.NAME}</span>
         <button><i className="material-icons">&#xe7fe;</i></button>
       </nav>

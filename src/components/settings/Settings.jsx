@@ -12,6 +12,7 @@ const Settings = () => {
   const { goBack } = useHistory()
   const dispatch = useDispatch()
   const { bio } = useSelector(state => state.bio)
+  const { theme } = useSelector(state => state.theme)
   const [photoModalIsActive, setPhotoModalIsActive] = useState(false)
   const [buttonClass, setButtonClass] = useState('enable')
   const [photoUrl, setPhotoUrl] = useState()
@@ -167,12 +168,16 @@ const Settings = () => {
                 <div className="theme-options">
                   <label>
                     <input onChange={() => changeTheme('light')}
-                      type="radio" name="theme" defaultChecked
+                      type="radio" name="theme"
+                      defaultChecked={theme === 'light' ? true : false}
                     />
                     Light
                   </label>
                   <label>
-                    <input onChange={() => changeTheme('dark')} type="radio" name="theme" />
+                    <input onChange={() => changeTheme('dark')}
+                      type="radio" name="theme"
+                      defaultChecked={theme === 'dark' ? true : false}
+                    />
                     Dark
                   </label>
                 </div>
