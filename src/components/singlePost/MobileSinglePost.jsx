@@ -12,13 +12,13 @@ const MobileSinglePost = ({ setPostCommentIsOpen }) => {
   const galleryState = useSelector(state => state.gallery)
   const { posts, comments, selectedPostIndex } = galleryState
   const [postDibsIsOpen, setPostDibsIsOpen] = useState(false)
-  const selectedPostId = posts[selectedPostIndex].id
+  const selectedPostId = posts[selectedPostIndex]?.id
   const { goBack } = useHistory()
   const dispatch = useDispatch()
 
   useEffect(() => {
     const selectedPost = document.querySelector(`#${selectedPostId}`)
-    selectedPost.scrollIntoView()
+    selectedPost?.scrollIntoView()
   }, [selectedPostId])
 
   const handlePostButtonEvent = (index, button) => {

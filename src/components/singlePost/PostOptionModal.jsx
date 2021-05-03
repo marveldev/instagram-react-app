@@ -47,7 +47,7 @@ const PostOptionModal = ({ setPostDibsIsOpen, setSinglePostIsActive }) => {
     dispatch(galleryActions.addMultiplePosts(mutablePostData))
     clearPostComments()
     posts.length === 1 && history.push('/')
-    setSinglePostIsActive &&  setSinglePostIsActive(false)
+    setSinglePostIsActive && setSinglePostIsActive(false)
     await database.posts.delete(posts[selectedPostIndex].id)
   }
 
