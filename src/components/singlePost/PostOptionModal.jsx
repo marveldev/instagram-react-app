@@ -1,10 +1,11 @@
+import FocusTrap from 'focus-trap-react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import database from '../../database'
 import { galleryActions } from '../gallery/slice'
 
-const PostOptionModal = ({ setPostDibsIsOpen }) => {
+const PostOptionModal = ({ setPostDibsIsOpen, setSinglePostIsActive }) => {
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
   const galleryState = useSelector(state => state.gallery)
   const { posts, comments, selectedPostIndex } = galleryState
@@ -29,7 +30,7 @@ const PostOptionModal = ({ setPostDibsIsOpen }) => {
   }
 
   const clearPostLikes = async () => {
-    const selectedPost =  posts[selectedPostIndex]
+    const selectedPost = posts[selectedPostIndex]
     const newData = {...selectedPost, likesCount: 0}
     const mutablePostData = [...posts]
     mutablePostData.splice(selectedPostIndex, 1, newData)
@@ -45,15 +46,13 @@ const PostOptionModal = ({ setPostDibsIsOpen }) => {
     mutablePostData.splice(selectedPostIndex, 1)
     dispatch(galleryActions.addMultiplePosts(mutablePostData))
     clearPostComments()
+    posts.length === 1 && history.push('/')
+    setSinglePostIsActive &&  setSinglePostIsActive(false)
     await database.posts.delete(posts[selectedPostIndex].id)
-    
-    if (posts.length === 1) {
-      history.push('/')
-    }
   }
 
   return (
-    <>
+    <FocusTrap focusTrapOptions={{ initialFocus : '.fa', escapeDeactivates: false }}>
       <div onClick={() => setPostDibsIsOpen(false)} className="overlay">
         {deleteModalIsOpen && (
           <div onClick={() => setDeleteModalIsOpen(false)} className="overlay">
@@ -77,7 +76,7 @@ const PostOptionModal = ({ setPostDibsIsOpen }) => {
           </div>
         )}
       </div>
-    </>
+    </FocusTrap>
   )
 }
 

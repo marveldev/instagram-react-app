@@ -3,13 +3,12 @@ import { useState } from 'react'
 import FocusTrap from 'focus-trap-react'
 import { galleryActions } from '../gallery/slice'
 import { CONSTANTS } from '../../common/constants'
-import database from '../../database'
 import { addCommentToPost, addPostLike } from './common'
+import PostOptionModal from './PostOptionModal'
 import './singlePost.scss'
 
 const SinglePost = ({ setSinglePostIsActive }) => {
-  const [postOptionsModalIsOpen, setPostOptionsModalIsOpen] = useState(false)
-  const [deletePostModalIsOpen, setDeletePostModalIsOpen] = useState(false)
+  const [postDibsIsOpen, setPostDibsIsOpen] = useState(false)
   const { bio } = useSelector(state => state.bio)
   const galleryState = useSelector(state => state.gallery)
   const { posts, comments, selectedPostIndex } = galleryState
@@ -43,40 +42,6 @@ const SinglePost = ({ setSinglePostIsActive }) => {
   const selectedPostComments = comments.filter(
     comment => comment.postId === posts[selectedPostIndex].id
   )
-
-  const clearPostComments = async () => {
-    const commentIds = selectedPostComments.map(comment => comment.id)
-    const newCommentsData = comments.filter(
-      comment => comment.postId !== posts[selectedPostIndex].id
-    )
-
-    dispatch(galleryActions.addMultipleComments(newCommentsData))
-    for (let index = 0; index < commentIds.length; index++) {
-      const id = commentIds[index]
-      await database.comments.delete(id)
-    }
-  }
-
-  const clearPostLikes = async () => {
-    const selectedPost =  posts[selectedPostIndex]
-    const newData = {...selectedPost, likesCount: 0}
-    const mutablePostData = [...posts]
-    mutablePostData.splice(selectedPostIndex, 1, newData)
-    dispatch(galleryActions.addMultiplePosts(mutablePostData))
-
-    await database.posts.update(
-      posts[selectedPostIndex].id, {likesCount: 0}
-    )
-  }
-
-  const deleteSinglePost = async () => {
-    const mutablePostData = [...posts]
-    mutablePostData.splice(selectedPostIndex, 1)
-    dispatch(galleryActions.addMultiplePosts(mutablePostData))
-    setSinglePostIsActive(false)
-    clearPostComments()
-    await database.posts.delete(posts[selectedPostIndex].id)
-  }
 
   const commentSection = selectedPostComments.map(comment => (
     <div key={comment.id} className="caption-info">
@@ -114,7 +79,7 @@ const SinglePost = ({ setSinglePostIsActive }) => {
                 className="nav-photo" alt="profile"
               />
               <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
-              <button onClick={() => setPostOptionsModalIsOpen(true)}>
+              <button onClick={() => setPostDibsIsOpen(true)}>
                 <i className="material-icons">&#xe5d3;</i>
               </button>
             </div>
@@ -161,30 +126,11 @@ const SinglePost = ({ setSinglePostIsActive }) => {
             </div>
           </div>
         </div>
-        {postOptionsModalIsOpen && (
-          <FocusTrap focusTrapOptions={{ initialFocus : '.fa', escapeDeactivates: false }}>
-            <div onClick={() => setPostOptionsModalIsOpen(false)} className="overlay">
-              <div className="post-options-modal">
-                <button onClick={clearPostComments}>Clear Comments</button>
-                <button onClick={clearPostLikes}>Clear Likes</button>
-                <button onClick={() => setDeletePostModalIsOpen(true)}>
-                  Delete Post
-                </button>
-                <button className="close-modal-button">Cancel</button>
-              </div>
-            </div>
-          </FocusTrap>
-        )}
-        {deletePostModalIsOpen && (
-          <FocusTrap focusTrapOptions={{ initialFocus : '.fa', escapeDeactivates: false }}>
-            <div onClick={() => setDeletePostModalIsOpen(false)} className="overlay">
-              <div className="delete-post-modal">
-                <p>Are you sure you want to delete post? This cannot be undone.</p>
-                <button onClick={deleteSinglePost}>Delete</button>
-                <button className="close-modal-button">Cancel</button>
-              </div>
-            </div>
-          </FocusTrap>
+        {postDibsIsOpen && (
+          <PostOptionModal
+            setPostDibsIsOpen={setPostDibsIsOpen}
+            setSinglePostIsActive={setSinglePostIsActive}
+          />
         )}
       </div>
     </FocusTrap>
