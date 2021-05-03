@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Home, Settings, TopNav } from './components'
 import { bioActions } from './components/bio/slice'
@@ -7,9 +7,12 @@ import { galleryActions } from './components/gallery/slice'
 import MobilePostPage from './components/singlePost/MobilePostPage'
 import database from './database'
 import './index.scss'
+import './common/theme.scss'
 
 const App = () => {
   const dispatch = useDispatch()
+  const { theme } = useSelector(state => state.theme)
+  console.log(theme);
 
   useEffect(() => {
     database.bio.toArray()
@@ -32,7 +35,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className={`app-layer ${theme}`}>
         <TopNav />
         <Switch>
           <Route path="/" component={Home} exact />

@@ -53,7 +53,7 @@
     .form-buttons {
       display: flex;
       justify-content: space-around;
-      margin-bottom: 1em;
+      margin-bottom: 2em;
     }
 
     .submit-button {
@@ -146,14 +146,14 @@
   .settings {
     display: block;
     width: 100%;
-    margin: 6em auto 3em;
+    margin: 3em auto 3em;
 
     .settings-nav {
       display: none;
     }
 
     .settings-pane label {
-      width: 80%;
+      width: 100%;
       margin: 1.5em auto;
     }
 
@@ -188,6 +188,27 @@
 
     .nav-photo {
       margin: 0 auto;
+    }
+  }
+
+  .theme-container {
+    .theme-options {
+      display: flex;
+      align-items: center;
+      height: 2em;
+      font-size: 0.9em;
+
+      label {
+        display: inline;
+        font-weight: 500;
+      }
+
+      input {
+        width: 1em;
+        height: 1em;
+        font-weight: 500;
+        margin-right: 1em;
+      }
     }
   }
 }

@@ -5,6 +5,7 @@ import { CONSTANTS } from '../../common/constants'
 import { ProfilePhotoModal } from '../../common/components'
 import database from '../../database'
 import { bioActions } from '../bio/slice'
+import { themeActions } from './slice'
 import './settings.scss'
 
 const Settings = () => {
@@ -79,6 +80,11 @@ const Settings = () => {
   }
 
   document.title = 'Edit Profile • Instagram'
+
+  const changeTheme = (theme) => {
+    dispatch(themeActions.setTheme(theme))
+    localStorage.setItem('storedTheme', theme)
+  }
 
   return (
     <div>
@@ -155,6 +161,23 @@ const Settings = () => {
                 defaultValue={bio?.gender} placeholder="Gender"
               />
             </label>
+            {window.innerWidth <= 425 && (
+              <label className="theme-container">
+                Set Theme
+                <div className="theme-options">
+                  <label>
+                    <input onChange={() => changeTheme('light')}
+                      type="radio" name="theme" defaultChecked
+                    />
+                    Light
+                  </label>
+                  <label>
+                    <input onChange={() => changeTheme('dark')} type="radio" name="theme" />
+                    Dark
+                  </label>
+                </div>
+              </label>
+            )}
             <div className="form-buttons">
               <button type="submit"
                 className={`${buttonClass} submit-button`}
