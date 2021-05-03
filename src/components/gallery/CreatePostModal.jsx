@@ -20,7 +20,7 @@ const CreatePostModal = ({ setPostModal, postModal }) => {
       dispatch(galleryActions.addPost(postItem))
       setPostModal(false)
     } catch(error) {
-      console.log(error) // add story to project board
+      console.log(error)
     }
   }
 

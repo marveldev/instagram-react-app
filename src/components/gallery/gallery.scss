@@ -87,6 +87,7 @@
     align-items: center;
     height: 4em;
     padding: 0 1.5em;
+    border-radius: 0.5em;
     border-bottom: 1px solid #DBDBDB;
 
     h3 {
@@ -99,7 +100,7 @@
   }
 
   #previewPost {
-    margin: 0 auto;
+    margin: 5em auto 0;
     height: 18em;
     width: 34em;
     overflow-y: scroll;
@@ -225,6 +226,10 @@
       #previewPost {
         height: 25em;
         width: auto;
+      }
+
+      #photoEntry {
+        height: 20em;
       }
     }
   }

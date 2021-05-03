@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
 import database from '../../database'
 import { galleryActions } from '../gallery/slice'
 
@@ -8,17 +9,19 @@ const PostOptionModal = ({ setPostDibsIsOpen }) => {
   const galleryState = useSelector(state => state.gallery)
   const { posts, comments, selectedPostIndex } = galleryState
   const dispatch = useDispatch()
+  const history = useHistory()
+
+  const selectedComments = comments.filter(
+    comment => comment.postId === posts[selectedPostIndex].id
+  )
 
   const clearPostComments = async () => {
-    const selectedComments = comments.filter(
-      comment => comment.postId === posts[selectedPostIndex].id
+    const selectedCommentsIds = selectedComments.map(comment => comment.id)
+    const newCommentsData = comments.filter(
+      comment => comment.postId !== posts[selectedPostIndex].id
     )
 
-    const selectedCommentsIds = selectedComments.map(comment => comment.id)
-    console.log(selectedComments);
-
-    // dispatch(galleryActions.addMultipleComments(newCommentsData))
-
+    dispatch(galleryActions.addMultipleComments(newCommentsData))
     for (let index = 0; index < selectedCommentsIds.length; index++) {
       const singleCommentId = selectedCommentsIds[index]
       await database.comments.delete(singleCommentId)
@@ -41,8 +44,12 @@ const PostOptionModal = ({ setPostDibsIsOpen }) => {
     const mutablePostData = [...posts]
     mutablePostData.splice(selectedPostIndex, 1)
     dispatch(galleryActions.addMultiplePosts(mutablePostData))
-    // clearPostComments()
-    // await database.posts.delete(posts[selectedPostIndex].id)
+    clearPostComments()
+    await database.posts.delete(posts[selectedPostIndex].id)
+    
+    if (posts.length === 1) {
+      history.push('/')
+    }
   }
 
   return (

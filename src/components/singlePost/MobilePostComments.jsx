@@ -42,15 +42,17 @@ const MobilePostComments = ({ setPostCommentIsOpen }) => {
         </div>
         <div className="content">
           <div className="post-activity">
-            <div className="caption-info">
-              <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
-                className="nav-photo" alt="profile"
-              />
-              <div>
-                <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
-                <span className="text">{'hey'}</span>
+            {posts[selectedPostIndex].photoCaption && (
+              <div className="caption-info">
+                <img src={bio?.profilePhotoUrl || CONSTANTS.PHOTOURL}
+                  className="nav-photo" alt="profile"
+                />
+                <div>
+                  <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
+                  <span className="text">{posts[selectedPostIndex].photoCaption}</span>
+                </div>
               </div>
-            </div>
+            )}
             <section>
               {commentSection}
             </section>
