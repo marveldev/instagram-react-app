@@ -12,7 +12,6 @@ import './common/theme.scss'
 const App = () => {
   const dispatch = useDispatch()
   const { theme } = useSelector(state => state.theme)
-  console.log(theme);
 
   useEffect(() => {
     database.bio.toArray()

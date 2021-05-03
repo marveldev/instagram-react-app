@@ -4,12 +4,14 @@
 
   #smallScreenTopNav {
     background-color: #000;
-    border: 1px solid #5d5959;
+    border: unset;
+    border-bottom: 1px solid #5d5959;
   }
 
   .bottom-nav {
     background-color: #000;
-    border: 1px solid #5d5959;
+    border: unset;
+    border-top: 1px solid #5d5959;
   }
 
   .bio-info button {
@@ -17,7 +19,8 @@
   }
 
   #userAccountInfo div {
-    border: 1px solid #5d5959;
+    border-top: 1px solid #5d5959;
+    border-bottom: 1px solid #5d5959;
   }
 
   .settings {
@@ -65,6 +68,10 @@
         background: #000;
       }
     }
+
+    .post-options {
+      border: 1px solid #5d5959;
+    }
   }
 
   .mobile-single-post {
@@ -78,6 +85,10 @@
 
     button {
       border-bottom: 1px solid #5d5959;
+
+      &:last-child {
+        border: none;
+      }
     }
 
     .close-modal-button {
@@ -90,6 +101,47 @@
 
     .close-modal-button {
       color: #e67f7f;
+    }
+  }
+
+  .overlay {
+    background-color: #2928288e;
+  }
+
+  .photo-modal {
+    background-color: #000;
+
+    label {
+      border-bottom: 1px solid #5d5959;
+    }
+
+    p {
+      border-bottom: 1px solid #5d5959;
+    }
+
+    .remove-photo-button {
+      color: #e67f7f;
+      border-bottom: 1px solid #5d5959;
+    }
+  }
+
+  .confirm-profile-photo {
+    background-color: #000;
+  }
+
+  .mobile-post-comments  {
+    .header {
+      background-color: #000;
+      border-bottom: 1px solid #5d5959;
+    }
+
+    .comment-container {
+      background-color: #000;
+      border-top: 1px solid #5d5959;
+
+      .comment-box {
+        background-color: #000;
+      }
     }
   }
 }

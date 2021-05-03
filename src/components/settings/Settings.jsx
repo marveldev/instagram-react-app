@@ -162,7 +162,7 @@ const Settings = () => {
                 defaultValue={bio?.gender} placeholder="Gender"
               />
             </label>
-            {window.innerWidth <= 425 && (
+            {window.innerWidth <= 768 && (
               <label className="theme-container">
                 Set Theme
                 <div className="theme-options">
