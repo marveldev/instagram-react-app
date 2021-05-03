@@ -86,12 +86,12 @@
     justify-content: space-between;
     align-items: center;
     height: 4em;
-    padding: 0 1.5em;
-    border-radius: 0.5em;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
     border-bottom: 1px solid #DBDBDB;
 
     h3 {
-      margin: 0;
+      margin: 0 0 0 1em;
     }
 
     i {
@@ -224,8 +224,8 @@
       border-radius: 0;
 
       #previewPost {
-        height: 25em;
-        width: auto;
+        height: 20em;
+        width: 100%;
       }
 
       #photoEntry {

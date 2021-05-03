@@ -1,3 +1,95 @@
 .dark {
   background-color: #000;
+  color: #fff;
+
+  #smallScreenTopNav {
+    background-color: #000;
+    border: 1px solid #5d5959;
+  }
+
+  .bottom-nav {
+    background-color: #000;
+    border: 1px solid #5d5959;
+  }
+
+  .bio-info button {
+    border: 0.1em solid #5d5959;
+  }
+
+  #userAccountInfo div {
+    border: 1px solid #5d5959;
+  }
+
+  .settings {
+    background-color: #000;
+
+    input {
+      background-color: #000;
+      border: 0.1em solid #5d5959;
+
+      &::placeholder {
+        color: #DBDBDB;
+      }
+    }
+
+    .bio-box {
+      background-color: #000;
+      border: 0.1em solid #5d5959;
+
+      &::placeholder {
+        color: #DBDBDB;
+      }
+    }
+  }
+
+  .create-post-modal {
+    background-color: #000;
+
+    .header {
+      background-color: #000;
+      border-bottom: 1px solid #5d5959;
+    }
+
+    #postCaption {
+      background-color: #000;
+
+      &::placeholder {
+        color: #DBDBDB;
+      }
+    }
+
+    #previewPost {
+      background-color: #000;
+
+      &::-webkit-scrollbar-track {
+        background: #000;
+      }
+    }
+  }
+
+  .mobile-single-post {
+    .header {
+      background-color: #000;
+    }
+  }
+
+  .post-option-modal {
+    background-color: #000;
+
+    button {
+      border-bottom: 1px solid #5d5959;
+    }
+
+    .close-modal-button {
+      color: #e67f7f;
+    }
+  }
+
+  .delete-post-modal {
+    background-color: #000;
+
+    .close-modal-button {
+      color: #e67f7f;
+    }
+  }
 }
