@@ -1,8 +1,11 @@
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { Smileys } from '../../common/index'
 import database from '../../database'
 import { galleryActions } from './slice'
 
 const CreatePostModal = ({ setPostModal, postModal }) => {
+  const [smileyModalIsOpen, setSmileyModalIsOpen] = useState(false)
   const dispatch = useDispatch()
 
   const addPostItem = async() => {
@@ -40,8 +43,13 @@ const CreatePostModal = ({ setPostModal, postModal }) => {
         </div>
         <div className="post-options">
           <span>Add To Your Post</span>
-          <span><i className="material-icons">&#xe420;</i></span>
-          <span><i className="material-icons">&#xe0c8;</i></span>
+          <span onClick={() => setSmileyModalIsOpen(true)} className="smiley-icon">
+            <i className="material-icons">&#xe420;</i>
+          </span>
+          {smileyModalIsOpen && <Smileys />}
+          <span >
+            <i className="material-icons">&#xe0c8;</i>
+          </span>
         </div>
         <button className="post-button" onClick={addPostItem}>POST</button>
       </div>

@@ -1,0 +1,9 @@
+.smileys {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  position: absolute;
+  top: 10em;
+  width: 30em;
+  height: 30em;
+  background-color: #fff;
+}
