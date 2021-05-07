@@ -30,6 +30,7 @@ const Smileys = ({ setPostCaptionValue, postCaptionValue }) => {
           </button>
         ))}
       </div>
+      <div className="arrow-down"></div>
     </div>
   )
 }
