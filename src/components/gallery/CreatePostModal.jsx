@@ -6,6 +6,7 @@ import { galleryActions } from './slice'
 
 const CreatePostModal = ({ setPostModal, postModal }) => {
   const [smileyModalIsOpen, setSmileyModalIsOpen] = useState(false)
+  const [postCaptionValue, setPostCaptionValue] = useState('')
   const dispatch = useDispatch()
 
   const addPostItem = async() => {
@@ -38,15 +39,28 @@ const CreatePostModal = ({ setPostModal, postModal }) => {
           </button>
         </div>
         <div id="previewPost">
-          <textarea id="postCaption" placeholder="Add Caption..."></textarea>
+          <textarea
+            id="postCaption"
+            placeholder="Add Caption..."
+            value={postCaptionValue}
+            onChange={event => setPostCaptionValue(event.target.value)}
+          >
+          </textarea>
           <img src={postModal?.photoUrl} id="photoEntry" alt="gallery"/>
         </div>
         <div className="post-options">
           <span>Add To Your Post</span>
-          <span onClick={() => setSmileyModalIsOpen(true)} className="smiley-icon">
+          <span onClick={() => setSmileyModalIsOpen(!smileyModalIsOpen)}
+            className="smiley-icon"
+          >
             <i className="material-icons">&#xe420;</i>
           </span>
-          {smileyModalIsOpen && <Smileys />}
+          {smileyModalIsOpen &&
+            <Smileys
+              setPostCaptionValue={setPostCaptionValue}
+              postCaptionValue={postCaptionValue}
+            />
+          }
           <span >
             <i className="material-icons">&#xe0c8;</i>
           </span>

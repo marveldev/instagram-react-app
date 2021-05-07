@@ -1,23 +1,28 @@
 .smileys {
   position: absolute;
-  top: 5em;
-  width: 25em;
-  height: 20em;
+  top: 7em;
+  right: 1em;
+  width: 20em;
+  height: 15em;
   background-color: #444141;
   border-radius: 1.5em;
   padding: 0.5em 0;
 
   .smiley-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 3.3em);
     justify-content: center;
     overflow-y: auto;
-    height: 16em;
+    overflow-x: hidden;
+    height: 11em;
 
     .smiley {
       font-size: 1.7em;
-      margin: 0 auto;
-      cursor: pointer;
+
+      &:active {
+        transform: translateY(0.1em);
+        -webkit-tap-highlight-color: transparent;
+      }
     }
   }
 
