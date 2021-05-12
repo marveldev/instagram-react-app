@@ -6,7 +6,10 @@ const Smileys = ({ setPostCaptionValue, postCaptionValue }) => {
   const [filteredSmiley, setFilteredSmiley] = useState(smileyList)
 
   const filterSmileyList = value => {
-    const newSmileyList = smileyList.filter((smiley => smiley.description.includes(value)))
+    const newSmileyList = smileyList.filter(
+      (smiley => smiley.description.toLowerCase().includes(value.toLowerCase()))
+    )
+    
     setFilteredSmiley(newSmileyList)
   }
 

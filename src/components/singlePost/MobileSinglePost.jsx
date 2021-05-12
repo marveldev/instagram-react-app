@@ -32,7 +32,7 @@ const MobileSinglePost = ({ setPostCommentIsOpen }) => {
     )
 
     return selectedComments
-  }
+  } 
 
   return (
     <>
