@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import { CONSTANTS } from '../../common/constants'
 import { galleryActions } from '../gallery/slice'
 import { addPostLike } from './common'
@@ -10,20 +10,21 @@ import './mobileSinglePost.scss'
 const MobileSinglePost = ({ setPostCommentIsOpen }) => {
   const { bio } = useSelector(state => state.bio)
   const galleryState = useSelector(state => state.gallery)
-  const { posts, comments, selectedPostIndex } = galleryState
+  const { posts, comments } = galleryState
   const [postDibsIsOpen, setPostDibsIsOpen] = useState(false)
-  const selectedPostId = posts[selectedPostIndex]?.id
-  const { goBack } = useHistory()
+  const history = useHistory()
   const dispatch = useDispatch()
+  const { postId } = useParams()
 
-  useEffect(() => {
-    const selectedPost = document.querySelector(`#${selectedPostId}`)
-    selectedPost?.scrollIntoView()
-  }, [selectedPostId])
+  useLayoutEffect(() => {
+    const selectedPost = document.querySelector(`#${postId}`)
+    posts.length >= 1 && selectedPost?.scrollIntoView()
+  }, [postId, posts.length])
 
-  const handlePostButtonEvent = (index, button) => {
+  const handlePostButtonEvent = (index, button, postId) => {
     button === 'commentButton' ? setPostCommentIsOpen(true) : setPostDibsIsOpen(true)
     dispatch(galleryActions.setSelectedPostIndex(index))
+    history.push(`/mobilePostPage/${postId}`)
   }
 
   const getPostComments = (id) => {
@@ -32,13 +33,13 @@ const MobileSinglePost = ({ setPostCommentIsOpen }) => {
     )
 
     return selectedComments
-  } 
+  }
 
   return (
     <>
       <div className="mobile-single-post">
         <div className="header">
-          <button onClick={goBack} className="material-icons">&#xe5c4;</button>
+          <button onClick={() => history.push('/')} className="material-icons">&#xe5c4;</button>
           <span>Posts</span>
         </div>
         <div className="content">
@@ -49,7 +50,7 @@ const MobileSinglePost = ({ setPostCommentIsOpen }) => {
                   className="nav-photo" alt="profile"
                 />
                 <span className="bio-name">{bio?.username || CONSTANTS.NAME}</span>
-                <button onClick={() => handlePostButtonEvent(index, 'moreButton')}>
+                <button onClick={() => handlePostButtonEvent(index, 'moreButton', post.id)}>
                   <i className="material-icons">&#xe5d4;</i>
                 </button>
               </div>
@@ -63,7 +64,7 @@ const MobileSinglePost = ({ setPostCommentIsOpen }) => {
                       className="fa fa-heart-o"
                     >
                     </button>
-                    <button onClick={() => handlePostButtonEvent(index, 'commentButton')}
+                    <button onClick={() => handlePostButtonEvent(index, 'commentButton', post.id)}
                       className="fa fa-comment-o"
                     >
                     </button>
@@ -83,7 +84,7 @@ const MobileSinglePost = ({ setPostCommentIsOpen }) => {
                   </div>
                 )}
                 <div className="post-info">
-                  <button onClick={() => handlePostButtonEvent(index, 'commentButton')}>
+                  <button onClick={() => handlePostButtonEvent(index, 'commentButton', post.id)}>
                     View all comments
                   </button>
                   <div>

@@ -39,7 +39,7 @@ const App = () => {
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/settings" component={Settings} />
-          <Route path="/mobilePostPage" component={MobilePostPage} />
+          <Route path="/mobilePostPage/:postId" component={MobilePostPage} />
         </Switch>
       </div>
     </BrowserRouter>

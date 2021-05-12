@@ -22,19 +22,19 @@ const Gallery = () => {
     })
   }
 
-  const handlePostClick = (index) => {
+  const handlePostClick = (index, postId) => {
     dispatch(galleryActions.setSelectedPostIndex(index))
     if (window.innerWidth <= 768) {
-      history.push('/mobilePostPage')
+      history.push(`/mobilePostPage/${postId}`)
     } else {
       setSinglePostIsActive(true)
     }
   }
 
-  const galleryItems = posts?.map((post, index) => (
-    <button key={post.id} onClick={() => handlePostClick(index)}>
+  const galleryItems = posts?.map(({ id, photoUrl}, index) => (
+    <button key={id} onClick={() => handlePostClick(index, id)}>
       <div className="photo-container">
-        <img src={post.photoUrl} alt="profile" />
+        <img src={photoUrl} alt="profile" />
       </div>
     </button>
   ))
